@@ -377,8 +377,12 @@ function slideIn(id) {
 
 function doSlide(id)
 {
-	if (slideTo == `-1`)
+	if (slideTo == `-1`) {
 		slideOut(id);
+		
+		slideTo = id;
+		return;
+	}
 		
 	slideTo = id;
 	
