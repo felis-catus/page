@@ -54,6 +54,7 @@ body {
 a {
 	color:#ff4fa7;
 	text-decoration: none;
+	cursor: default;
 }
 
 a:hover {
@@ -159,7 +160,7 @@ button.slider {
 	font-weight: initial;
 	width:120px;
 	margin:0px;
-	cursor: pointer;
+	cursor: default;
 }
 
 button.slider:hover {
@@ -357,34 +358,67 @@ email: felis [at] wiretrippers.net<br>github: <a href="https://github.com/felis-
 var containers = document.getElementsByClassName('container');
 var buttons = document.getElementsByClassName('slider');
 
+var activeContainer = 0;
+var slideState = -1;
 var slideTo = -1;
 
 for (var i = 0; i < containers.length; i++) {
 	containers[i].addEventListener('transitionend', () => {
-		slideOut(slideTo);
+		if (slideState == 1) {
+			activeContainer = slideTo;
+			slideState = -1;
+		}
+		else if (slideState == 0)
+			slideOut(slideTo);
+		else
+			slideState = -1;
+			
+		document.body.style.cursor = 'default';
+		
+		for (var i = 0; i < buttons.length; i++) {
+			buttons[i].style.cursor = 'default';
+		}
 	});
 }
 
 function slideOut(id) {
 	id.style.height = `${id.scrollHeight}px`;
 	id.style.border = "2px dashed white";
+	
+	slideState = 1;
 }
 
 function slideIn(id) {
 	id.style.height = `0px`;
 	id.style.border = "transparent";
+	
+	slideState = 0;
 }
 
 function doSlide(id)
 {
+	if (activeContainer == id) {
+		return false;
+	}
+	
+	if (slideState != -1) {
+		return false;
+	}
+
 	if (slideTo == `-1`) {
 		slideOut(id);
 		
 		slideTo = id;
-		return;
+		return true;
 	}
 		
 	slideTo = id;
+	
+	document.body.style.cursor = 'wait';
+	
+	for (var i = 0; i < buttons.length; i++) {
+		buttons[i].style.cursor = 'wait';
+	}
 	
 	for (var i = 0; i < containers.length; i++) {
 		if (id == containers[i]) {
@@ -394,6 +428,8 @@ function doSlide(id)
 		
 		slideIn(containers[i]);
 	}
+	
+	return true;
 }
 
 function adjustButtons(id)
@@ -409,28 +445,28 @@ function adjustButtons(id)
 }
 
 function onMOTD() {
-	doSlide(document.getElementById("motd"));
-	adjustButtons(document.getElementById("button_motd"));
+	if (doSlide(document.getElementById("motd")))
+		adjustButtons(document.getElementById("button_motd"));
 }
 
 function onBio() {
-	doSlide(document.getElementById("bio"));
-	adjustButtons(document.getElementById("button_bio"));
+	if (doSlide(document.getElementById("bio")))
+		adjustButtons(document.getElementById("button_bio"));
 }
 
 function onGames() {
-	doSlide(document.getElementById("games"));
-	adjustButtons(document.getElementById("button_games"));
+	if (doSlide(document.getElementById("games")))
+		adjustButtons(document.getElementById("button_games"));
 }
 
 function onAudio() {
-	doSlide(document.getElementById("audio"));
-	adjustButtons(document.getElementById("button_audio"));
+	if (doSlide(document.getElementById("audio")))
+		adjustButtons(document.getElementById("button_audio"));
 }
 
 function onContact() {
-	doSlide(document.getElementById("contact"));
-	adjustButtons(document.getElementById("button_contact"));
+	if (doSlide(document.getElementById("contact")))
+		adjustButtons(document.getElementById("button_contact"));
 }
 
 onMOTD();
