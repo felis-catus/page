@@ -4,6 +4,7 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <link rel="shortcut icon" href="favicon.ico">
 <title>> /tmp/about.html</title>
+
 <style>
 @font-face {
  	font-family: 'tewi';
@@ -40,13 +41,14 @@ body {
 	z-index:-1;
 }
 
-#container {
+.container {
 	text-align:left;
 	width:800px;
 	background-color: #25282a;
-	border: solid transparent;
-	border-width: 2px;
-	border-image: url('res/border.gif') 2 round;
+	border: 2px transparent;
+	transition: height 0.3s cubic-bezier(0,0,0.02,1);
+	height:0;
+	overflow:hidden;
 }
 
 a {
@@ -86,10 +88,6 @@ a:hover {
 	padding:8px;
 }
 
-.separator {
-	border-width:0px;
-}
-
 .separator2 {
 	border-top:2px solid #aaaaaa;
 	border-bottom:0px;
@@ -117,6 +115,7 @@ a:hover {
 	text-align:left;
 	width:800px;
 	margin:0px;
+	cursor:pointer;
 }
 
 .alignright {
@@ -147,14 +146,46 @@ div.smol {
 	font-size: 13px;
 }
 
+button.slider {
+	background-color: rgba(0,0,0,0);
+	border: none;
+	color: #ffffff;
+	text-align:left;
+	text-decoration: none;
+	display: inline-block;
+	font-family: "tewi", "System", monospace;
+	font-size:22px;
+	font-smooth: never;
+	font-weight: initial;
+	width:120px;
+	margin:0px;
+	cursor: pointer;
+}
+
+button.slider:hover {
+	color:#ff4fa7;
+	filter: brightness(100%) grayscale(0%) sepia(0%) saturate(100%) contrast(1);
+	transition: 0.5s;
+}
+
 </style>
+
 </head>
 
 <body>
+
 <div class="bg"></div>
+
 <center>
-<p class="alignleft">> /tmp/about.html</p><br>
-<div id="container">
+
+<button class="slider" id="button_motd" onclick="onMOTD()">&gt; motd</button>
+<button class="slider" id="button_bio" onclick="onBio()">&gt; about</button>
+<button class="slider" id="button_games" onclick="onGames()">&gt; games</button>
+<button class="slider" id="button_audio" onclick="onAudio()">&gt; audio</button>
+<button class="slider" id="button_contact" onclick="onContact()">&gt; contact</button>
+<br><br>
+<div class="container" id="motd">
+
 <center>
 <div class="logo">
            |`-.._____..-'|
@@ -175,14 +206,18 @@ div.smol {
            `'`''-`'''-'-''--.---  )
                         SSt `----'
 </div>
+<br>
 </center>
+</div>
+
+<div class="container" id="bio">
 
 <center>
-<hr class="separator">
+<br>
 
 <img src=res/bio.gif class=sectionlogo>
 
-<hr class="separator">
+<br>
 
 <div class="box"><div class="info">
 <div class="smol">id analysis<br></div>
@@ -193,11 +228,17 @@ i'm aku (most know me as 'felis'), a programmer, gamedev, musician, whatever-i-f
 </div></div>
 </center>
 
-<hr class="separator">
+<br><br>
+
+</div>
+
+<div class="container" id="games">
+
+<br>
 
 <img src=res/vg.gif class=sectionlogo>
 
-<hr class="separator">
+<br>
 
 <center>
 <div class="box"><div class="info">
@@ -257,13 +298,20 @@ i also contributed code to the sequel, and the work is still ongoing.
 <div class="smol">avaibility<br></div>
 the game will be available on steam, and you may wishlist it <a href=https://store.steampowered.com/app/292000>here</a>.
 </div></div>
+
+<br><br>
+
 </center>
 
-<hr class="separator">
+</div>
+
+<div class="container" id="audio">
+
+<br>
 
 <img src=res/noise.gif class=sectionlogo>
 
-<hr class="separator">
+<br>
 
 <center>
 <div class="box"><div class="info">
@@ -276,25 +324,114 @@ i produce music as a hobby, usually the more niche stuff heavily driven by my cu
 <div class="smol">soundcloud<br></div>
 <a href=https://soundcloud.com/felis-catus-1/>personal soundcloud for whatever</a><br>
 </div></div>
+
+<br><br>
+
 </center>
 
-<hr class="separator">
+</div>
+
+<div class="container" id="contact">
+
+<br>
 
 <img src=res/hi.gif class=sectionlogo>
 
-<hr class="separator">
+<br>
 
 <center>
 <div class="box"><div class="info">
 <div class="smol">accounts<br></div>
 email: felis [at] wiretrippers.net<br>github: <a href="https://github.com/felis-catus">https://github.com/felis-catus</a><br>steam: <a href=https://steamcommunity.com/id/felis-catus>https://steamcommunity.com/id/felis-catus</a><br>
 </div></div>
+<br><br>
 </center>
+</div>
 
 <br><br>
-</div>
-<br>
+
 <p class="alignright">brought to you by dweeb hq</p>
 </center>
+
+<script>
+var containers = document.getElementsByClassName('container');
+var buttons = document.getElementsByClassName('slider');
+
+var slideTo = -1;
+
+for (var i = 0; i < containers.length; i++) {
+	containers[i].addEventListener('transitionend', () => {
+		slideOut(slideTo);
+	});
+}
+
+function slideOut(id) {
+	id.style.height = `${id.scrollHeight}px`;
+	id.style.border = "2px dashed white";
+}
+
+function slideIn(id) {
+	id.style.height = `0px`;
+	id.style.border = "transparent";
+}
+
+function doSlide(id)
+{
+	if (slideTo == `-1`)
+		slideOut(id);
+		
+	slideTo = id;
+	
+	for (var i = 0; i < containers.length; i++) {
+		if (id == containers[i]) {
+			id.parentNode.insertBefore(containers[i], containers[0]);
+			continue;
+		}
+		
+		slideIn(containers[i]);
+	}
+}
+
+function adjustButtons(id)
+{
+	for (var i = 0; i < buttons.length; i++) {
+		if (id == buttons[i]) {
+			buttons[i].style.color = '#ff4fa7';
+			continue;
+		}
+		
+		buttons[i].style.color = '#ffffff';
+	}
+}
+
+function onMOTD() {
+	doSlide(document.getElementById("motd"));
+	adjustButtons(document.getElementById("button_motd"));
+}
+
+function onBio() {
+	doSlide(document.getElementById("bio"));
+	adjustButtons(document.getElementById("button_bio"));
+}
+
+function onGames() {
+	doSlide(document.getElementById("games"));
+	adjustButtons(document.getElementById("button_games"));
+}
+
+function onAudio() {
+	doSlide(document.getElementById("audio"));
+	adjustButtons(document.getElementById("button_audio"));
+}
+
+function onContact() {
+	doSlide(document.getElementById("contact"));
+	adjustButtons(document.getElementById("button_contact"));
+}
+
+onMOTD();
+</script>
+
 </body>
+
 </html>
