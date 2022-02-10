@@ -3,7 +3,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <link rel="shortcut icon" href="favicon.ico">
-<title>> /tmp/about.html</title>
+<title>> WIRE TRIPPERS</title>
 
 <style>
 @font-face {
@@ -181,7 +181,7 @@ button.slider:hover {
 <center>
 
 <button class="slider" id="button_motd" onclick="onMOTD()">&gt; motd</button>
-<button class="slider" id="button_bio" onclick="onBio()">&gt; about</button>
+<button class="slider" id="button_about" onclick="onAbout()">&gt; about</button>
 <button class="slider" id="button_games" onclick="onGames()">&gt; games</button>
 <button class="slider" id="button_audio" onclick="onAudio()">&gt; audio</button>
 <button class="slider" id="button_contact" onclick="onContact()">&gt; contact</button>
@@ -212,7 +212,7 @@ button.slider:hover {
 </center>
 </div>
 
-<div class="container" id="bio">
+<div class="container" id="about">
 
 <center>
 <br>
@@ -226,8 +226,21 @@ button.slider:hover {
 about me
 <hr class="separator2">
 <a title="are you saying that i am a fake cat?"><img src=res/avatar.jpg class=avatarimage></a>
-i'm aku (most know me as 'felis'), a programmer, gamedev, musician, whatever-i-feel-like-doing person.<br><br>for the things i *have done*, you can check the games & audio pages.<br><br>you can also find my contact details up there.<br><br>thanks, rock on!
+i'm aku (most know me as 'felis'), a programmer, gamedev, musician, whatever-i-feel-like-doing person.<br><br>
+for the things i *have done*, you can check the games &amp; audio pages.<br><br>
+you can also find my contact details up there.<br><br>
+thanks, rock on!
 </div></div>
+
+<div class="box"><div class="info">
+<div class="smol">the boring zone<br></div>
+experience
+<hr class="separator2">
+- 7+ years in C/C++ and game development<br>
+- incl. leadership and production management<br>
+- mainly from hobbyist, modding background<br>
+- know my way around source control<br>
+- can chop an amen break, somewhat<br>
 </center>
 
 <br><br>
@@ -352,7 +365,22 @@ email: felis [at] wiretrippers.net<br>github: <a href="https://github.com/felis-
 
 <br>
 
-<p class="alignright">brought to you by dweeb hq</p>
+<div class="smol">(C) <script>document.write( new Date().getFullYear() );</script> wiretrippers.net <div id=copymsg></div></div>
+<script>
+var messages = new Array();
+messages[0] = "prosecutedt to the full extent of the Jam";
+messages[1] = "brought to you by dweeb hq";
+messages[2] = "temporary forever";
+messages[3] = "thank you for visiting";
+messages[4] = "no copyright intended";
+messages[5] = "welcome to my homepage";
+messages[6] = "F5 F5 F5 F5 F5 F5 F5 F5 F5";
+messages[7] = "just 4 fun";
+messages[8] = "take what you need";
+var rnd = Math.floor(Math.random() * messages.length);
+document.getElementById("copymsg").innerHTML = messages[rnd];
+</script>
+
 </center>
 
 <script>
@@ -450,9 +478,9 @@ function onMOTD() {
 		adjustButtons(document.getElementById("button_motd"));
 }
 
-function onBio() {
-	if (doSlide(document.getElementById("bio")))
-		adjustButtons(document.getElementById("button_bio"));
+function onAbout() {
+	if (doSlide(document.getElementById("about")))
+		adjustButtons(document.getElementById("button_about"));
 }
 
 function onGames() {
