@@ -37,7 +37,6 @@ body {
 	background-position: center center;
 	background-color: rgba(49,49,49,.75);
 	background-blend-mode: multiply;
-	will-change:;
 	z-index:-1;
 }
 
@@ -49,6 +48,8 @@ body {
 	transition: height 0.3s cubic-bezier(0,0,0.02,1);
 	height:0;
 	overflow:hidden;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 a {
@@ -179,7 +180,7 @@ button.slider:hover {
 
 <div class="bg"></div>
 
-<center>
+<div style="text-align:center">
 
 <button class="slider" id="button_motd" onclick="onMOTD()">&gt; motd</button>
 <button class="slider" id="button_about" onclick="onAbout()">&gt; about</button>
@@ -189,7 +190,7 @@ button.slider:hover {
 <br><br>
 <div class="container" id="motd">
 
-<center>
+<div style="text-align:center">
 <div class="logo">
            |`-.._____..-'|
            :  &gt; .  ,  &lt;  :
@@ -210,12 +211,12 @@ button.slider:hover {
                         SSt `----'
 </div>
 <br>
-</center>
+</div>
 </div>
 
 <div class="container" id="about">
 
-<center>
+<div style="text-align:center">
 <br>
 
 <img src=res/bio.gif class=sectionlogo>
@@ -228,12 +229,12 @@ about me
 <hr class="separator2">
 <a title="are you saying that i am a fake cat?"><img src=res/avatar.jpg class=avatarimage></a>
 i'm aku (most know me as 'felis'), a programmer, gamedev, musician, whatever-i-feel-like-doing person.<br><br>
-at the time of writing, i'm working full-time as programmer, this page is primarily for my hobby work.<br><br>
+at the time of writing, i'm working full-time as a programmer, this page is mainly for my hobby work.<br><br>
 for the things i *have done*, check the games &amp; audio pages.<br><br>
 you can also find my contact details up there.<br><br>
 thanks, rock on!
 </div></div>
-</center>
+</div>
 
 <br><br>
 
@@ -247,7 +248,7 @@ thanks, rock on!
 
 <br>
 
-<center>
+<div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">project #1<br></div>
 Pirates, Vikings & Knights II
@@ -264,9 +265,9 @@ a melee-centric fps running on source engine, this was my first proper gamedev p
 <div class="smol">avaibility<br></div>
 the game is available for free, you may download it <a href=https://store.steampowered.com/app/17570>here</a> (steam client required!)
 </div></div>
-</center>
+</div>
 
-<center>
+<div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">project #2<br></div>
 No More Room in Hell
@@ -286,9 +287,9 @@ the game is available for free, you may download it <a href=https://store.steamp
 <div class="smol">addendum<br></div>
 found an issue? game's broken? let us know at <a href= https://github.com/nmrih/source-game/issues>github issue tracker</a> (please do!)
 </div></div>
-</center>
+</div>
 
-<center>
+<div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">project #3<br></div>
 No More Room in Hell 2
@@ -305,7 +306,7 @@ i also contributed code to the sequel, and the work is still ongoing.
 <div class="smol">avaibility<br></div>
 the game will be available on steam, and you may wishlist it <a href=https://store.steampowered.com/app/292000>here</a>.
 </div></div>
-</center>
+</div>
 
 <br>
 
@@ -315,9 +316,9 @@ the game will be available on steam, and you may wishlist it <a href=https://sto
 
 <br>
 
-<center>
+<div style="text-align:center">
 
-<center>
+<div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">archive #1<br></div>
 FragFest
@@ -336,9 +337,9 @@ the mod was codenamed "the nab project", which was reference to a group of frien
 <div class="smol">avaibility<br></div>
 <b>[PENDING ARCHIVAL]</b>
 </div></div>
-</center>
+</div>
 
-<center>
+<div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">archive #2<br></div>
 OVERHEAT
@@ -357,11 +358,11 @@ this is one of the projects i *may* return to in different capacity, at least th
 <div class="smol">avaibility<br></div>
 soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat-soundtrack>here</a>.
 </div></div>
-</center>
+</div>
 
 <br><br>
 
-</center>
+</div>
 
 </div>
 
@@ -373,21 +374,21 @@ soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat
 
 <br>
 
-<center>
+<div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">info<br></div>
 i produce music as a hobby, usually the more niche stuff heavily driven by my current taste at the time. i'm fairly solitary when it comes to that, so i don't release much of my work.
 <hr class="separator2">
 <div class="smol">bandcamp<br></div>
-<a href=https://thewiretrippers.bandcamp.com/>THE WIRE TRIPPERS (bandcamp page for more serious work, soundtracks, etc.)</a><br>
+<a href=https://thewiretrippers.bandcamp.com>THE WIRE TRIPPERS (bandcamp page for more serious work, soundtracks, etc.)</a><br>
 <hr class="separator2">
 <div class="smol">soundcloud<br></div>
-<a href=https://soundcloud.com/felis-catus-1/>personal soundcloud for whatever</a><br>
+<a href=https://soundcloud.com/felis-catus-1>personal soundcloud for whatever</a><br>
 </div></div>
 
 <br><br>
 
-</center>
+</div>
 
 </div>
 
@@ -399,13 +400,13 @@ i produce music as a hobby, usually the more niche stuff heavily driven by my cu
 
 <br>
 
-<center>
+<div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">accounts<br></div>
 email: felis [at] wiretrippers.net<br>github: <a href="https://github.com/felis-catus">https://github.com/felis-catus</a><br>steam: <a href=https://steamcommunity.com/id/felis-catus>https://steamcommunity.com/id/felis-catus</a><br>
 </div></div>
 <br><br>
-</center>
+</div>
 </div>
 
 <br>
@@ -428,7 +429,7 @@ var rnd = Math.floor(Math.random() * messages.length);
 document.getElementById("copymsg").innerHTML = messages[rnd];
 </script>
 
-</center>
+</div>
 
 <script>
 var containers = document.getElementsByClassName('container');
