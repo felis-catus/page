@@ -23,6 +23,12 @@ Description: Render modes used by Get/SetRenderMode
 =====================================
 
 =====================================
+Enum:        WeaponID
+Elements:    69
+Description: Weapon IDs for all NMRiH weapons.
+=====================================
+
+=====================================
 Enum:        WeaponSound
 Elements:    17
 Description: Weapon sounds.
@@ -1848,6 +1854,213 @@ Constant:    WEAPON_PROFICIENCY_VERY_GOOD
 Value:       3 (int)
 Description: Very good weapon proficiency. Causes very good accuracy.
 
+Constant:    WeaponID.AMMOBOX_12GAUGE
+Value:       55 (int)
+
+Constant:    WeaponID.AMMOBOX_22LR
+Value:       56 (int)
+
+Constant:    WeaponID.AMMOBOX_308
+Value:       57 (int)
+
+Constant:    WeaponID.AMMOBOX_357
+Value:       54 (int)
+
+Constant:    WeaponID.AMMOBOX_45ACP
+Value:       53 (int)
+
+Constant:    WeaponID.AMMOBOX_556
+Value:       58 (int)
+
+Constant:    WeaponID.AMMOBOX_762MM
+Value:       59 (int)
+
+Constant:    WeaponID.AMMOBOX_9MM
+Value:       52 (int)
+
+Constant:    WeaponID.AMMOBOX_ARROW
+Value:       60 (int)
+
+Constant:    WeaponID.AMMOBOX_BOARD
+Value:       61 (int)
+
+Constant:    WeaponID.AMMOBOX_FLARE
+Value:       63 (int)
+
+Constant:    WeaponID.AMMOBOX_FUEL
+Value:       62 (int)
+
+Constant:    WeaponID.BOW_DEERHUNTER
+Value:       22 (int)
+
+Constant:    WeaponID.EXP_GRENADE
+Value:       49 (int)
+
+Constant:    WeaponID.EXP_MOLOTOV
+Value:       50 (int)
+
+Constant:    WeaponID.EXP_TNT
+Value:       51 (int)
+
+Constant:    WeaponID.FA_1022
+Value:       11 (int)
+
+Constant:    WeaponID.FA_1022_25MAG
+Value:       12 (int)
+
+Constant:    WeaponID.FA_1911
+Value:       4 (int)
+
+Constant:    WeaponID.FA_500A
+Value:       9 (int)
+
+Constant:    WeaponID.FA_870
+Value:       6 (int)
+
+Constant:    WeaponID.FA_CZ858
+Value:       15 (int)
+
+Constant:    WeaponID.FA_FNFAL
+Value:       17 (int)
+
+Constant:    WeaponID.FA_GLOCK17
+Value:       1 (int)
+
+Constant:    WeaponID.FA_JAE700
+Value:       16 (int)
+
+Constant:    WeaponID.FA_M16A4
+Value:       20 (int)
+
+Constant:    WeaponID.FA_M16A4_CARRYHANDLE
+Value:       21 (int)
+
+Constant:    WeaponID.FA_M92FS
+Value:       2 (int)
+
+Constant:    WeaponID.FA_MAC10
+Value:       18 (int)
+
+Constant:    WeaponID.FA_MKIII
+Value:       3 (int)
+
+Constant:    WeaponID.FA_MP5A3
+Value:       19 (int)
+
+Constant:    WeaponID.FA_SAKO85
+Value:       14 (int)
+
+Constant:    WeaponID.FA_SAKO85_IRONSIGHTS
+Value:       67 (int)
+
+Constant:    WeaponID.FA_SKS
+Value:       13 (int)
+
+Constant:    WeaponID.FA_SKS_NOBAYO
+Value:       66 (int)
+
+Constant:    WeaponID.FA_SUPERX3
+Value:       7 (int)
+
+Constant:    WeaponID.FA_SV10
+Value:       8 (int)
+
+Constant:    WeaponID.FA_SW686
+Value:       5 (int)
+
+Constant:    WeaponID.FA_WINCHESTER1892
+Value:       10 (int)
+
+Constant:    WeaponID.ITEM_BANDAGES
+Value:       47 (int)
+
+Constant:    WeaponID.ITEM_FIRST_AID
+Value:       45 (int)
+
+Constant:    WeaponID.ITEM_GENE_THERAPY
+Value:       46 (int)
+
+Constant:    WeaponID.ITEM_MAGLITE
+Value:       42 (int)
+
+Constant:    WeaponID.ITEM_PILLS
+Value:       44 (int)
+
+Constant:    WeaponID.ITEM_WALKIETALKIE
+Value:       43 (int)
+
+Constant:    WeaponID.ITEM_ZIPPO
+Value:       48 (int)
+
+Constant:    WeaponID.ME_ABRASIVESAW
+Value:       31 (int)
+
+Constant:    WeaponID.ME_AXE_FIRE
+Value:       27 (int)
+
+Constant:    WeaponID.ME_BAT_METAL
+Value:       28 (int)
+
+Constant:    WeaponID.ME_CHAINSAW
+Value:       30 (int)
+
+Constant:    WeaponID.ME_CLEAVER
+Value:       65 (int)
+
+Constant:    WeaponID.ME_CROWBAR
+Value:       29 (int)
+
+Constant:    WeaponID.ME_ETOOL
+Value:       32 (int)
+
+Constant:    WeaponID.ME_FISTS
+Value:       33 (int)
+
+Constant:    WeaponID.ME_FUBAR
+Value:       34 (int)
+
+Constant:    WeaponID.ME_HATCHET
+Value:       35 (int)
+
+Constant:    WeaponID.ME_KITKNIFE
+Value:       36 (int)
+
+Constant:    WeaponID.ME_MACHETE
+Value:       37 (int)
+
+Constant:    WeaponID.ME_PICKAXE
+Value:       64 (int)
+
+Constant:    WeaponID.ME_PIPE_LEAD
+Value:       38 (int)
+
+Constant:    WeaponID.ME_SHOVEL
+Value:       39 (int)
+
+Constant:    WeaponID.ME_SLEDGE
+Value:       40 (int)
+
+Constant:    WeaponID.ME_WRENCH
+Value:       41 (int)
+
+Constant:    WeaponID.TOOL_BARRICADE
+Value:       23 (int)
+
+Constant:    WeaponID.TOOL_EXTINGUISHER
+Value:       24 (int)
+
+Constant:    WeaponID.TOOL_FLARE_GUN
+Value:       25 (int)
+
+Constant:    WeaponID.TOOL_WELDER
+Value:       26 (int)
+
+Constant:    WeaponID.WEAPON_MAX
+Value:       68 (int)
+
+Constant:    WeaponID.WEAPON_NONE
+Value:       0 (int)
+
 Constant:    WeaponSound.BURST
 Value:       5 (int)
 
@@ -2218,9 +2431,20 @@ Description: The zombie entity.
 =====================================
 
 =====================================
+Class:       CNMRiH_GameRules
+Base:        CGameRules
+=====================================
+
+=====================================
 Class:       CNMRiH_Player
 Base:        CBasePlayer
 Description: The player entity for NMRiH.
+=====================================
+
+=====================================
+Class:       CNMRiH_WeaponBase
+Base:        CBaseCombatWeapon
+Description: The weapon entity for NMRiH.
 =====================================
 
 =====================================
@@ -4534,6 +4758,10 @@ Function:    CGameState::RespawnAllPlayers
 Signature:   void CGameState::RespawnAllPlayers()
 Description: Respawns all players.
 
+Function:    CGameState::RespawnDeadPlayers
+Signature:   void CGameState::RespawnDeadPlayers()
+Description: Respawns dead players.
+
 Function:    CGameState::RespawnPlayer
 Signature:   void CGameState::RespawnPlayer(handle)
 Description: Respawns a player.
@@ -4812,6 +5040,60 @@ Function:    CNMRiH_BaseZombie::SpawnLootWeapon
 Signature:   handle CNMRiH_BaseZombie::SpawnLootWeapon(string)
 Description: Spawns loot drop by weapon classname, returns handle to new entity.
 
+Function:    CNMRiH_GameRules::AreTokensGivenFromKills
+Signature:   bool CNMRiH_GameRules::AreTokensGivenFromKills()
+
+Function:    CNMRiH_GameRules::GetActivePlayerCount
+Signature:   int CNMRiH_GameRules::GetActivePlayerCount()
+
+Function:    CNMRiH_GameRules::GetActivePlayerSpawnCount
+Signature:   int CNMRiH_GameRules::GetActivePlayerSpawnCount()
+
+Function:    CNMRiH_GameRules::GetCurrentState
+Signature:   int CNMRiH_GameRules::GetCurrentState()
+
+Function:    CNMRiH_GameRules::GetDeadPlayerCount
+Signature:   int CNMRiH_GameRules::GetDeadPlayerCount()
+
+Function:    CNMRiH_GameRules::GetExtractedPlayerCount
+Signature:   int CNMRiH_GameRules::GetExtractedPlayerCount()
+
+Function:    CNMRiH_GameRules::GetGameOverState
+Signature:   int CNMRiH_GameRules::GetGameOverState()
+
+Function:    CNMRiH_GameRules::GetInfectionModifier
+Signature:   float CNMRiH_GameRules::GetInfectionModifier()
+
+Function:    CNMRiH_GameRules::GetKillsRequiredPerToken
+Signature:   int CNMRiH_GameRules::GetKillsRequiredPerToken()
+
+Function:    CNMRiH_GameRules::GetLossState
+Signature:   int CNMRiH_GameRules::GetLossState()
+
+Function:    CNMRiH_GameRules::GetPracticeState
+Signature:   int CNMRiH_GameRules::GetPracticeState()
+
+Function:    CNMRiH_GameRules::GetRestartState
+Signature:   int CNMRiH_GameRules::GetRestartState()
+
+Function:    CNMRiH_GameRules::GetRunningState
+Signature:   int CNMRiH_GameRules::GetRunningState()
+
+Function:    CNMRiH_GameRules::GetStateTransitionTime
+Signature:   float CNMRiH_GameRules::GetStateTransitionTime()
+
+Function:    CNMRiH_GameRules::GetSuppliesDroppedCount
+Signature:   int CNMRiH_GameRules::GetSuppliesDroppedCount()
+
+Function:    CNMRiH_GameRules::GetWinState
+Signature:   int CNMRiH_GameRules::GetWinState()
+
+Function:    CNMRiH_GameRules::HasLevelTransitioned
+Signature:   bool CNMRiH_GameRules::HasLevelTransitioned()
+
+Function:    CNMRiH_GameRules::IsIntermission
+Signature:   bool CNMRiH_GameRules::IsIntermission()
+
 Function:    CNMRiH_Player::AddCarriedWeight
 Signature:   void CNMRiH_Player::AddCarriedWeight(int)
 Description: Adds carried inventory weight.
@@ -4843,6 +5125,10 @@ Description: Cancels suicide when contemplating, with boolean parameter for play
 Function:    CNMRiH_Player::CancelThrowDrop
 Signature:   void CNMRiH_Player::CancelThrowDrop()
 Description: Cancels active weapon throw.
+
+Function:    CNMRiH_Player::ClearHandModelOverride
+Signature:   void CNMRiH_Player::ClearHandModelOverride()
+Description: Resets viewmodel hands back to default.
 
 Function:    CNMRiH_Player::ContemplateSuicide
 Signature:   void CNMRiH_Player::ContemplateSuicide()
@@ -4956,6 +5242,10 @@ Function:    CNMRiH_Player::IsHost
 Signature:   bool CNMRiH_Player::IsHost()
 Description: Returns true if this player is a listen server host.
 
+Function:    CNMRiH_Player::IsInLevelTransition
+Signature:   bool CNMRiH_Player::IsInLevelTransition()
+Description: Returns true if player is in level transition.
+
 Function:    CNMRiH_Player::IsPartialBlindnessActive
 Signature:   bool CNMRiH_Player::IsPartialBlindnessActive()
 Description: Returns true if player is experiencing blindness from vaccine side effects.
@@ -5008,6 +5298,10 @@ Function:    CNMRiH_Player::SetExtracted
 Signature:   void CNMRiH_Player::SetExtracted(bool)
 Description: Sets this player as extracted.
 
+Function:    CNMRiH_Player::SetHandModelOverride
+Signature:   void CNMRiH_Player::SetHandModelOverride(string)
+Description: Overrides viewmodel hands, with string parameter for model name.
+
 Function:    CNMRiH_Player::SetIdleTimeout
 Signature:   void CNMRiH_Player::SetIdleTimeout(float)
 Description: Sets timeout for idle auto-kick.
@@ -5055,6 +5349,71 @@ Description: Throws all weapons that player owns.
 Function:    CNMRiH_Player::VoiceCommand
 Signature:   void CNMRiH_Player::VoiceCommand(int, bool)
 Description: Tries a voice command, with boolean parameter for playing it regardless of cooldown.
+
+Function:    CNMRiH_WeaponBase::AllowsSelectiveFire
+Signature:   bool CNMRiH_WeaponBase::AllowsSelectiveFire()
+Description: Returns true if the weapon allows different fire modes.
+
+Function:    CNMRiH_WeaponBase::AllowsSuicide
+Signature:   bool CNMRiH_WeaponBase::AllowsSuicide()
+
+Function:    CNMRiH_WeaponBase::CanIronsight
+Signature:   bool CNMRiH_WeaponBase::CanIronsight()
+
+Function:    CNMRiH_WeaponBase::GetBloodCount
+Signature:   int CNMRiH_WeaponBase::GetBloodCount()
+Description: Returns visual bloodiness level.
+
+Function:    CNMRiH_WeaponBase::GetIronsightPlayerSpeed
+Signature:   float CNMRiH_WeaponBase::GetIronsightPlayerSpeed()
+Description: Returns player movement speed while in ironsights.
+
+Function:    CNMRiH_WeaponBase::GetMaxThrowDistance
+Signature:   int CNMRiH_WeaponBase::GetMaxThrowDistance()
+Description: Returns calculated distance for the weapon throw.
+
+Function:    CNMRiH_WeaponBase::GetThrower
+Signature:   handle CNMRiH_WeaponBase::GetThrower()
+Description: Returns handle to weapon thrower.
+
+Function:    CNMRiH_WeaponBase::GetWeaponID
+Signature:   int CNMRiH_WeaponBase::GetWeaponID()
+Description: Returns weapon ID.
+
+Function:    CNMRiH_WeaponBase::HasFirstDrawActivity
+Signature:   bool CNMRiH_WeaponBase::HasFirstDrawActivity()
+Description: Returns true if this weapon has an initial draw animation, e.g. pulling back the hammer on pistols.
+
+Function:    CNMRiH_WeaponBase::IsAttacking
+Signature:   bool CNMRiH_WeaponBase::IsAttacking()
+
+Function:    CNMRiH_WeaponBase::IsBashActiveTimeExpired
+Signature:   bool CNMRiH_WeaponBase::IsBashActiveTimeExpired()
+Description: Returns true if the shove cooldown has expired.
+
+Function:    CNMRiH_WeaponBase::IsDry
+Signature:   bool CNMRiH_WeaponBase::IsDry()
+Description: Returns true if the current magazine is empty.
+
+Function:    CNMRiH_WeaponBase::IsFlashlightAllowed
+Signature:   bool CNMRiH_WeaponBase::IsFlashlightAllowed()
+
+Function:    CNMRiH_WeaponBase::IsFlashlightOn
+Signature:   bool CNMRiH_WeaponBase::IsFlashlightOn()
+
+Function:    CNMRiH_WeaponBase::IsIdle
+Signature:   bool CNMRiH_WeaponBase::IsIdle()
+
+Function:    CNMRiH_WeaponBase::IsIronsighted
+Signature:   bool CNMRiH_WeaponBase::IsIronsighted()
+
+Function:    CNMRiH_WeaponBase::IsShoveStab
+Signature:   bool CNMRiH_WeaponBase::IsShoveStab()
+Description: Returns true if the shove does stab, i.e. bayonet.
+
+Function:    CNMRiH_WeaponBase::UsesTacticalReload
+Signature:   bool CNMRiH_WeaponBase::UsesTacticalReload()
+Description: Returns true if this weapon can be reloaded while having a full magazine.
 
 Function:    CNetPropManager::GetPropArraySize
 Signature:   int CNetPropManager::GetPropArraySize(handle, string)
@@ -5741,6 +6100,22 @@ Description: Fill out a damage info handle with a damage force for an explosive.
 Function:    CalculateMeleeDamageForce
 Signature:   void CalculateMeleeDamageForce(handle, Vector, Vector, float)
 Description: Fill out a damage info handle with a damage force for a melee impact.
+
+Function:    CenterPrint
+Signature:   void CenterPrint(handle, string)
+Description: Sends HUD text message to the client. Usage: CenterPrint(<player ent handle>, <string>)
+
+Function:    CenterPrintAll
+Signature:   void CenterPrintAll(string)
+Description: Sends HUD text message to all clients. Usage: CenterPrintAll(<string>)
+
+Function:    CenterPrintAllWithParams
+Signature:   void CenterPrintAllWithParams(string, string, string, string, string)
+Description: Sends HUD text message to all clients, with optional string params. Format is limited to strings and is mapped to param order, i.e. %s1, %s2, %s3, %s4. You can pass an empty string as a param to skip. Usage: CenterPrintAllWithParams(<string>, <p1>, <p2>, <p3>, <p4>)
+
+Function:    CenterPrintWithParams
+Signature:   void CenterPrintWithParams(handle, string, string, string, string, string)
+Description: Sends HUD text message to the client, with optional string params. Format is limited to strings and is mapped to param order, i.e. %s1, %s2, %s3, %s4. You can pass an empty string as a param to skip. Usage: CenterPrintWithParams(<player ent handle>, <string>, <p1>, <p2>, <p3>, <p4>)
 
 Function:    Color::GetRawColor
 Signature:   int Color::GetRawColor()
