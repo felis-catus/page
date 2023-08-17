@@ -2448,6 +2448,12 @@ Description: The weapon entity for NMRiH.
 =====================================
 
 =====================================
+Class:       CNavMesh
+Base:        
+Description: An interface for nav areas.
+=====================================
+
+=====================================
 Class:       CNetPropManager
 Base:        
 Description: Allows reading and updating the network properties of an entity.
@@ -2493,6 +2499,12 @@ Description: Stores choreo scenes and cleans them up when a later scene in the l
 Class:       CScriptKeyValues
 Base:        
 Description: Wrapper class over KeyValues instance
+=====================================
+
+=====================================
+Class:       CScriptNavArea
+Base:        
+Description: Rectangular region defining a walkable area in the environment.
 =====================================
 
 =====================================
@@ -5008,6 +5020,10 @@ Function:    CNMRiH_BaseZombie::BecomeRunner
 Signature:   void CNMRiH_BaseZombie::BecomeRunner()
 Description: Turns this zombie into a runner.
 
+Function:    CNMRiH_BaseZombie::GetShoved
+Signature:   void CNMRiH_BaseZombie::GetShoved(handle)
+Description: Zombie gets shoved back, with entity handle parameter of shove source.
+
 Function:    CNMRiH_BaseZombie::HasArmor
 Signature:   bool CNMRiH_BaseZombie::HasArmor()
 Description: Returns true if this zombie has armor (i.e. national guard).
@@ -5360,6 +5376,10 @@ Signature:   bool CNMRiH_WeaponBase::AllowsSuicide()
 Function:    CNMRiH_WeaponBase::CanIronsight
 Signature:   bool CNMRiH_WeaponBase::CanIronsight()
 
+Function:    CNMRiH_WeaponBase::ClearViewModelOverride
+Signature:   void CNMRiH_WeaponBase::ClearViewModelOverride()
+Description: Resets viewmodel back to default.
+
 Function:    CNMRiH_WeaponBase::GetBloodCount
 Signature:   int CNMRiH_WeaponBase::GetBloodCount()
 Description: Returns visual bloodiness level.
@@ -5411,9 +5431,35 @@ Function:    CNMRiH_WeaponBase::IsShoveStab
 Signature:   bool CNMRiH_WeaponBase::IsShoveStab()
 Description: Returns true if the shove does stab, i.e. bayonet.
 
+Function:    CNMRiH_WeaponBase::SetViewModelOverride
+Signature:   void CNMRiH_WeaponBase::SetViewModelOverride(string)
+Description: Overrides viewmodel, with string parameter for model name. Use with caution, sequences on the new model should match the existing weapon viewmodel!
+
 Function:    CNMRiH_WeaponBase::UsesTacticalReload
 Signature:   bool CNMRiH_WeaponBase::UsesTacticalReload()
 Description: Returns true if this weapon can be reloaded while having a full magazine.
+
+Function:    CNavMesh::GetNavArea
+Signature:   handle CNavMesh::GetNavArea(Vector, float)
+Description: Given a position, return the nav area that IsOverlapping and is *immediately* beneath it.
+
+Function:    CNavMesh::GetNavAreaByID
+Signature:   handle CNavMesh::GetNavAreaByID(int)
+Description: Given an ID, return the associated area.
+
+Function:    CNavMesh::GetNavAreaCount
+Signature:   int CNavMesh::GetNavAreaCount()
+Description: Returns total number of nav areas.
+
+Function:    CNavMesh::GetNearestNavArea
+Signature:   handle CNavMesh::GetNearestNavArea(Vector, float, bool, bool)
+Description: Given a position in the world, return the nav area that is closest, and at the same height, or beneath it. Used to find initial area if we start off of the mesh.
+
+Function:    CNavMesh::RegisterAvoidanceObstacle
+Signature:   void CNavMesh::RegisterAvoidanceObstacle(handle)
+
+Function:    CNavMesh::UnregisterAvoidanceObstacle
+Signature:   void CNavMesh::UnregisterAvoidanceObstacle(handle)
 
 Function:    CNetPropManager::GetPropArraySize
 Signature:   int CNetPropManager::GetPropArraySize(handle, string)
@@ -5726,6 +5772,175 @@ Description: Converts to script table.
 Function:    CScriptKeyValues::TableToSubKeys
 Signature:   void CScriptKeyValues::TableToSubKeys(handle)
 Description: Converts a script table to KeyValues.
+
+Function:    CScriptNavArea::AddIncomingConnection
+Signature:   void CScriptNavArea::AddIncomingConnection(handle, int)
+Description: The area 'source' is connected to us along our 'incomingEdgeDir' edge.
+
+Function:    CScriptNavArea::ComputeClosestPointInPortal
+Signature:   Vector CScriptNavArea::ComputeClosestPointInPortal(handle, int, Vector)
+Description: Compute closest point within the 'portal' between to adjacent areas.
+
+Function:    CScriptNavArea::ComputeDirection
+Signature:   int CScriptNavArea::ComputeDirection(Vector)
+Description: Returns direction from this area to the given point.
+
+Function:    CScriptNavArea::ConnectTo
+Signature:   void CScriptNavArea::ConnectTo(handle, int)
+Description: Connect this area to given area in given direction.
+
+Function:    CScriptNavArea::Contains
+Signature:   bool CScriptNavArea::Contains(handle)
+Description: Returns true if area completely contains other area.
+
+Function:    CScriptNavArea::ContainsOrigin
+Signature:   bool CScriptNavArea::ContainsOrigin(Vector)
+Description: Returns true if given point is on or above this area, but no others
+
+Function:    CScriptNavArea::Disconnect
+Signature:   void CScriptNavArea::Disconnect(handle)
+Description: Disconnect this area from given area.
+
+Function:    CScriptNavArea::FindRandomSpot
+Signature:   Vector CScriptNavArea::FindRandomSpot()
+
+Function:    CScriptNavArea::GetAdjacentArea
+Signature:   handle CScriptNavArea::GetAdjacentArea(int, int)
+Description: Returns number of connected areas in given direction.
+
+Function:    CScriptNavArea::GetAttributes
+Signature:   int CScriptNavArea::GetAttributes()
+
+Function:    CScriptNavArea::GetAvoidanceObstacleHeight
+Signature:   float CScriptNavArea::GetAvoidanceObstacleHeight()
+Description: Returns the maximum height of the obstruction above the ground.
+
+Function:    CScriptNavArea::GetCenter
+Signature:   Vector CScriptNavArea::GetCenter()
+
+Function:    CScriptNavArea::GetCorner
+Signature:   Vector CScriptNavArea::GetCorner(int)
+Description: Returns the coordinates of the area's corner.
+
+Function:    CScriptNavArea::GetDistanceSquaredToPoint
+Signature:   float CScriptNavArea::GetDistanceSquaredToPoint(Vector)
+Description: Returns shortest distance squared between point and this area.
+
+Function:    CScriptNavArea::GetID
+Signature:   int CScriptNavArea::GetID()
+Description: Returns this area's unique ID.
+
+Function:    CScriptNavArea::GetIncomingConnections
+Signature:   void CScriptNavArea::GetIncomingConnections(int, handle)
+Description: Get areas connected TO this area by a ONE-WAY link (i.e. we have no connection back to them).
+
+Function:    CScriptNavArea::GetParent
+Signature:   handle CScriptNavArea::GetParent()
+Description: Returns the area just prior to this on the search path.
+
+Function:    CScriptNavArea::GetParentHow
+Signature:   int CScriptNavArea::GetParentHow()
+Description: Returns nav traverse type on how we get from parent to us.
+
+Function:    CScriptNavArea::GetPlayerCount
+Signature:   int CScriptNavArea::GetPlayerCount(int)
+Description: Returns number of players of given team currently within this area (team of zero means any/all).
+
+Function:    CScriptNavArea::GetRandomAdjacentArea
+Signature:   handle CScriptNavArea::GetRandomAdjacentArea(int)
+
+Function:    CScriptNavArea::GetSizeX
+Signature:   float CScriptNavArea::GetSizeX()
+
+Function:    CScriptNavArea::GetSizeY
+Signature:   float CScriptNavArea::GetSizeY()
+
+Function:    CScriptNavArea::GetZ
+Signature:   float CScriptNavArea::GetZ(Vector)
+Description: Returns Z of area at (x,y) of 'pos', trilinear interpolation of Z values at quad edges, note that pos.z is not used.
+
+Function:    CScriptNavArea::HasAttributes
+Signature:   bool CScriptNavArea::HasAttributes(int)
+
+Function:    CScriptNavArea::HasAvoidanceObstacle
+Signature:   bool CScriptNavArea::HasAvoidanceObstacle(float)
+Description: Returns true if there is a large, immobile object obstructing this area.
+
+Function:    CScriptNavArea::IsBlocked
+Signature:   bool CScriptNavArea::IsBlocked(int, bool)
+Description: Returns true if area is blocked, with parameters of team ID and boolean for ignoring nav blockers.
+
+Function:    CScriptNavArea::IsCompletelyVisibleToTeam
+Signature:   bool CScriptNavArea::IsCompletelyVisibleToTeam(int)
+Description: Returns true if given area is completely visible from somewhere in this area by someone on the team.
+
+Function:    CScriptNavArea::IsConnected
+Signature:   bool CScriptNavArea::IsConnected(handle, int)
+Description: Returns true if given area is connected in given direction, if dir == NUM_DIRECTIONS, check all directions (direction is unknown).
+
+Function:    CScriptNavArea::IsCoplanar
+Signature:   bool CScriptNavArea::IsCoplanar(handle)
+Description: Returns true if this area and given area are approximately co-planar.
+
+Function:    CScriptNavArea::IsDamaging
+Signature:   bool CScriptNavArea::IsDamaging()
+Description: Returns true if continuous damage (i.e. fire) is in this area.
+
+Function:    CScriptNavArea::IsDegenerate
+Signature:   bool CScriptNavArea::IsDegenerate()
+Description: Returns true if this area is badly formed.
+
+Function:    CScriptNavArea::IsEdge
+Signature:   bool CScriptNavArea::IsEdge(int)
+Description: Returns true if there are no bi-directional links on the given side.
+
+Function:    CScriptNavArea::IsFlat
+Signature:   bool CScriptNavArea::IsFlat()
+Description: Returns true if this area is approximately flat.
+
+Function:    CScriptNavArea::IsOverlapping
+Signature:   bool CScriptNavArea::IsOverlapping(handle)
+Description: Returns true if 'area' overlaps our 2D extents.
+
+Function:    CScriptNavArea::IsPotentiallyVisibleToTeam
+Signature:   bool CScriptNavArea::IsPotentiallyVisibleToTeam(int)
+Description: Returns true if any portion of this area is visible to anyone on the given team.
+
+Function:    CScriptNavArea::IsRoughlySquare
+Signature:   bool CScriptNavArea::IsRoughlySquare()
+Description: Returns true if this area is approximately square.
+
+Function:    CScriptNavArea::IsUnderwater
+Signature:   bool CScriptNavArea::IsUnderwater()
+
+Function:    CScriptNavArea::IsVisible
+Signature:   bool CScriptNavArea::IsVisible(Vector)
+Description: Returns true if area is visible from the given eyepoint.
+
+Function:    CScriptNavArea::MarkAsBlocked
+Signature:   void CScriptNavArea::MarkAsBlocked(int)
+Description: An entity can force a nav area to be blocked.
+
+Function:    CScriptNavArea::MarkAsDamaging
+Signature:   void CScriptNavArea::MarkAsDamaging(float)
+Description: Mark this area is damaging for the next 'duration' seconds.
+
+Function:    CScriptNavArea::MarkObstacleToAvoid
+Signature:   void CScriptNavArea::MarkObstacleToAvoid(float)
+
+Function:    CScriptNavArea::RemoveAttributes
+Signature:   void CScriptNavArea::RemoveAttributes(int)
+
+Function:    CScriptNavArea::RemoveOrthogonalConnections
+Signature:   void CScriptNavArea::RemoveOrthogonalConnections(int)
+Description: Removes all connections in directions to left and right of specified direction.
+
+Function:    CScriptNavArea::SetAttributes
+Signature:   void CScriptNavArea::SetAttributes(int)
+
+Function:    CScriptNavArea::UnblockArea
+Signature:   void CScriptNavArea::UnblockArea()
+Description: Clear blocked status for the given team(s).
 
 Function:    CSound::DoesSoundExpire
 Signature:   bool CSound::DoesSoundExpire()
