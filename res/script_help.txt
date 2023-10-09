@@ -1295,6 +1295,89 @@ Constant:    MapLoad.Transition
 Value:       2 (int)
 Description: Map was loaded from a level transition
 
+Constant:    NAV_MESH_AVOID
+Value:       128 (int)
+Description: Avoid this area unless alternatives are too dangerous.
+
+Constant:    NAV_MESH_CLIFF
+Value:       32768 (int)
+Description: This nav area is adjacent to a drop of at least CliffHeight.
+
+Constant:    NAV_MESH_CROUCH
+Value:       1 (int)
+Description: Must crouch to use this node or area.
+
+Constant:    NAV_MESH_DONT_HIDE
+Value:       512 (int)
+Description: Area should not be considered for hiding spot generation.
+
+Constant:    NAV_MESH_FUNC_COST
+Value:       536870912 (int)
+Description: Area has designer specified cost controlled by func_nav_cost entities.
+
+Constant:    NAV_MESH_HAS_ELEVATOR
+Value:       1073741824 (int)
+Description: Area is in an elevator's path.
+
+Constant:    NAV_MESH_INVALID
+Value:       0 (int)
+
+Constant:    NAV_MESH_JUMP
+Value:       2 (int)
+Description: Must jump to traverse this area (only used during generation).
+
+Constant:    NAV_MESH_NAV_BLOCKER
+Value:       -2147483648 (int)
+Description: Area is blocked by nav blocker.
+
+Constant:    NAV_MESH_NO_HOSTAGES
+Value:       2048 (int)
+Description: Hostages shouldn't use this area.
+
+Constant:    NAV_MESH_NO_JUMP
+Value:       8 (int)
+Description: Inhibit discontinuity jumping.
+
+Constant:    NAV_MESH_NO_MERGE
+Value:       8192 (int)
+Description: Don't merge this area with adjacent areas.
+
+Constant:    NAV_MESH_NO_ZOMBIE_SPAWN
+Value:       65536 (int)
+Description: Zombies shouldn't spawn here.
+
+Constant:    NAV_MESH_OBSTACLE_TOP
+Value:       16384 (int)
+Description: This nav area is the climb point on the tip of an obstacle.
+
+Constant:    NAV_MESH_PRECISE
+Value:       4 (int)
+Description: Do not adjust for obstacles, just move along area.
+
+Constant:    NAV_MESH_RUN
+Value:       32 (int)
+Description: Must run to traverse this area.
+
+Constant:    NAV_MESH_STAIRS
+Value:       4096 (int)
+Description: This area represents stairs, do not attempt to climb or jump them - just walk up.
+
+Constant:    NAV_MESH_STAND
+Value:       1024 (int)
+Description: Bots hiding in this area should stand.
+
+Constant:    NAV_MESH_STOP
+Value:       16 (int)
+Description: Must stop when entering this area.
+
+Constant:    NAV_MESH_TRANSIENT
+Value:       256 (int)
+Description: Area may become blocked, and should be periodically checked.
+
+Constant:    NAV_MESH_WALK
+Value:       64 (int)
+Description: Must walk to traverse this area.
+
 Constant:    NPC_STATE_ALERT
 Value:       2 (int)
 Description: NPC state type used in GetNPCState(), etc.
@@ -1777,6 +1860,22 @@ Description: Sound type used in QueryHearSound hooks, etc.
 Constant:    SOUND_WORLD
 Value:       2 (int)
 Description: Sound type used in QueryHearSound hooks, etc.
+
+Constant:    TEAM_ANY
+Value:       -2 (int)
+Description: Index for any team.
+
+Constant:    TEAM_INVALID
+Value:       -1 (int)
+Description: Index for an invalid team.
+
+Constant:    TEAM_SPECTATOR
+Value:       1 (int)
+Description: Index for spectator team.
+
+Constant:    TEAM_UNASSIGNED
+Value:       0 (int)
+Description: Index for an unassigned team.
 
 Constant:    VECTOR_CONE_10DEGREES
 Value:       Vector( 0.087160, 0.087160, 0.087160 ) (Vector)
@@ -2371,6 +2470,18 @@ Description: The filter_script entity which allows VScript functions to hook ont
 =====================================
 
 =====================================
+Class:       CFuncZombieSpawn
+Base:        CBaseEntity
+Description: Zombie spawn volume.
+=====================================
+
+=====================================
+Class:       CFunc_SafeZone
+Base:        CBaseEntity
+Description: Safe zone for survival mode.
+=====================================
+
+=====================================
 Class:       CGameRules
 Base:        
 Description: The container of the game's rules, handling behavior which could be different on a game-by-game basis.
@@ -2386,12 +2497,6 @@ Description: Helper interface for various game state functions.
 Class:       CGameTrace
 Base:        
 Description: trace_t
-=====================================
-
-=====================================
-Class:       CGlobalSys
-Base:        
-Description: GlobalSys
 =====================================
 
 =====================================
@@ -2419,9 +2524,15 @@ Description: Accesses functions related to localization strings.
 =====================================
 
 =====================================
-Class:       CNMRiHLogicScriptProxy
+Class:       CLogicScriptProxy
 Base:        CBaseEntity
-Description: Script proxy.
+Description: Script proxy, an entity bridge between VScript and server plugins.
+=====================================
+
+=====================================
+Class:       CNMRiH_BarricadePoint
+Base:        CBaseAnimating
+Description: A place that a player can barricade.
 =====================================
 
 =====================================
@@ -2433,6 +2544,12 @@ Description: The zombie entity.
 =====================================
 Class:       CNMRiH_GameRules
 Base:        CGameRules
+=====================================
+
+=====================================
+Class:       CNMRiH_HealthStationLocation
+Base:        CBaseAnimating
+Description: Health station.
 =====================================
 
 =====================================
@@ -2469,6 +2586,12 @@ Description: Interface for objective manager.
 Class:       COverlord_Wave_Controller
 Base:        CBaseEntity
 Description: The wave controller.
+=====================================
+
+=====================================
+Class:       COverlord_Zombie_Helper
+Base:        CBaseEntity
+Description: The zombie helper.
 =====================================
 
 =====================================
@@ -3855,6 +3978,10 @@ Signature:   float CBaseEntity::GetFriction()
 Function:    CBaseEntity::GetGravity
 Signature:   float CBaseEntity::GetGravity()
 
+Function:    CBaseEntity::GetGroundEntity
+Signature:   handle CBaseEntity::GetGroundEntity()
+Description: Returns handle to ground entity.
+
 Function:    CBaseEntity::GetHealth
 Signature:   int CBaseEntity::GetHealth()
 
@@ -4113,6 +4240,10 @@ Signature:   void CBaseEntity::SetFriction(float)
 
 Function:    CBaseEntity::SetGravity
 Signature:   void CBaseEntity::SetGravity(float)
+
+Function:    CBaseEntity::SetGroundEntity
+Signature:   void CBaseEntity::SetGroundEntity(handle)
+Description: Sets ground entity by handle, pass null to clear it.
 
 Function:    CBaseEntity::SetHealth
 Signature:   void CBaseEntity::SetHealth(int)
@@ -4652,6 +4783,100 @@ Function:    CEnvEntityMaker::SpawnEntityAtNamedEntityOrigin
 Signature:   void CEnvEntityMaker::SpawnEntityAtNamedEntityOrigin(string)
 Description: Create an entity at the location of a named entity
 
+Function:    CFuncZombieSpawn::CanDespawn
+Signature:   bool CFuncZombieSpawn::CanDespawn()
+Description: Returns true if this volume can despawn zombies.
+
+Function:    CFuncZombieSpawn::Disable
+Signature:   void CFuncZombieSpawn::Disable()
+Description: Removes self from global list of active zones.
+
+Function:    CFuncZombieSpawn::Enable
+Signature:   void CFuncZombieSpawn::Enable()
+Description: Adds self to global list of active zones.
+
+Function:    CFuncZombieSpawn::GetChildChance
+Signature:   float CFuncZombieSpawn::GetChildChance()
+Description: Returns current child chance for this volume.
+
+Function:    CFuncZombieSpawn::GetRunnerChance
+Signature:   float CFuncZombieSpawn::GetRunnerChance()
+Description: Returns current runner chance for this volume.
+
+Function:    CFuncZombieSpawn::HasHadPlayers
+Signature:   bool CFuncZombieSpawn::HasHadPlayers()
+Description: Returns true if this volume ever had players inside.
+
+Function:    CFuncZombieSpawn::HasPlayers
+Signature:   bool CFuncZombieSpawn::HasPlayers()
+Description: Returns true if this volume has players inside.
+
+Function:    CFuncZombieSpawn::InstantSpawn
+Signature:   void CFuncZombieSpawn::InstantSpawn(int)
+Description: Instantly spawns given amount of zombies in this volume.
+
+Function:    CFuncZombieSpawn::IsEnabled
+Signature:   bool CFuncZombieSpawn::IsEnabled()
+Description: Returns true if this volume is active.
+
+Function:    CFuncZombieSpawn::SetChildChance
+Signature:   void CFuncZombieSpawn::SetChildChance(float)
+Description: Sets child chance by given multiplier.
+
+Function:    CFuncZombieSpawn::SetIgnoreVisibility
+Signature:   void CFuncZombieSpawn::SetIgnoreVisibility(bool)
+
+Function:    CFuncZombieSpawn::SetRunnerChance
+Signature:   void CFuncZombieSpawn::SetRunnerChance(float)
+Description: Sets runner chance by given multiplier.
+
+Function:    CFuncZombieSpawn::SetSpawnDensity
+Signature:   void CFuncZombieSpawn::SetSpawnDensity(float)
+Description: Sets spawn density by given multiplier.
+
+Function:    CFuncZombieSpawn::SetSpawnRegenTarget
+Signature:   void CFuncZombieSpawn::SetSpawnRegenTarget(float)
+Description: Sets regeneration fraction goal.
+
+Function:    CFuncZombieSpawn::SetTarget
+Signature:   void CFuncZombieSpawn::SetTarget(string)
+
+Function:    CFunc_SafeZone::Deactivate
+Signature:   void CFunc_SafeZone::Deactivate()
+
+Function:    CFunc_SafeZone::Heal
+Signature:   void CFunc_SafeZone::Heal(int)
+Description: Heals this safe zone by given amount.
+
+Function:    CFunc_SafeZone::IsActive
+Signature:   bool CFunc_SafeZone::IsActive()
+
+Function:    CFunc_SafeZone::IsActiveForZombies
+Signature:   bool CFunc_SafeZone::IsActiveForZombies()
+Description: Returns true if the zone is active and not deactivated by map author.
+
+Function:    CFunc_SafeZone::IsPaused
+Signature:   bool CFunc_SafeZone::IsPaused()
+
+Function:    CFunc_SafeZone::IsTouchingEntity
+Signature:   bool CFunc_SafeZone::IsTouchingEntity(handle)
+Description: Returns true if given entity is inside safe zone bounds.
+
+Function:    CFunc_SafeZone::PauseDrain
+Signature:   void CFunc_SafeZone::PauseDrain()
+Description: Pauses safe zone health drain.
+
+Function:    CFunc_SafeZone::Reactivate
+Signature:   void CFunc_SafeZone::Reactivate()
+
+Function:    CFunc_SafeZone::Reset
+Signature:   void CFunc_SafeZone::Reset()
+Description: Resets this safe zone back to default.
+
+Function:    CFunc_SafeZone::ResumeDrain
+Signature:   void CFunc_SafeZone::ResumeDrain()
+Description: Resumes safe zone health drain.
+
 Function:    CGameRules::AllowFlashlight
 Signature:   bool CGameRules::AllowFlashlight()
 Description: Returns true if players are allowed to switch on their flashlight.
@@ -4884,26 +5109,6 @@ Description: Returns whether the trace started within a solid.
 Function:    CGameTrace::Surface
 Signature:   handle CGameTrace::Surface()
 
-Function:    CGlobalSys::CommandLineCheck
-Signature:   bool CGlobalSys::CommandLineCheck(string)
-Description: returns true if the command line param was used, otherwise false.
-
-Function:    CGlobalSys::CommandLineCheckFloat
-Signature:   float CGlobalSys::CommandLineCheckFloat(string)
-Description: returns the command line param as a float.
-
-Function:    CGlobalSys::CommandLineCheckInt
-Signature:   int CGlobalSys::CommandLineCheckInt(string)
-Description: returns the command line param as an int.
-
-Function:    CGlobalSys::CommandLineCheckStr
-Signature:   string CGlobalSys::CommandLineCheckStr(string)
-Description: returns the command line param as a string.
-
-Function:    CGlobalSys::GetCommandLine
-Signature:   string CGlobalSys::GetCommandLine()
-Description: returns the command line
-
 Function:    CInfectableCharacter::BecomeInfected
 Signature:   void CInfectableCharacter::BecomeInfected()
 Description: Character becomes infected.
@@ -4980,37 +5185,53 @@ Function:    CLocalize::GetTokenAsUTF8
 Signature:   string CLocalize::GetTokenAsUTF8(string)
 Description: Gets the current language's token as a UTF-8 string (not Unicode).
 
-Function:    CNMRiHLogicScriptProxy::RunFunction
-Signature:   void CNMRiHLogicScriptProxy::RunFunction(string)
+Function:    CLogicScriptProxy::RunFunction
+Signature:   void CLogicScriptProxy::RunFunction(string)
 Description: Runs an entity script function using a proxy.
 
-Function:    CNMRiHLogicScriptProxy::RunFunctionBool
-Signature:   void CNMRiHLogicScriptProxy::RunFunctionBool(string)
+Function:    CLogicScriptProxy::RunFunctionBool
+Signature:   void CLogicScriptProxy::RunFunctionBool(string)
 Description: Runs an entity script function using a proxy, and saves returned value into entprop buffer as boolean (0/1).
 
-Function:    CNMRiHLogicScriptProxy::RunFunctionEHandle
-Signature:   void CNMRiHLogicScriptProxy::RunFunctionEHandle(string)
+Function:    CLogicScriptProxy::RunFunctionEHandle
+Signature:   void CLogicScriptProxy::RunFunctionEHandle(string)
 Description: Runs an entity script function using a proxy, and saves returned entity handle into entprop.
 
-Function:    CNMRiHLogicScriptProxy::RunFunctionFloat
-Signature:   void CNMRiHLogicScriptProxy::RunFunctionFloat(string)
+Function:    CLogicScriptProxy::RunFunctionFloat
+Signature:   void CLogicScriptProxy::RunFunctionFloat(string)
 Description: Runs an entity script function using a proxy, and saves returned float into entprop buffer.
 
-Function:    CNMRiHLogicScriptProxy::RunFunctionInt
-Signature:   void CNMRiHLogicScriptProxy::RunFunctionInt(string)
+Function:    CLogicScriptProxy::RunFunctionInt
+Signature:   void CLogicScriptProxy::RunFunctionInt(string)
 Description: Runs an entity script function using a proxy, and saves returned int into entprop buffer.
 
-Function:    CNMRiHLogicScriptProxy::RunFunctionString
-Signature:   void CNMRiHLogicScriptProxy::RunFunctionString(string)
+Function:    CLogicScriptProxy::RunFunctionString
+Signature:   void CLogicScriptProxy::RunFunctionString(string)
 Description: Runs an entity script function using a proxy, and saves returned string into entprop buffer.
 
-Function:    CNMRiHLogicScriptProxy::RunFunctionVector
-Signature:   void CNMRiHLogicScriptProxy::RunFunctionVector(string)
+Function:    CLogicScriptProxy::RunFunctionVector
+Signature:   void CLogicScriptProxy::RunFunctionVector(string)
 Description: Runs an entity script function using a proxy, and saves returned vector into entprop buffer.
 
-Function:    CNMRiHLogicScriptProxy::SetTargetEntity
-Signature:   void CNMRiHLogicScriptProxy::SetTargetEntity(handle)
+Function:    CLogicScriptProxy::SetTargetEntity
+Signature:   void CLogicScriptProxy::SetTargetEntity(handle)
 Description: Target chosen entity.
+
+Function:    CNMRiH_BarricadePoint::DoBarricade
+Signature:   void CNMRiH_BarricadePoint::DoBarricade()
+Description: Barricades this point, does nothing if it's already used.
+
+Function:    CNMRiH_BarricadePoint::GetBarricadeProp
+Signature:   handle CNMRiH_BarricadePoint::GetBarricadeProp()
+Description: Returns entity handle to barricade prop, if one is available.
+
+Function:    CNMRiH_BarricadePoint::IsBlocked
+Signature:   bool CNMRiH_BarricadePoint::IsBlocked()
+Description: Returns true if this point is blocked by a player, NPC, or anything else.
+
+Function:    CNMRiH_BarricadePoint::IsInUse
+Signature:   bool CNMRiH_BarricadePoint::IsInUse()
+Description: Returns true if this barricade point has been used, i.e. has a prop.
 
 Function:    CNMRiH_BaseZombie::BecomeCrawler
 Signature:   void CNMRiH_BaseZombie::BecomeCrawler()
@@ -5109,6 +5330,34 @@ Signature:   bool CNMRiH_GameRules::HasLevelTransitioned()
 
 Function:    CNMRiH_GameRules::IsIntermission
 Signature:   bool CNMRiH_GameRules::IsIntermission()
+
+Function:    CNMRiH_HealthStationLocation::BecomeActive
+Signature:   void CNMRiH_HealthStationLocation::BecomeActive()
+Description: Activates health station.
+
+Function:    CNMRiH_HealthStationLocation::BecomeDepleted
+Signature:   void CNMRiH_HealthStationLocation::BecomeDepleted()
+Description: Depletes health station.
+
+Function:    CNMRiH_HealthStationLocation::GetHealthPercentage
+Signature:   float CNMRiH_HealthStationLocation::GetHealthPercentage()
+Description: Returns percentage of health remaining in the station.
+
+Function:    CNMRiH_HealthStationLocation::GetStationHealth
+Signature:   int CNMRiH_HealthStationLocation::GetStationHealth()
+Description: Returns amount of health remaining in the station.
+
+Function:    CNMRiH_HealthStationLocation::IsActive
+Signature:   bool CNMRiH_HealthStationLocation::IsActive()
+Description: Returns true when health station is active.
+
+Function:    CNMRiH_HealthStationLocation::IsFadingOut
+Signature:   bool CNMRiH_HealthStationLocation::IsFadingOut()
+Description: Returns true when depleted health station is fading out.
+
+Function:    CNMRiH_HealthStationLocation::SetStationHealth
+Signature:   void CNMRiH_HealthStationLocation::SetStationHealth(int)
+Description: Sets amount of health remaining in the station.
 
 Function:    CNMRiH_Player::AddCarriedWeight
 Signature:   void CNMRiH_Player::AddCarriedWeight(int)
@@ -5451,9 +5700,17 @@ Function:    CNavMesh::GetNavAreaCount
 Signature:   int CNavMesh::GetNavAreaCount()
 Description: Returns total number of nav areas.
 
+Function:    CNavMesh::GetNavAreasFromBuildPath
+Signature:   bool CNavMesh::GetNavAreasFromBuildPath(handle, handle, Vector, float, int, bool, handle)
+Description: Fills table with areas from a path. Returns whether a path was found. If 'endArea' is null, will compute a path as close as possible to 'goalPos'.
+
 Function:    CNavMesh::GetNearestNavArea
 Signature:   handle CNavMesh::GetNearestNavArea(Vector, float, bool, bool)
 Description: Given a position in the world, return the nav area that is closest, and at the same height, or beneath it. Used to find initial area if we start off of the mesh.
+
+Function:    CNavMesh::NavAreaBuildPath
+Signature:   bool CNavMesh::NavAreaBuildPath(handle, handle, Vector, float, int, bool)
+Description: Returns true if a path exists. If 'endArea' is null, will compute a path as close as possible to 'goalPos'.
 
 Function:    CNavMesh::RegisterAvoidanceObstacle
 Signature:   void CNavMesh::RegisterAvoidanceObstacle(handle)
@@ -5624,6 +5881,20 @@ Description: Returns true if waveNum is resupply wave.
 Function:    COverlord_Wave_Controller::ResetPlayerTokens
 Signature:   void COverlord_Wave_Controller::ResetPlayerTokens()
 Description: Resets respawn tokens on all players.
+
+Function:    COverlord_Zombie_Helper::DisableSpawning
+Signature:   void COverlord_Zombie_Helper::DisableSpawning()
+
+Function:    COverlord_Zombie_Helper::EnableSpawning
+Signature:   void COverlord_Zombie_Helper::EnableSpawning()
+
+Function:    COverlord_Zombie_Helper::Spawn
+Signature:   void COverlord_Zombie_Helper::Spawn(int, string)
+Description: Instantly spawns zombies across all active spawn brushes. Optionally specify a spawn target name.
+
+Function:    COverlord_Zombie_Helper::SpawnIgnoreVisibility
+Signature:   void COverlord_Zombie_Helper::SpawnIgnoreVisibility(int, string)
+Description: Same as Spawn, but ignores visiblity checks.
 
 Function:    CRagdollProp::GetRagdollObject
 Signature:   handle CRagdollProp::GetRagdollObject(int)
@@ -6668,10 +6939,6 @@ Description: Gain is similar to Bias, but biasAmt biases towards or away from 0.
 Function:    GetActivityName
 Signature:   string GetActivityName(int)
 Description: Gets the name of the specified activity index.
-
-Function:    GetCPUUsage
-Signature:   float GetCPUUsage()
-Description: Get CPU usage percentage.
 
 Function:    GetFrameCount
 Signature:   int GetFrameCount()
