@@ -35,7 +35,7 @@ body {
 	background-image: url("res/bg.gif");
 	background-size:cover;
 	background-position: center center;
-	background-color: rgba(49,49,49,.75);
+	background-color: rgba(49,49,49,.90);
 	background-blend-mode: multiply;
 	z-index:-1;
 }
@@ -145,6 +145,11 @@ img.avatarimage {
 	margin-bottom: 1px;
 }
 
+img.rockin {
+	width:24px;
+	height:24px;
+}
+
 div.smol {
 	font-size: 13px;
 }
@@ -185,7 +190,7 @@ button.slider:hover {
 <button class="slider" id="button_motd" onclick="onMOTD()">&gt; motd</button>
 <button class="slider" id="button_about" onclick="onAbout()">&gt; about</button>
 <button class="slider" id="button_games" onclick="onGames()">&gt; games</button>
-<button class="slider" id="button_audio" onclick="onAudio()">&gt; audio</button>
+<button class="slider" id="button_misc" onclick="onMisc()">&gt; misc</button>
 <button class="slider" id="button_contact" onclick="onContact()">&gt; contact</button>
 <br><br>
 <div class="container" id="motd">
@@ -229,10 +234,10 @@ about me
 <hr class="separator2">
 <a title="are you saying that i am a fake cat?"><img src=res/avatar.jpg class=avatarimage></a>
 i'm aku (most know me as 'felis'), a programmer, gamedev, musician, whatever-i-feel-like-doing person.<br><br>
-at the time of writing, i'm working full-time as a programmer, this page is mainly for my hobby work.<br><br>
-for the things i *have done*, check the games &amp; audio pages.<br><br>
+at the time of writing, i'm working full-time in the game industry, this page is mainly for my hobbies.<br><br>
+for the things i *have done*, check the games &amp; misc pages.<br><br>
 you can also find my contact details up there.<br><br>
-thanks, rock on!
+thanks for visiting! <img src=res/rockin.gif class=rockin></img>
 </div></div>
 </div>
 
@@ -257,7 +262,7 @@ Pirates, Vikings & Knights II
 <a href="https://store.steampowered.com/app/17570"><img src=res/pvk2.jpg class=boximage></a>
 <hr class="separator2">
 <div class="smol">occupation<br></div>
-senior programmer, production manager (2014-)
+senior programmer, production manager
 <hr class="separator2">
 <div class="smol">thoughts<br></div>
 a melee-centric fps running on source engine, this was my first proper gamedev project, and ever since joining the team, i have contributed to almost dozen major updates, incl. new characters, game modes, weapons, and more.
@@ -276,7 +281,7 @@ No More Room in Hell
 <a href="https://store.steampowered.com/app/224260"><img src=res/nmrih1.jpg class=boximage></a>
 <hr class="separator2">
 <div class="smol">occupation<br></div>
-programmer, maintainer (2018-)
+programmer, maintainer
 <hr class="separator2">
 <div class="smol">thoughts<br></div>
 zombie game done right, i was a big fan of this game before joining the development team. i had a pleasure working with an amazing group of people to put out definitive updates (1.10+), fix hundreds of bugs, and include essential 'quality of life' features.
@@ -298,7 +303,7 @@ No More Room in Hell 2
 <a href="https://store.steampowered.com/app/292000"><img src=res/nmrih2.jpg class=boximage></a>
 <hr class="separator2">
 <div class="smol">occupation<br></div>
-programmer (on-off :P)
+programmer
 <hr class="separator2">
 <div class="smol">thoughts<br></div>
 i also contributed code to the sequel, and the work is still ongoing.
@@ -330,7 +335,7 @@ FragFest
 2014
 <hr class="separator2">
 <div class="smol">thoughts<br></div>
-unlimited movement, overpowered railguns, hud speedometers... this was my first project in era where i started exploring gamedev as a real possibility, a "half-life 2 deathmatch" mod which served as a playground for learning source engine programming.<br><br>
+unlimited movement, overpowered railguns, hud speedometers, this was my first project in era where i started exploring gamedev as a real possibility, a "half-life 2 deathmatch" mod which served as a playground for learning source engine programming.<br><br>
 this mod essentially prepared me for pvk2 (first game on the page), and was my first dive into c++ programming as a whole, the gameplay itself is bonkers and surprisingly fun - think a "babby's first mod" trying to pass as a proper quake ripoff lmao!<br><br>
 the mod was codenamed "the nab project", which was reference to a group of friends at the time.<br>
 <hr class="separator2">
@@ -366,7 +371,7 @@ soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat
 
 </div>
 
-<div class="container" id="audio">
+<div class="container" id="misc">
 
 <br>
 
@@ -378,9 +383,6 @@ soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat
 <div class="box"><div class="info">
 <div class="smol">info<br></div>
 i produce music as a hobby, usually the more niche stuff heavily driven by my current taste at the time. i'm fairly solitary when it comes to that, so i don't release much of my work.
-<hr class="separator2">
-<div class="smol">bandcamp<br></div>
-<a href=https://thewiretrippers.bandcamp.com>THE WIRE TRIPPERS (bandcamp page for more serious work, soundtracks, etc.)</a><br>
 <hr class="separator2">
 <div class="smol">soundcloud<br></div>
 <a href=https://soundcloud.com/felis-catus-1>personal soundcloud for whatever</a><br>
@@ -423,8 +425,10 @@ messages[5] = "welcome to my homepage";
 messages[6] = "F5 F5 F5 F5 F5 F5 F5 F5 F5";
 messages[7] = "just 4 fun";
 messages[8] = "take what you need";
-messages[9] = "nothing to do with trip wires";
+messages[9] = "nothing to do with tripwires";
 messages[10] = "stay cool! - someone wakes the noise up -";
+messages[11] = "look inside; wires";
+messages[12] = "hold out! programmer!";
 var rnd = Math.floor(Math.random() * messages.length);
 document.getElementById("copymsg").innerHTML = messages[rnd];
 </script>
@@ -536,9 +540,9 @@ function onGames() {
 		adjustButtons(document.getElementById("button_games"));
 }
 
-function onAudio() {
-	if (doSlide(document.getElementById("audio")))
-		adjustButtons(document.getElementById("button_audio"));
+function onMisc() {
+	if (doSlide(document.getElementById("misc")))
+		adjustButtons(document.getElementById("button_misc"));
 }
 
 function onContact() {
