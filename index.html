@@ -7,8 +7,8 @@
 
 <style>
 @font-face {
-	font-family: 'tewi';
-	src: url(res/tewi.ttf);
+	font-family: 'vga';
+	src: url(res/Px437_IBM_VGA_8x16.ttf);
 }
 
 body { 
@@ -20,7 +20,7 @@ body {
 	margin:22px;
 	padding:0px;
 	color:#ebebeb;
-	font-family: "tewi", "System", monospace;
+	font-family: "vga", "System", monospace;
 	font-size:22px;
 	font-smooth: never;
 	font-weight: initial;
@@ -32,11 +32,12 @@ body {
 	position:fixed;
 	top:0;
 	left:0;
-	background-image: url("res/bg.gif");
-	background-size:cover;
+	background-image: url("res/bg.png");
 	background-position: center center;
 	background-color: rgba(49,49,49,.90);
 	background-blend-mode: multiply;
+	background-repeat: repeat;
+	background-size: 200px;
 	z-index:-1;
 }
 
@@ -145,9 +146,9 @@ img.avatarimage {
 	margin-bottom: 1px;
 }
 
-img.rockin {
-	width:24px;
-	height:24px;
+img.btn {
+	width:88px;
+	height:31px;
 }
 
 div.smol {
@@ -161,7 +162,7 @@ button.slider {
 	text-align:left;
 	text-decoration: none;
 	display: inline-block;
-	font-family: "tewi", "System", monospace;
+	font-family: "vga", "System", monospace;
 	font-size:22px;
 	font-smooth: never;
 	font-weight: initial;
@@ -200,7 +201,7 @@ button.slider:hover {
 <button class="slider" id="button_motd" onclick="onMOTD()">&gt; motd</button>
 <button class="slider" id="button_about" onclick="onAbout()">&gt; about</button>
 <button class="slider" id="button_games" onclick="onGames()">&gt; games</button>
-<button class="slider" id="button_misc" onclick="onMisc()">&gt; misc</button>
+<button class="slider" id="button_misc" onclick="onMisc()">&gt; things</button>
 <button class="slider" id="button_contact" onclick="onContact()">&gt; contact</button>
 <br><br>
 <div class="container" id="motd">
@@ -234,7 +235,7 @@ button.slider:hover {
 <div style="text-align:center">
 <br>
 
-<img src=res/bio.gif class=sectionlogo>
+<img src=res/bio.png class=sectionlogo>
 
 <br>
 
@@ -242,12 +243,22 @@ button.slider:hover {
 <div class="smol">id analysis<br></div>
 about me
 <hr class="separator2">
-<a title="are you saying that i am a fake cat?"><img src=res/avatar.jpg class=avatarimage></a>
+<a id="avatar" title="are you saying that i am a fake cat?"><img id="avatar_img" src=res/avatar.png class=avatarimage></a>
 i'm aku (most know me as 'felis'), a programmer, gamedev, musician, whatever-i-feel-like-doing person.<br><br>
 at the time of writing, i'm working full-time in the game industry, this page is mainly for my hobbies.<br><br>
-for the things i *have done*, check the games &amp; misc pages.<br><br>
+for the things i *have done*, check the "games" &amp; "things" pages.<br><br>
 you can also find my contact details up there.<br><br>
-thanks for visiting! <img src=res/rockin.gif class=rockin></img>
+thanks for visiting! &#x263A;
+</div></div>
+</div>
+
+<div style="text-align:center">
+<div class="box"><div class="info">
+<div style="text-align:center">
+<img src=res/npp.png class=btn></img> <img src=res/nocookie.png class=btn></img> <img src=res/pc.png class=btn></img> <img src=res/hhc.png class=btn></img> <img src=res/rating.png class=btn></img></img>
+<br>
+<div class="smol">this page uses IBM VGA 8x16 font by <a href=https://int10h.org/oldschool-pc-fonts/>VileR</a></div>
+</div>
 </div></div>
 </div>
 
@@ -259,7 +270,7 @@ thanks for visiting! <img src=res/rockin.gif class=rockin></img>
 
 <br>
 
-<img src=res/vg.gif class=sectionlogo>
+<img src=res/vg.png class=sectionlogo>
 
 <br>
 
@@ -327,7 +338,7 @@ the game will be available on steam, and you may wishlist it <a href=https://sto
 
 <br>
 
-<img src=res/vg_bad.gif class=sectionlogo>
+<img src=res/vg_bad.png class=sectionlogo>
 
 <br>
 
@@ -385,7 +396,7 @@ soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat
 
 <br>
 
-<img src=res/noise.gif class=sectionlogo>
+<img src=res/noise.png class=sectionlogo>
 
 <br>
 
@@ -402,13 +413,17 @@ i produce music as a hobby, usually the more niche stuff heavily driven by my cu
 
 </div>
 
+<img src=res/wip.png class=sectionlogo>
+
+<br>
+
 </div>
 
 <div class="container" id="contact">
 
 <br>
 
-<img src=res/hi.gif class=sectionlogo>
+<img src=res/hi.png class=sectionlogo>
 
 <br>
 
@@ -439,6 +454,11 @@ messages[9] = "nothing to do with tripwires";
 messages[10] = "stay cool! - someone wakes the noise up -";
 messages[11] = "look inside; wires";
 messages[12] = "hold out! programmer!";
+messages[13] = "196 KB (200 704 bytes) in use";
+messages[14] = "why would we track you? you're already here!";
+messages[15] = "date modified: a long time ago";
+messages[16] = "sorry nothing";
+messages[17] = "&#x2665;";
 var rnd = Math.floor(Math.random() * messages.length);
 document.getElementById("copymsg").innerHTML = messages[rnd];
 </script>
@@ -448,6 +468,9 @@ document.getElementById("copymsg").innerHTML = messages[rnd];
 <script>
 var containers = document.getElementsByClassName('container');
 var buttons = document.getElementsByClassName('slider');
+var links = document.getElementsByTagName("a");
+
+var currentStyle = 0;
 
 var activeContainer = 0;
 var slideState = -1;
@@ -527,7 +550,13 @@ function adjustButtons(id)
 {
 	for (var i = 0; i < buttons.length; i++) {
 		if (id == buttons[i]) {
-			buttons[i].style.color = '#ff4fa7';
+			if (currentStyle == 1) {
+				buttons[i].style.color = '#00ffff';
+			}
+			else {
+				buttons[i].style.color = '#ff4fa7';
+			}
+
 			continue;
 		}
 		
@@ -561,6 +590,29 @@ function onContact() {
 }
 
 onMOTD();
+</script>
+
+<script>
+window.onload = function() {
+  var a = document.getElementById("avatar");
+
+  a.onclick = function() {
+	var avatar_img = document.getElementById("avatar_img");
+	avatar_img.src = "res/fel.png";
+	currentStyle = 1;
+	adjustButtons(document.getElementById("button_about"));
+	for (var i = 0; i < links.length; i++) {
+		if (currentStyle == 1) {
+			links[i].style.color = '#00ffff';
+		}
+		else {
+			links[i].style.color = '#ff4fa7';
+		}
+	}
+	
+	return false;
+  }
+}
 </script>
 
 </body>
