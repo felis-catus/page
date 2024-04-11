@@ -8,7 +8,7 @@
 <style>
 @font-face {
 	font-family: 'vga';
-	src: url(res/Px437_IBM_VGA_8x16.ttf);
+	src: url(fnt/Px437_IBM_VGA_8x16.ttf);
 }
 
 body { 
@@ -243,12 +243,12 @@ button.slider:hover {
 <div class="smol">id analysis<br></div>
 about me
 <hr class="separator2">
-<a id="avatar" title="are you saying that i am a fake cat?"><img id="avatar_img" src=res/avatar.png class=avatarimage></a>
+<a id="avatar" title="rain brain"><img id="avatar_img" src=res/avatar.png class=avatarimage></a>
 i'm aku (most know me as 'felis'), a programmer, gamedev, musician, whatever-i-feel-like-doing person.<br><br>
-at the time of writing, i'm working full-time in the game industry, this page is mainly for my hobbies.<br><br>
-for the things i *have done*, check the "games" &amp; "things" pages.<br><br>
-you can also find my contact details up there.<br><br>
-thanks for visiting! &#x263A;
+at the time of writing, i'm working full-time in the games industry, so this site is mainly for my hobbies.<br><br>
+this site evolves, and it's currently a dumping ground for various things i've made - most of it probably speaks for itself, with little gimmicks.<br><br>
+feel free to contact me via email for inquiries.<br><br>
+thanks for stopping by! &#x263A;
 </div></div>
 </div>
 
@@ -429,11 +429,13 @@ i produce music as a hobby, usually the more niche stuff heavily driven by my cu
 
 <div style="text-align:center">
 <div class="box"><div class="info">
-<div class="smol">accounts<br></div>
-email: felis [at] wiretrippers.net<br>github: <a href="https://github.com/felis-catus">https://github.com/felis-catus</a><br>steam: <a href=https://steamcommunity.com/id/felis-catus>https://steamcommunity.com/id/felis-catus</a><br>
+<div class="smol">email<br></div>
+felis [at] wiretrippers.net<br>
+<div class="smol">this is the best way to reach me, feel free to send an inquiry or just to say hi.</div>
 </div></div>
 <br><br>
 </div>
+
 </div>
 
 <br>
@@ -588,15 +590,17 @@ function onContact() {
 	if (doSlide(document.getElementById("contact")))
 		adjustButtons(document.getElementById("button_contact"));
 }
-
-onMOTD();
 </script>
 
 <script>
 window.onload = function() {
+  onMOTD();
+  
   var a = document.getElementById("avatar");
 
   a.onclick = function() {
+	var avatar = document.getElementById("avatar");
+	avatar.title = "are you saying that i am a fake cat?";
 	var avatar_img = document.getElementById("avatar_img");
 	avatar_img.src = "res/fel.png";
 	currentStyle = 1;
