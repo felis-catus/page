@@ -201,7 +201,7 @@ button.slider:hover {
 <button class="slider" id="button_motd" onclick="onMOTD()">&gt; motd</button>
 <button class="slider" id="button_about" onclick="onAbout()">&gt; about</button>
 <button class="slider" id="button_games" onclick="onGames()">&gt; games</button>
-<button class="slider" id="button_misc" onclick="onMisc()">&gt; things</button>
+<button class="slider" id="button_things" onclick="onThings()">&gt; things</button>
 <button class="slider" id="button_contact" onclick="onContact()">&gt; contact</button>
 <br><br>
 <div class="container" id="motd">
@@ -392,7 +392,7 @@ soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat
 
 </div>
 
-<div class="container" id="misc">
+<div class="container" id="things">
 
 <br>
 
@@ -521,7 +521,7 @@ function doSlide(id)
 		return false;
 	}
 
-	if (slideTo == `-1`) {
+	if (slideTo == -1) {
 		slideOut(id);
 		
 		slideTo = id;
@@ -567,54 +567,82 @@ function adjustButtons(id)
 }
 
 function onMOTD() {
-	if (doSlide(document.getElementById("motd")))
+	if (doSlide(document.getElementById("motd"))) {
 		adjustButtons(document.getElementById("button_motd"));
+		window.location.hash = 'motd';
+	}
 }
 
 function onAbout() {
-	if (doSlide(document.getElementById("about")))
+	if (doSlide(document.getElementById("about"))) {
 		adjustButtons(document.getElementById("button_about"));
+		window.location.hash = 'about';
+	}
 }
 
 function onGames() {
-	if (doSlide(document.getElementById("games")))
+	if (doSlide(document.getElementById("games"))) {
 		adjustButtons(document.getElementById("button_games"));
+		window.location.hash = 'games';
+	}
 }
 
-function onMisc() {
-	if (doSlide(document.getElementById("misc")))
-		adjustButtons(document.getElementById("button_misc"));
+function onThings() {
+	if (doSlide(document.getElementById("things"))) {
+		adjustButtons(document.getElementById("button_things"));
+		window.location.hash = 'things';
+	}
 }
 
 function onContact() {
-	if (doSlide(document.getElementById("contact")))
+	if (doSlide(document.getElementById("contact"))) {
 		adjustButtons(document.getElementById("button_contact"));
-}
-</script>
-
-<script>
-window.onload = function() {
-  onMOTD();
-  
-  var a = document.getElementById("avatar");
-
-  a.onclick = function() {
-	var avatar = document.getElementById("avatar");
-	avatar.title = "are you saying that i am a fake cat?";
-	var avatar_img = document.getElementById("avatar_img");
-	avatar_img.src = "res/fel.png";
-	currentStyle = 1;
-	adjustButtons(document.getElementById("button_about"));
-	for (var i = 0; i < links.length; i++) {
-		if (currentStyle == 1) {
-			links[i].style.color = '#00ffff';
-		}
-		else {
-			links[i].style.color = '#ff4fa7';
-		}
+		window.location.hash = 'contact';
 	}
+}
+
+function onHashChanged() {
+	if (location.hash === "#about" ) {
+		onAbout();
+	}
+	else if (location.hash === "#games" ) {
+		onGames();
+	}
+	else if (location.hash === "#things" ) {
+		onThings();
+	}
+	else if (location.hash === "#contact" ) {
+		onContact();
+	}
+}
+
+window.onload = function() {
+	if ("onhashchange" in window)
+		window.onhashchange = onHashChanged;
+
+	onHashChanged();
 	
-	return false;
+	if (doSlide(document.getElementById("motd")))
+		adjustButtons(document.getElementById("button_motd"));
+
+	var a = document.getElementById("avatar");
+	a.onclick = function() {
+		var avatar = document.getElementById("avatar");
+		avatar.title = "are you saying that i am a fake cat?";
+		var avatar_img = document.getElementById("avatar_img");
+		avatar_img.src = "res/fel.png";
+		currentStyle = 1;
+		adjustButtons(document.getElementById("button_about"));
+		for (var i = 0; i < links.length; i++) {
+			if (currentStyle == 1) {
+				links[i].style.color = '#00ffff';
+			}
+			else {
+				links[i].style.color = '#ff4fa7';
+			}
+		}
+		
+		return false;
   }
 }
 </script>
