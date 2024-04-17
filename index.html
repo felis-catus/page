@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <link rel="shortcut icon" href="favicon.ico">
 <title>> WIRE TRIPPERS</title>
-
 <style>
 @font-face {
 	font-family: 'vga';
@@ -18,11 +17,9 @@ body {
 	background-size: cover;
 	color: #ffffff;
 	margin:22px;
-	padding:0px;
 	color:#ebebeb;
 	font-family: "vga", "System", monospace;
 	font-size:22px;
-	font-smooth: never;
 	font-weight: initial;
 }
 
@@ -41,7 +38,7 @@ body {
 	z-index:-1;
 }
 
-.container {
+.sect {
 	text-align:left;
 	width:800px;
 	background-color: #25282a;
@@ -68,7 +65,7 @@ a:hover {
 	display:inline-block;
 }
 
-.logo {
+.motd {
 	white-space: pre;
 }
 
@@ -91,7 +88,7 @@ a:hover {
 	padding:8px;
 }
 
-.separator2 {
+.sep {
 	border-top:2px solid #aaaaaa;
 	border-bottom:0px;
 	border-left:0px;
@@ -100,34 +97,14 @@ a:hover {
 	margin-left:-8px;
 }
 
-.center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%;
-}
-
-.sectionlogo {
+.logo {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	width: 75%;
 }
 
-.alignleft {
-	text-align:left;
-	width:800px;
-	margin:0px;
-	cursor:pointer;
-}
-
-.alignright {
-	text-align:right;
-	width:800px;
-	margin:0px;
-}
-
-img.boximage {
+img.boximg {
 	border: solid;
 	border-width: 2px;
 	display: block;
@@ -136,7 +113,7 @@ img.boximage {
 	width: 50%;
 }
 
-img.avatarimage {
+img.pfpstyle {
 	border: solid;
 	border-width: 2px;
 	display: block;
@@ -164,7 +141,6 @@ button.slider {
 	display: inline-block;
 	font-family: "vga", "System", monospace;
 	font-size:22px;
-	font-smooth: never;
 	font-weight: initial;
 	width:120px;
 	margin:0px;
@@ -189,25 +165,19 @@ button.slider:hover {
 }
 
 </style>
-
 </head>
-
 <body>
-
 <div class="bg"></div>
-
 <div style="text-align:center">
-
-<button class="slider" id="button_motd" onclick="onMOTD()">&gt; motd</button>
-<button class="slider" id="button_about" onclick="onAbout()">&gt; about</button>
-<button class="slider" id="button_games" onclick="onGames()">&gt; games</button>
-<button class="slider" id="button_things" onclick="onThings()">&gt; things</button>
-<button class="slider" id="button_contact" onclick="onContact()">&gt; contact</button>
+<button class="slider" id="btn_motd" onclick="onMOTD()">&gt; motd</button>
+<button class="slider" id="btn_about" onclick="onAbout()">&gt; about</button>
+<button class="slider" id="btn_games" onclick="onGames()">&gt; games</button>
+<button class="slider" id="btn_things" onclick="onThings()">&gt; things</button>
+<button class="slider" id="btn_contact" onclick="onContact()">&gt; contact</button>
 <br><br>
-<div class="container" id="motd">
-
+<div class="sect" id="s_motd">
 <div style="text-align:center">
-<div class="logo">
+<div class="motd">
            |`-.._____..-'|
            :  &gt; .  ,  &lt;  :
            `./ __`' __ \,'
@@ -229,21 +199,16 @@ button.slider:hover {
 <br>
 </div>
 </div>
-
-<div class="container" id="about">
-
+<div class="sect" id="s_about">
 <div style="text-align:center">
 <br>
-
-<img src=res/bio.png class=sectionlogo>
-
+<img src=res/bio.png class=logo>
 <br>
-
 <div class="box"><div class="info">
 <div class="smol">id analysis<br></div>
 about me
-<hr class="separator2">
-<a id="avatar" title="rain brain"><img id="avatar_img" src=res/avatar.png class=avatarimage></a>
+<hr class="sep">
+<a id="pfp" title="rain brain"><img id="pfpimg" src=res/avatar.png class=pfpstyle></a>
 i'm aku (most know me as 'felis'), a programmer, gamedev, musician, whatever-i-feel-like-doing person.<br><br>
 at the time of writing, i'm working full-time in the games industry, so this site is mainly for my hobbies.<br><br>
 this site evolves, and it's currently a dumping ground for various things i've made - most of it probably speaks for itself, with little gimmicks.<br><br>
@@ -251,182 +216,149 @@ feel free to contact me via email for inquiries.<br><br>
 thanks for stopping by! &#x263A;
 </div></div>
 </div>
-
 <div style="text-align:center">
 <div class="box"><div class="info">
 <div style="text-align:center">
-<img src=res/npp.png class=btn> <img src=res/nocookie.png class=btn> <img src=res/pc.png class=btn> <img src=res/hhc.png class=btn> <img src=res/rating.png class=btn>
+<img src=res/npp.png class=btn> <img src=res/nocookie.png class=btn> <img src=res/pc.png class=btn> <img src=res/hhc.png class=btn> <img src=res/blank.png class=btn>
 <br>
 <div class="smol">this site uses IBM VGA 8x16 font by <a href=https://int10h.org/oldschool-pc-fonts/>VileR</a></div>
 </div>
 </div></div>
 </div>
-
 <br><br>
-
 </div>
-
-<div class="container" id="games">
-
+<div class="sect" id="s_games">
 <br>
-
-<img src=res/vg.png class=sectionlogo>
-
+<img src=res/vg.png class=logo>
 <br>
-
 <div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">project #1<br></div>
 Pirates, Vikings & Knights II
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">image reference<br></div>
-<a href="https://store.steampowered.com/app/17570"><img src=res/pvk2.jpg class=boximage></a>
-<hr class="separator2">
+<a href="https://store.steampowered.com/app/17570"><img src=res/pvk2.jpg class=boximg></a>
+<hr class="sep">
 <div class="smol">occupation<br></div>
 senior programmer, production manager
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">thoughts<br></div>
 a melee-centric fps running on source engine, this was my first proper gamedev project, and ever since joining the team, i have contributed to almost a dozen major updates, incl. new characters, game modes, weapons, and more.
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">avaibility<br></div>
 the game is available for free, you may download it <a href=https://store.steampowered.com/app/17570>here</a> (steam client required!)
 </div></div>
 </div>
-
 <div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">project #2<br></div>
 No More Room in Hell
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">image reference<br></div>
-<a href="https://store.steampowered.com/app/224260"><img src=res/nmrih1.jpg class=boximage></a>
-<hr class="separator2">
+<a href="https://store.steampowered.com/app/224260"><img src=res/nmrih1.jpg class=boximg></a>
+<hr class="sep">
 <div class="smol">occupation<br></div>
 programmer, maintainer
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">thoughts<br></div>
 zombie game done right, i was a big fan of this game before joining the development team and had the pleasure of working with an amazing group of people to put out definitive updates (1.10+), fix hundreds of bugs, and include essential 'quality of life' features.
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">avaibility<br></div>
 the game is available for free, you may download it <a href=https://store.steampowered.com/app/224260>here</a> (steam client required!)
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">addendum<br></div>
 found an issue? game's broken? let us know at <a href= https://github.com/nmrih/source-game/issues>github issue tracker</a> (please do!)
 </div></div>
 </div>
-
 <div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">project #3<br></div>
 No More Room in Hell 2
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">image reference<br></div>
-<a href="https://store.steampowered.com/app/292000"><img src=res/nmrih2.jpg class=boximage></a>
-<hr class="separator2">
+<a href="https://store.steampowered.com/app/292000"><img src=res/nmrih2.jpg class=boximg></a>
+<hr class="sep">
 <div class="smol">occupation<br></div>
 programmer
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">thoughts<br></div>
 i also contributed code to the sequel, and the work is still ongoing.
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">avaibility<br></div>
 the game will be available on steam, and you may wishlist it <a href=https://store.steampowered.com/app/292000>here</a>.
 </div></div>
 </div>
-
 <br>
-
 <br>
-
-<img src=res/vg_bad.png class=sectionlogo>
-
+<img src=res/vg_bad.png class=logo>
 <br>
-
 <div style="text-align:center">
-
 <div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">archive #1<br></div>
 FragFest
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">image reference<br></div>
-<a><img src=res/fragfest.jpg class=boximage></a>
-<hr class="separator2">
+<a><img src=res/fragfest.jpg class=boximg></a>
+<hr class="sep">
 <div class="smol">when<br></div>
 2014
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">thoughts<br></div>
 unlimited movement, overpowered railguns, hud speedometers, this was my first project in an era where i started exploring gamedev as a real possibility, a "half-life 2 deathmatch" mod that served as a playground for learning source engine programming.<br><br>
 this mod essentially prepared me for pvk2 (the first game on the page), and was my first dive into c++ programming as a whole, the gameplay itself is bonkers and surprisingly fun - think a "babby's first mod" trying to pass as a proper quake ripoff lmao!<br><br>
 the mod was codenamed "the nab project", which was a reference to a group of friends at the time.<br>
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">avaibility<br></div>
 <b>[PENDING ARCHIVAL]</b>
 </div></div>
 </div>
-
 <div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">archive #2<br></div>
 OVERHEAT
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">image reference<br></div>
-<a><img src=res/overheat.jpg class=boximage></a>
-<hr class="separator2">
+<a><img src=res/overheat.jpg class=boximg></a>
+<hr class="sep">
 <div class="smol">when<br></div>
 2019
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">thoughts<br></div>
 overheat was an ambitious solo game project that started out as a joke to test my 2d game engine<br>(called YASE, which stands for "Yet Another Sh*t Engine", on good days, S meant <a href=https://www.libsdl.org/>"SDL"</a>)<br><br>
 it was to be a kusoge-inspired shmup w/ bold colorful visuals. quite a bit of 'promo' material and a full soundtrack was made, but the game itself was never realized beyond a very crude tech demo that isn't worth checking out.<br><br>
 this is one of the projects i *may* return to in a different capacity, at least the stylistic choice with rave-infused music and visual language - but hey, who knows?<br>
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">avaibility<br></div>
 soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat-soundtrack>here</a>.
 </div></div>
 </div>
-
 <br><br>
-
 </div>
-
 </div>
-
-<div class="container" id="things">
-
+<div class="sect" id="s_things">
 <br>
-
-<img src=res/noise.png class=sectionlogo>
-
+<img src=res/wip.png class=logo>
 <br>
-
+<img src=res/noise.png class=logo>
+<br>
 <div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">info<br></div>
 i produce music as a hobby, usually the more niche stuff heavily driven by my current taste at the time. i'm fairly solitary when it comes to that, so i don't release much of my work.
-<hr class="separator2">
+<hr class="sep">
 <div class="smol">soundcloud<br></div>
 <a href=https://soundcloud.com/felis-catus-1>personal soundcloud for whatever</a><br>
 </div></div>
-
 <br><br>
-
 </div>
-
-<img src=res/wip.png class=sectionlogo>
-
+<img src=res/wip.png class=logo>
 <br>
-
 </div>
-
-<div class="container" id="contact">
-
+<div class="sect" id="s_contact">
 <br>
-
-<img src=res/hi.png class=sectionlogo>
-
+<img src=res/hi.png class=logo>
 <br>
-
 <div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">email<br></div>
@@ -435,12 +367,9 @@ felis [at] wiretrippers.net<br>
 </div></div>
 <br><br>
 </div>
-
 </div>
-
 <br>
-
-<div class="smol"><script>document.write( new Date().getFullYear() );</script>, wiretrippers.net <div id=copymsg></div></div>
+<div class="smol"><script>document.write(new Date().getFullYear());</script>, wiretrippers.net <div id=copymsg></div></div>
 <script>
 var messages = new Array();
 messages[0] = "prosecutedt to the full extent of the Jam";
@@ -464,24 +393,22 @@ messages[17] = "&#x2665;";
 var rnd = Math.floor(Math.random() * messages.length);
 document.getElementById("copymsg").innerHTML = messages[rnd];
 </script>
-
 </div>
-
 <script>
-var containers = document.getElementsByClassName('container');
+var sections = document.getElementsByClassName('sect');
 var buttons = document.getElementsByClassName('slider');
 var links = document.getElementsByTagName("a");
 
 var currentStyle = 0;
-
-var activeContainer = 0;
+var activeSection = 0;
 var slideState = -1;
 var slideTo = -1;
+var bSetHash = false;
 
-for (var i = 0; i < containers.length; i++) {
-	containers[i].addEventListener('transitionend', () => {
+for (var i = 0; i < sections.length; i++) {
+	sections[i].addEventListener('transitionend', () => {
 		if (slideState == 1) {
-			activeContainer = slideTo;
+			activeSection = slideTo;
 			slideState = -1;
 		}
 		else if (slideState == 0)
@@ -490,9 +417,13 @@ for (var i = 0; i < containers.length; i++) {
 			slideState = -1;
 			
 		document.body.style.cursor = 'default';
-		
+
 		for (var i = 0; i < buttons.length; i++) {
 			buttons[i].style.cursor = 'pointer';
+		}
+
+		if (bSetHash) {
+			window.location.hash = slideTo.id.substring(2);
 		}
 	});
 }
@@ -500,51 +431,52 @@ for (var i = 0; i < containers.length; i++) {
 function slideOut(id) {
 	id.style.height = `${id.scrollHeight}px`;
 	id.style.border = "2px dashed white";
-	
+
 	slideState = 1;
 }
 
 function slideIn(id) {
 	id.style.height = `0px`;
 	id.style.border = "transparent";
-	
+
 	slideState = 0;
 }
 
-function doSlide(id)
+function doSlide(id, bHash = true)
 {
-	if (activeContainer == id) {
+	if (activeSection == id) {
 		return false;
 	}
-	
+
 	if (slideState != -1) {
 		return false;
 	}
 
 	if (slideTo == -1) {
 		slideOut(id);
-		
+
 		slideTo = id;
 		return true;
 	}
-		
+
 	slideTo = id;
-	
+	bSetHash = bHash;
+
 	document.body.style.cursor = 'wait';
-	
+
 	for (var i = 0; i < buttons.length; i++) {
 		buttons[i].style.cursor = 'wait';
 	}
-	
-	for (var i = 0; i < containers.length; i++) {
-		if (id == containers[i]) {
-			id.parentNode.insertBefore(containers[i], containers[0]);
+
+	for (var i = 0; i < sections.length; i++) {
+		if (id == sections[i]) {
+			id.parentNode.insertBefore(sections[i], sections[0]);
 			continue;
 		}
-		
-		slideIn(containers[i]);
+
+		slideIn(sections[i]);
 	}
-	
+
 	return true;
 }
 
@@ -561,43 +493,38 @@ function adjustButtons(id)
 
 			continue;
 		}
-		
+
 		buttons[i].style.color = '#ffffff';
 	}
 }
 
 function onMOTD() {
-	if (doSlide(document.getElementById("motd"))) {
-		adjustButtons(document.getElementById("button_motd"));
-		window.location.hash = 'motd';
+	if (doSlide(document.getElementById("s_motd"))) {
+		adjustButtons(document.getElementById("btn_motd"));
 	}
 }
 
 function onAbout() {
-	if (doSlide(document.getElementById("about"))) {
-		adjustButtons(document.getElementById("button_about"));
-		window.location.hash = 'about';
+	if (doSlide(document.getElementById("s_about"))) {
+		adjustButtons(document.getElementById("btn_about"));
 	}
 }
 
 function onGames() {
-	if (doSlide(document.getElementById("games"))) {
-		adjustButtons(document.getElementById("button_games"));
-		window.location.hash = 'games';
+	if (doSlide(document.getElementById("s_games"))) {
+		adjustButtons(document.getElementById("btn_games"));
 	}
 }
 
 function onThings() {
-	if (doSlide(document.getElementById("things"))) {
-		adjustButtons(document.getElementById("button_things"));
-		window.location.hash = 'things';
+	if (doSlide(document.getElementById("s_things"))) {
+		adjustButtons(document.getElementById("btn_things"));
 	}
 }
 
 function onContact() {
-	if (doSlide(document.getElementById("contact"))) {
-		adjustButtons(document.getElementById("button_contact"));
-		window.location.hash = 'contact';
+	if (doSlide(document.getElementById("s_contact"))) {
+		adjustButtons(document.getElementById("btn_contact"));
 	}
 }
 
@@ -621,18 +548,17 @@ window.onload = function() {
 		window.onhashchange = onHashChanged;
 
 	onHashChanged();
-	
-	if (doSlide(document.getElementById("motd")))
-		adjustButtons(document.getElementById("button_motd"));
 
-	var a = document.getElementById("avatar");
+	if (doSlide(document.getElementById("s_motd"), false))
+		adjustButtons(document.getElementById("btn_motd"));
+
+	var a = document.getElementById("pfp");
 	a.onclick = function() {
-		var avatar = document.getElementById("avatar");
-		avatar.title = "are you saying that i am a fake cat?";
-		var avatar_img = document.getElementById("avatar_img");
-		avatar_img.src = "res/fel.png";
+		a.title = "are you saying that i am a fake cat?";
+		var img = document.getElementById("pfpimg");
+		img.src = "res/fel.png";
 		currentStyle = 1;
-		adjustButtons(document.getElementById("button_about"));
+		adjustButtons(document.getElementById("btn_about"));
 		for (var i = 0; i < links.length; i++) {
 			if (currentStyle == 1) {
 				links[i].style.color = '#00ffff';
@@ -646,7 +572,5 @@ window.onload = function() {
   }
 }
 </script>
-
 </body>
-
 </html>
