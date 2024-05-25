@@ -1,4 +1,10 @@
 =====================================
+Enum:        HidingSpot
+Elements:    4
+Description: Visibility enum for nav mesh hiding spots
+=====================================
+
+=====================================
 Enum:        Hitgroup
 Elements:    9
 Description: Hit groups from traces
@@ -732,6 +738,10 @@ Constant:    FCVAR_ARCHIVE_XBOX
 Value:       16777216 (int)
 Description: If this convar flag is set, it will be archived on the Xbox config.
 
+Constant:    FCVAR_CHEAT
+Value:       16384 (int)
+Description: Only useable in singleplayer / debug / multiplayer & sv_cheats
+
 Constant:    FCVAR_CLIENTCMD_CAN_EXECUTE
 Value:       1073741824 (int)
 Description: If this convar flag is set, any client will be allowed to execute this command.
@@ -798,7 +808,7 @@ Description: If this convar flag is set, it will force a texture reload when it 
 
 Constant:    FCVAR_REPLICATED
 Value:       8192 (int)
-Description: If this convar flag is set, it will enforce a serverside value on any clientside counterparts. (also known as FCAR_SERVER)
+Description: If this convar flag is set, it will enforce a serverside value on any clientside counterparts. (also known as FCVAR_SERVER)
 
 Constant:    FCVAR_SERVER_CANNOT_QUERY
 Value:       536870912 (int)
@@ -1011,6 +1021,18 @@ Description: Global state used by the Globals singleton.
 Constant:    GLOBAL_ON
 Value:       1 (int)
 Description: Global state used by the Globals singleton.
+
+Constant:    HidingSpot.EXPOSED
+Value:       8 (int)
+
+Constant:    HidingSpot.GOOD_SNIPER_SPOT
+Value:       2 (int)
+
+Constant:    HidingSpot.IDEAL_SNIPER_SPOT
+Value:       4 (int)
+
+Constant:    HidingSpot.IN_COVER
+Value:       1 (int)
 
 Constant:    Hitgroup.Chest
 Value:       2 (int)
@@ -2182,7 +2204,7 @@ Constant:    WeaponSound.MELEE_MISS
 Value:       8 (int)
 
 Constant:    WeaponSound.NUM_SHOOT_SOUND_TYPES
-Value:       24 (int)
+Value:       16 (int)
 
 Constant:    WeaponSound.RELOAD
 Value:       6 (int)
@@ -2392,6 +2414,12 @@ Description: Manager for NPC squads.
 =====================================
 
 =====================================
+Class:       CAmbientFMOD
+Base:        CBaseEntity
+Description: Entity similar to ambient_generic, using FMOD sound system for playback.
+=====================================
+
+=====================================
 Class:       CAmmoDef
 Base:        
 Description: The ammo type definition manager.
@@ -2464,6 +2492,18 @@ Description: env_entity_maker
 =====================================
 
 =====================================
+Class:       CEnvScreenOverlayMultiplayer
+Base:        CBaseEntity
+Description: An entity that can display and control a set of screen overlays, to be displayed over the player's view.
+=====================================
+
+=====================================
+Class:       CEnvTimer
+Base:        CBaseEntity
+Description: An entity that displays a simple HUD timer, with controls similar to a stopwatch.
+=====================================
+
+=====================================
 Class:       CFilterScript
 Base:        CBaseFilter
 Description: The filter_script entity which allows VScript functions to hook onto filter methods.
@@ -2518,9 +2558,9 @@ Description: Inventory box, an entity used for supply crates.
 =====================================
 
 =====================================
-Class:       CLocalize
-Base:        
-Description: Accesses functions related to localization strings.
+Class:       CLogicProgress
+Base:        CBaseEntity
+Description: An entity that displays a HUD progress bar on clients, stores progress, and fires an output on completion.
 =====================================
 
 =====================================
@@ -2553,6 +2593,12 @@ Description: Health station.
 =====================================
 
 =====================================
+Class:       CNMRiH_ItemCustom
+Base:        CBaseAnimating
+Description: A carryable item with custom properties.
+=====================================
+
+=====================================
 Class:       CNMRiH_Player
 Base:        CBasePlayer
 Description: The player entity for NMRiH.
@@ -2573,7 +2619,13 @@ Description: An interface for nav areas.
 =====================================
 Class:       CNetPropManager
 Base:        
-Description: Allows reading and updating the network properties of an entity.
+Description: Allows reading and updating the network properties and data fields of an entity.
+=====================================
+
+=====================================
+Class:       CObjective
+Base:        
+Description: A map objective, used in conjunction with CObjectiveManager.
 =====================================
 
 =====================================
@@ -2595,9 +2647,33 @@ Description: The zombie helper.
 =====================================
 
 =====================================
+Class:       CPointMessageMultiplayer
+Base:        CBaseEntity
+Description: An entity that displays a text message in the world, at its origin. Has multiplayer support.
+=====================================
+
+=====================================
+Class:       CPointViewControlMultiplayer
+Base:        CBaseEntity
+Description: A camera entity that controls the player's view. While it's active, the player will see out of the camera. Has multiplayer support.
+=====================================
+
+=====================================
 Class:       CRagdollProp
 Base:        CBaseAnimating
 Description: Ragdoll physics prop.
+=====================================
+
+=====================================
+Class:       CRandomSpawnController
+Base:        CBaseEntity
+Description: Entity to limit items created by random_spawner entities.
+=====================================
+
+=====================================
+Class:       CRandom_Spawner
+Base:        CBaseEntity
+Description: An entity that spawns random items.
 =====================================
 
 =====================================
@@ -2910,6 +2986,10 @@ Function:    CAI_BaseNPC::FindEnemyMemory
 Signature:   handle CAI_BaseNPC::FindEnemyMemory(handle)
 Description: Get information about the NPC's current enemy.
 
+Function:    CAI_BaseNPC::Freeze
+Signature:   void CAI_BaseNPC::Freeze()
+Description: Freezes NPC in place and pauses their sequence.
+
 Function:    CAI_BaseNPC::GetActivity
 Signature:   string CAI_BaseNPC::GetActivity()
 Description: Get the NPC's current activity.
@@ -3065,6 +3145,10 @@ Description: Set the NPC's sleep state. (see AISS_ set of constants)
 Function:    CAI_BaseNPC::Sleep
 Signature:   void CAI_BaseNPC::Sleep()
 Description: Puts the NPC into a sleeping state.
+
+Function:    CAI_BaseNPC::Unfreeze
+Signature:   void CAI_BaseNPC::Unfreeze()
+Description: Unfreezes NPC if they're frozen.
 
 Function:    CAI_BaseNPC::Wake
 Signature:   void CAI_BaseNPC::Wake(handle)
@@ -3250,6 +3334,35 @@ Function:    CAI_SquadManager::NumSquads
 Signature:   int CAI_SquadManager::NumSquads()
 Description: Get the number of squads in the list.
 
+Function:    CAmbientFMOD::DecreaseVolume
+Signature:   void CAmbientFMOD::DecreaseVolume(float)
+Description: Decreases volume by the specified amount. If this result is less than the min. volume, it will be set to silent.
+
+Function:    CAmbientFMOD::IncreaseVolume
+Signature:   void CAmbientFMOD::IncreaseVolume(float)
+Description: Increases volume by the specified amount. If this result is greater than the max. volume, it will be set to loudest.
+
+Function:    CAmbientFMOD::PlaySound
+Signature:   void CAmbientFMOD::PlaySound()
+
+Function:    CAmbientFMOD::SetSound
+Signature:   void CAmbientFMOD::SetSound(string)
+Description: Sets a sound for playback, parameter can be a GameSound entry, or a direct filename. Supported formats: AIFF, ASF, ASX, DLS, FLAC, FSB, IT, M3U, MIDI, MOD, MP2, MP3, OGG, PLS, S3M, WAV, WAX, WMA, XM
+
+Function:    CAmbientFMOD::SetSoundSource
+Signature:   void CAmbientFMOD::SetSoundSource(handle)
+Description: Sets sound source, with a parameter of an entity handle.
+
+Function:    CAmbientFMOD::SetVolume
+Signature:   void CAmbientFMOD::SetVolume(float)
+Description: Sets sound volume, expressed as a range from 0.0 to 10.0, where 10.0 is the loudest.
+
+Function:    CAmbientFMOD::StopSound
+Signature:   void CAmbientFMOD::StopSound()
+
+Function:    CAmbientFMOD::ToggleSound
+Signature:   void CAmbientFMOD::ToggleSound()
+
 Function:    CAmmoDef::DamageForce
 Signature:   float CAmmoDef::DamageForce(int)
 Description: Gets the amount of force this ammo type deals.
@@ -3300,9 +3413,17 @@ Signature:   bool CBaseAnimating::BecomeRagdollOnClient(Vector)
 Function:    CBaseAnimating::CanBecomeRagdoll
 Signature:   bool CBaseAnimating::CanBecomeRagdoll()
 
+Function:    CBaseAnimating::DisableGlow
+Signature:   void CBaseAnimating::DisableGlow()
+Description: Disables outline glow, requires entity to be 'glowable'.
+
 Function:    CBaseAnimating::Dissolve
 Signature:   bool CBaseAnimating::Dissolve(string, float, bool, int, Vector, int)
 Description: Use 'sprites/blueglow1.vmt' for the default material, Time() for the default start time, false for npcOnly if you don't want it to check if the entity is a NPC first, 0 for the default dissolve type, Vector(0,0,0) for the default dissolver origin, and 0 for the default magnitude.
+
+Function:    CBaseAnimating::EnableGlow
+Signature:   void CBaseAnimating::EnableGlow()
+Description: Enables outline glow, requires entity to be 'glowable'.
 
 Function:    CBaseAnimating::FindBodygroupByName
 Signature:   int CBaseAnimating::FindBodygroupByName(string)
@@ -3394,6 +3515,10 @@ Function:    CBaseAnimating::Ignite
 Signature:   void CBaseAnimating::Ignite(float, bool, float, bool)
 Description: 'NPCOnly' only lets this fall through if the entity is a NPC and 'CalledByLevelDesigner' determines whether to treat this like the Ignite input or just an internal ignition call.
 
+Function:    CBaseAnimating::IsGlowable
+Signature:   bool CBaseAnimating::IsGlowable()
+Description: Returns true if this entity can have an outline glow.
+
 Function:    CBaseAnimating::IsRagdoll
 Signature:   bool CBaseAnimating::IsRagdoll()
 
@@ -3450,6 +3575,22 @@ Description: Sets a bodygroup
 
 Function:    CBaseAnimating::SetCycle
 Signature:   void CBaseAnimating::SetCycle(float)
+
+Function:    CBaseAnimating::SetGlowBlip
+Signature:   void CBaseAnimating::SetGlowBlip(bool)
+Description: When true, this glow will show a 'blip' in the player compass.
+
+Function:    CBaseAnimating::SetGlowColor
+Signature:   void CBaseAnimating::SetGlowColor(int, int, int)
+Description: Sets glow color, with RGB parameters.
+
+Function:    CBaseAnimating::SetGlowDistance
+Signature:   void CBaseAnimating::SetGlowDistance(float)
+Description: Sets max. distance for a player to see the glow, in units. Use -1 for no limit.
+
+Function:    CBaseAnimating::SetGlowable
+Signature:   void CBaseAnimating::SetGlowable(bool)
+Description: Sets the 'glowable' state. If you want to use glow properties and functions, you'll have to enable this first.
 
 Function:    CBaseAnimating::SetPlaybackRate
 Signature:   void CBaseAnimating::SetPlaybackRate(float)
@@ -4172,6 +4313,22 @@ Function:    CBaseEntity::IsWorld
 Signature:   bool CBaseEntity::IsWorld()
 Description: Returns true if this entity is the world.
 
+Function:    CBaseEntity::KeyValueFromFloat
+Signature:   bool CBaseEntity::KeyValueFromFloat(string, float)
+Description: Executes KeyValue with a float, same caveat from KeyValueFromString applies.
+
+Function:    CBaseEntity::KeyValueFromInt
+Signature:   bool CBaseEntity::KeyValueFromInt(string, int)
+Description: Executes KeyValue with an int, same caveat from KeyValueFromString applies.
+
+Function:    CBaseEntity::KeyValueFromString
+Signature:   bool CBaseEntity::KeyValueFromString(string, string)
+Description: Executes KeyValue with a string. Warning: Does not update the internal network state of the entity, which can result in any desired visual changes being delayed for clients if used after spawning. Netprops can be used instead which correctly updates the networking state and results in an immediate update.
+
+Function:    CBaseEntity::KeyValueFromVector
+Signature:   bool CBaseEntity::KeyValueFromVector(string, Vector)
+Description: Executes KeyValue with a vector, same caveat from KeyValueFromString applies.
+
 Function:    CBaseEntity::NextMovePeer
 Signature:   handle CBaseEntity::NextMovePeer()
 
@@ -4217,7 +4374,7 @@ Description: Set the local angular velocity - takes float pitch,yaw,roll velocit
 
 Function:    CBaseEntity::SetCauser
 Signature:   void CBaseEntity::SetCauser(handle)
-Description: Set who gets credit for a kill from this entity. If this is not a player it will reset the causer to nobody.
+Description: Set who gets credit for a kill from this entity.
 
 Function:    CBaseEntity::SetCollisionGroup
 Signature:   void CBaseEntity::SetCollisionGroup(int)
@@ -4783,6 +4940,82 @@ Function:    CEnvEntityMaker::SpawnEntityAtNamedEntityOrigin
 Signature:   void CEnvEntityMaker::SpawnEntityAtNamedEntityOrigin(string)
 Description: Create an entity at the location of a named entity
 
+Function:    CEnvScreenOverlayMultiplayer::StartOverlay
+Signature:   void CEnvScreenOverlayMultiplayer::StartOverlay(handle)
+Description: Starts displaying the first overlay for the given player.
+
+Function:    CEnvScreenOverlayMultiplayer::StartOverlayForAllPlayers
+Signature:   void CEnvScreenOverlayMultiplayer::StartOverlayForAllPlayers()
+Description: Starts displaying the first overlay for all players.
+
+Function:    CEnvScreenOverlayMultiplayer::StopOverlay
+Signature:   void CEnvScreenOverlayMultiplayer::StopOverlay(handle)
+Description: Stops displaying any overlays for the given player.
+
+Function:    CEnvScreenOverlayMultiplayer::StopOverlayForAllPlayers
+Signature:   void CEnvScreenOverlayMultiplayer::StopOverlayForAllPlayers()
+Description: Stops displaying any overlays for all players.
+
+Function:    CEnvScreenOverlayMultiplayer::SwitchOverlay
+Signature:   void CEnvScreenOverlayMultiplayer::SwitchOverlay(handle, int)
+Description: Switches to displaying a specific overlay. Pass in the desired player and overlay number.
+
+Function:    CEnvScreenOverlayMultiplayer::SwitchOverlayForAllPlayers
+Signature:   void CEnvScreenOverlayMultiplayer::SwitchOverlayForAllPlayers(int)
+Description: Switches to displaying a specific overlay for all players. Pass in the desired overlay number.
+
+Function:    CEnvTimer::AddTargetTime
+Signature:   void CEnvTimer::AddTargetTime(float)
+Description: Adds a target time, with parameter in seconds. Once met, output OnTargetTime will be fired. You can have multiple.
+
+Function:    CEnvTimer::HideTimer
+Signature:   void CEnvTimer::HideTimer()
+Description: Stops displaying the timer.
+
+Function:    CEnvTimer::SetBroadcast
+Signature:   void CEnvTimer::SetBroadcast(bool)
+Description: When true, display the timer to all players, and not only the activator.
+
+Function:    CEnvTimer::SetCountdown
+Signature:   void CEnvTimer::SetCountdown(bool)
+Description: When true, this timer will count down.
+
+Function:    CEnvTimer::SetResolution
+Signature:   void CEnvTimer::SetResolution(int)
+Description: Sets timer resolution. Available values are; 0 - mm:ss, 1 - mm:ss.cs, 2 - hh:mm, 3 - hh:mm:ss, 4 - hh:mm:ss.cs (Key: hh - hours, mm - minutes, ss - seconds, cs - centiseconds)
+
+Function:    CEnvTimer::SetStartTime
+Signature:   void CEnvTimer::SetStartTime(float)
+Description: The timer will initialize with this value, in seconds.
+
+Function:    CEnvTimer::SetTime
+Signature:   void CEnvTimer::SetTime(float)
+Description: Sets the current time, with the parameter override in seconds.
+
+Function:    CEnvTimer::SetTimerColor
+Signature:   void CEnvTimer::SetTimerColor(int, int, int)
+Description: Sets timer color, with RGB parameters.
+
+Function:    CEnvTimer::SetXPos
+Signature:   void CEnvTimer::SetXPos(int)
+Description: Overrides proportional X position on the HUD, set to '-1' for default screen adjusted position.
+
+Function:    CEnvTimer::SetYPos
+Signature:   void CEnvTimer::SetYPos(int)
+Description: Overrides proportional Y position on the HUD, set to '-1' for default screen adjusted position.
+
+Function:    CEnvTimer::ShowTimer
+Signature:   void CEnvTimer::ShowTimer()
+Description: Displays timer on HUD for players. Doesn't start it.
+
+Function:    CEnvTimer::StartTimer
+Signature:   void CEnvTimer::StartTimer(handle)
+Description: Starts the timer, with parameter of a player you wish to show it for (has no effect for broadcast timers, can be set to null). If this is a countdown timer, it'll tick down instead.
+
+Function:    CEnvTimer::StopTimer
+Signature:   void CEnvTimer::StopTimer()
+Description: Stops the timer, this effectively pauses it.
+
 Function:    CFuncZombieSpawn::CanDespawn
 Signature:   bool CFuncZombieSpawn::CanDespawn()
 Description: Returns true if this volume can despawn zombies.
@@ -4799,9 +5032,37 @@ Function:    CFuncZombieSpawn::GetChildChance
 Signature:   float CFuncZombieSpawn::GetChildChance()
 Description: Returns current child chance for this volume.
 
+Function:    CFuncZombieSpawn::GetInterimMax
+Signature:   int CFuncZombieSpawn::GetInterimMax()
+Description: Returns optimal number of zombies this volume can spawn based on player proximity.
+
+Function:    CFuncZombieSpawn::GetRegenTarget
+Signature:   float CFuncZombieSpawn::GetRegenTarget()
+Description: Returns ratio of dead zombie regeneration.
+
 Function:    CFuncZombieSpawn::GetRunnerChance
 Signature:   float CFuncZombieSpawn::GetRunnerChance()
 Description: Returns current runner chance for this volume.
+
+Function:    CFuncZombieSpawn::GetSpawnDensity
+Signature:   float CFuncZombieSpawn::GetSpawnDensity()
+Description: Returns ratio of spawn density
+
+Function:    CFuncZombieSpawn::GetSpawnMax
+Signature:   int CFuncZombieSpawn::GetSpawnMax()
+Description: Returns maximum of zombies this volume can hold.
+
+Function:    CFuncZombieSpawn::GetSpawnedCount
+Signature:   int CFuncZombieSpawn::GetSpawnedCount()
+Description: Returns the number of active zombies spawned by this volume.
+
+Function:    CFuncZombieSpawn::GetSpawnedDead
+Signature:   int CFuncZombieSpawn::GetSpawnedDead()
+Description: Returns the number of dead zombies that were spawned by this volume. Reduces over time when regen is enabled.
+
+Function:    CFuncZombieSpawn::GetZombiesNeeded
+Signature:   int CFuncZombieSpawn::GetZombiesNeeded()
+Description: Returns the number of zombies this volume wants to spawn.
 
 Function:    CFuncZombieSpawn::HasHadPlayers
 Signature:   bool CFuncZombieSpawn::HasHadPlayers()
@@ -4825,6 +5086,7 @@ Description: Sets child chance by given multiplier.
 
 Function:    CFuncZombieSpawn::SetIgnoreVisibility
 Signature:   void CFuncZombieSpawn::SetIgnoreVisibility(bool)
+Description: When true, ignores player visibility when spawning zombies.
 
 Function:    CFuncZombieSpawn::SetRunnerChance
 Signature:   void CFuncZombieSpawn::SetRunnerChance(float)
@@ -4840,6 +5102,7 @@ Description: Sets regeneration fraction goal.
 
 Function:    CFuncZombieSpawn::SetTarget
 Signature:   void CFuncZombieSpawn::SetTarget(string)
+Description: Sets target entity that zombies will head towards after spawning.
 
 Function:    CFunc_SafeZone::Deactivate
 Signature:   void CFunc_SafeZone::Deactivate()
@@ -5137,6 +5400,10 @@ Function:    CInfectableCharacter::TakePills
 Signature:   void CInfectableCharacter::TakePills()
 Description: Resets infection time.
 
+Function:    CItem_AmmoBox::GetAmmoType
+Signature:   string CItem_AmmoBox::GetAmmoType()
+Description: Returns ammo type name, e.g. ammotype_9mm
+
 Function:    CItem_AmmoBox::GetMaxAmmo
 Signature:   int CItem_AmmoBox::GetMaxAmmo()
 Description: Returns max count for current ammo type.
@@ -5169,6 +5436,14 @@ Function:    CItem_InventoryBox::AllowEmpty
 Signature:   void CItem_InventoryBox::AllowEmpty(bool)
 Description: Sets whether or not the box will be removed once it's been emptied, with a boolean parameter.
 
+Function:    CItem_InventoryBox::IsDroppedByChopper
+Signature:   bool CItem_InventoryBox::IsDroppedByChopper()
+Description: Returns true if this inventory box is dropped by a chopper, and isn't manually spawned.
+
+Function:    CItem_InventoryBox::IsUncategorized
+Signature:   bool CItem_InventoryBox::IsUncategorized()
+Description: Returns true if this inventory box is uncategorized.
+
 Function:    CItem_InventoryBox::RandomizeContents
 Signature:   void CItem_InventoryBox::RandomizeContents()
 Description: Randomizes new contents, and replaces all existing items.
@@ -5177,13 +5452,53 @@ Function:    CItem_InventoryBox::RemoveAllItems
 Signature:   void CItem_InventoryBox::RemoveAllItems()
 Description: Removes all items in the inventory box.
 
-Function:    CLocalize::AddStringAsUTF8
-Signature:   void CLocalize::AddStringAsUTF8(string, string)
-Description: Adds a new localized token as a UTF-8 string (not Unicode).
+Function:    CItem_InventoryBox::SetBackgroundTexture
+Signature:   void CItem_InventoryBox::SetBackgroundTexture(string)
+Description: Changes supply crate background in the client UI, with a parameter of material name.
 
-Function:    CLocalize::GetTokenAsUTF8
-Signature:   string CLocalize::GetTokenAsUTF8(string)
-Description: Gets the current language's token as a UTF-8 string (not Unicode).
+Function:    CLogicProgress::AddMilestone
+Signature:   void CLogicProgress::AddMilestone(float)
+Description: Adds a milestone, with parameter of progress ratio (0.0 - 1.0). Once hit, output OnMilestone will be fired. You can have multiple milestones.
+
+Function:    CLogicProgress::HideProgress
+Signature:   void CLogicProgress::HideProgress()
+Description: Hides progress on HUD while it's still ongoing.
+
+Function:    CLogicProgress::SetBroadcast
+Signature:   void CLogicProgress::SetBroadcast(bool)
+Description: When true, display the progress bar to all players, and not only the activator.
+
+Function:    CLogicProgress::SetInvert
+Signature:   void CLogicProgress::SetInvert(bool)
+Description: When true, progress decreases and fires output when depleted. Note: Milestones remain unchanged, e.g. 0.75 would be fired when 0.25 is hit.
+
+Function:    CLogicProgress::SetLength
+Signature:   void CLogicProgress::SetLength(float)
+Description: Sets length to completion in seconds when the progress activates. Only works in dynamic mode.
+
+Function:    CLogicProgress::SetProgress
+Signature:   void CLogicProgress::SetProgress(float)
+Description: Sets current progress, with parameter of ratio (0.0 - 1.0). In dynamic mode, the timer will be set accordingly.
+
+Function:    CLogicProgress::SetProgressColor
+Signature:   void CLogicProgress::SetProgressColor(int, int, int)
+Description: Sets a custom color for HUD progress bar, with RGB parameters.
+
+Function:    CLogicProgress::SetStatic
+Signature:   void CLogicProgress::SetStatic(bool)
+Description: When true, be a static timer; it'll remain still, and will require manual use of SetProgress. When false, be a dynamic timer; a timer-based counter (i.e. trigger_progress_use).
+
+Function:    CLogicProgress::StartProgress
+Signature:   void CLogicProgress::StartProgress(handle)
+Description: Starts progress, with a parameter being the user of this entity.
+
+Function:    CLogicProgress::StopProgress
+Signature:   void CLogicProgress::StopProgress()
+Description: Stops progress for all users.
+
+Function:    CLogicProgress::ToggleProgress
+Signature:   void CLogicProgress::ToggleProgress()
+Description: Toggles progress on/off.
 
 Function:    CLogicScriptProxy::RunFunction
 Signature:   void CLogicScriptProxy::RunFunction(string)
@@ -5241,6 +5556,10 @@ Function:    CNMRiH_BaseZombie::BecomeRunner
 Signature:   void CNMRiH_BaseZombie::BecomeRunner()
 Description: Turns this zombie into a runner.
 
+Function:    CNMRiH_BaseZombie::BecomeShambler
+Signature:   void CNMRiH_BaseZombie::BecomeShambler()
+Description: Turns this zombie into a shambler.
+
 Function:    CNMRiH_BaseZombie::GetShoved
 Signature:   void CNMRiH_BaseZombie::GetShoved(handle)
 Description: Zombie gets shoved back, with entity handle parameter of shove source.
@@ -5260,6 +5579,10 @@ Description: Returns true if this zombie is a kid.
 Function:    CNMRiH_BaseZombie::IsRunner
 Signature:   bool CNMRiH_BaseZombie::IsRunner()
 Description: Returns true if this zombie is a runner.
+
+Function:    CNMRiH_BaseZombie::IsShambler
+Signature:   bool CNMRiH_BaseZombie::IsShambler()
+Description: Returns true if this zombie is a shambler.
 
 Function:    CNMRiH_BaseZombie::IsTurned
 Signature:   bool CNMRiH_BaseZombie::IsTurned()
@@ -5359,13 +5682,65 @@ Function:    CNMRiH_HealthStationLocation::SetStationHealth
 Signature:   void CNMRiH_HealthStationLocation::SetStationHealth(int)
 Description: Sets amount of health remaining in the station.
 
+Function:    CNMRiH_ItemCustom::ApplyItem
+Signature:   bool CNMRiH_ItemCustom::ApplyItem()
+Description: Applies item to its owner, returns success.
+
+Function:    CNMRiH_ItemCustom::CanHoverSelect
+Signature:   bool CNMRiH_ItemCustom::CanHoverSelect()
+Description: Returns true when the item can be applied by hovering and closing the radial wheel.
+
+Function:    CNMRiH_ItemCustom::DropItem
+Signature:   bool CNMRiH_ItemCustom::DropItem()
+Description: Drops item from its owner if it's being held, returns success.
+
+Function:    CNMRiH_ItemCustom::GetIcon
+Signature:   string CNMRiH_ItemCustom::GetIcon()
+Description: Returns material name of the inventory icon.
+
+Function:    CNMRiH_ItemCustom::GetLabel
+Signature:   string CNMRiH_ItemCustom::GetLabel()
+Description: Returns inventory label.
+
+Function:    CNMRiH_ItemCustom::GetWeight
+Signature:   int CNMRiH_ItemCustom::GetWeight()
+Description: Returns physical weight.
+
+Function:    CNMRiH_ItemCustom::GiveItem
+Signature:   bool CNMRiH_ItemCustom::GiveItem(handle)
+Description: Attempts to give item to a target player, returns success.
+
+Function:    CNMRiH_ItemCustom::IsHighlighted
+Signature:   bool CNMRiH_ItemCustom::IsHighlighted()
+Description: Returns true when the item is highlighted in the inventory.
+
+Function:    CNMRiH_ItemCustom::SetHighlight
+Signature:   void CNMRiH_ItemCustom::SetHighlight(bool)
+Description: When true, highlight entry in the inventory.
+
+Function:    CNMRiH_ItemCustom::SetHoverSelect
+Signature:   void CNMRiH_ItemCustom::SetHoverSelect(bool)
+Description: When true, item can be applied by hovering and closing the radial wheel, when false, user must click to apply.
+
+Function:    CNMRiH_ItemCustom::SetIcon
+Signature:   void CNMRiH_ItemCustom::SetIcon(string)
+Description: Sets material name for VGUI inventory icon.
+
+Function:    CNMRiH_ItemCustom::SetLabel
+Signature:   void CNMRiH_ItemCustom::SetLabel(string)
+Description: Sets visible name for inventory wheel, accepts localization strings.
+
+Function:    CNMRiH_ItemCustom::SetWeight
+Signature:   void CNMRiH_ItemCustom::SetWeight(int)
+Description: Sets physical weight.
+
 Function:    CNMRiH_Player::AddCarriedWeight
 Signature:   void CNMRiH_Player::AddCarriedWeight(int)
 Description: Adds carried inventory weight.
 
 Function:    CNMRiH_Player::Ammo_Drop
-Signature:   void CNMRiH_Player::Ammo_Drop(string)
-Description: Drops one box of owned ammo, with parameter of ammo name.
+Signature:   bool CNMRiH_Player::Ammo_Drop(string)
+Description: Drops one box of owned ammo, with parameter of ammo name (without ammobox_ prefix, e.g. '12gauge'). Returns success.
 
 Function:    CNMRiH_Player::ApplyBandage
 Signature:   void CNMRiH_Player::ApplyBandage()
@@ -5435,6 +5810,10 @@ Function:    CNMRiH_Player::GetAmmoCarryWeight
 Signature:   int CNMRiH_Player::GetAmmoCarryWeight()
 Description: Returns ammo inventory weight.
 
+Function:    CNMRiH_Player::GetCarriedItems
+Signature:   void CNMRiH_Player::GetCarriedItems(handle)
+Description: Fills table with carried inventory items, including weapons and custom items (excl. passive items such as fists, zippo, and ammo).
+
 Function:    CNMRiH_Player::GetCarriedWeight
 Signature:   int CNMRiH_Player::GetCarriedWeight()
 Description: Returns total carried inventory weight.
@@ -5458,6 +5837,18 @@ Description: Returns next respawn time for this player.
 Function:    CNMRiH_Player::GetNextSpawnTryTime
 Signature:   float CNMRiH_Player::GetNextSpawnTryTime()
 Description: Returns next spawn attempt time for this player.
+
+Function:    CNMRiH_Player::GetSpeedModifier
+Signature:   float CNMRiH_Player::GetSpeedModifier()
+Description: Returns active speed modifier.
+
+Function:    CNMRiH_Player::GetSpeedOverride
+Signature:   float CNMRiH_Player::GetSpeedOverride()
+Description: Returns active speed override, -1.0 if none is applied.
+
+Function:    CNMRiH_Player::GetStamina
+Signature:   float CNMRiH_Player::GetStamina()
+Description: Returns player stamina.
 
 Function:    CNMRiH_Player::GetThrowScale
 Signature:   float CNMRiH_Player::GetThrowScale()
@@ -5495,6 +5886,10 @@ Function:    CNMRiH_Player::IsContemplatingSuicide
 Signature:   bool CNMRiH_Player::IsContemplatingSuicide()
 Description: Returns true when player is contemplating suicide.
 
+Function:    CNMRiH_Player::IsDucking
+Signature:   bool CNMRiH_Player::IsDucking()
+Description: Returns true if player is ducking.
+
 Function:    CNMRiH_Player::IsExtracted
 Signature:   bool CNMRiH_Player::IsExtracted()
 Description: Returns true if player is extracted.
@@ -5511,9 +5906,17 @@ Function:    CNMRiH_Player::IsInLevelTransition
 Signature:   bool CNMRiH_Player::IsInLevelTransition()
 Description: Returns true if player is in level transition.
 
+Function:    CNMRiH_Player::IsJumping
+Signature:   bool CNMRiH_Player::IsJumping()
+Description: Returns true if player is jumping.
+
 Function:    CNMRiH_Player::IsPartialBlindnessActive
 Signature:   bool CNMRiH_Player::IsPartialBlindnessActive()
 Description: Returns true if player is experiencing blindness from vaccine side effects.
+
+Function:    CNMRiH_Player::IsSprinting
+Signature:   bool CNMRiH_Player::IsSprinting()
+Description: Returns true if player is sprinting.
 
 Function:    CNMRiH_Player::IsTalkingLocal
 Signature:   bool CNMRiH_Player::IsTalkingLocal()
@@ -5591,6 +5994,18 @@ Function:    CNMRiH_Player::SetSpawnWeapon
 Signature:   void CNMRiH_Player::SetSpawnWeapon(string, int)
 Description: Sets starting weapon when player spawns, with weapon classname, and ammo percent as integer.
 
+Function:    CNMRiH_Player::SetSpeedModifier
+Signature:   void CNMRiH_Player::SetSpeedModifier(float)
+Description: Sets overall player speed modifier, applied last.
+
+Function:    CNMRiH_Player::SetSpeedOverride
+Signature:   void CNMRiH_Player::SetSpeedOverride(float)
+Description: Overrides player speed to an absolute value, ignoring all modifiers.
+
+Function:    CNMRiH_Player::SetStamina
+Signature:   void CNMRiH_Player::SetStamina(float)
+Description: Sets player stamina.
+
 Function:    CNMRiH_Player::SetUsingProgressTrigger
 Signature:   void CNMRiH_Player::SetUsingProgressTrigger(bool)
 Description: Sets the state of player using a tool.
@@ -5606,6 +6021,10 @@ Description: Stops bleeding.
 Function:    CNMRiH_Player::ThrowAllAmmo
 Signature:   void CNMRiH_Player::ThrowAllAmmo()
 Description: Throws all ammo that player owns.
+
+Function:    CNMRiH_Player::ThrowAllCustomItems
+Signature:   void CNMRiH_Player::ThrowAllCustomItems()
+Description: Throws all custom items that player owns.
 
 Function:    CNMRiH_Player::ThrowAllWeapons
 Signature:   void CNMRiH_Player::ThrowAllWeapons()
@@ -5625,9 +6044,29 @@ Signature:   bool CNMRiH_WeaponBase::AllowsSuicide()
 Function:    CNMRiH_WeaponBase::CanIronsight
 Signature:   bool CNMRiH_WeaponBase::CanIronsight()
 
+Function:    CNMRiH_WeaponBase::ClearIconOverride
+Signature:   void CNMRiH_WeaponBase::ClearIconOverride()
+Description: Resets icon back to default.
+
+Function:    CNMRiH_WeaponBase::ClearLabelOverride
+Signature:   void CNMRiH_WeaponBase::ClearLabelOverride()
+Description: Resets label back to default.
+
+Function:    CNMRiH_WeaponBase::ClearShootSoundOverride
+Signature:   void CNMRiH_WeaponBase::ClearShootSoundOverride(string)
+Description: Clears shoot sound override by key name.
+
 Function:    CNMRiH_WeaponBase::ClearViewModelOverride
 Signature:   void CNMRiH_WeaponBase::ClearViewModelOverride()
 Description: Resets viewmodel back to default.
+
+Function:    CNMRiH_WeaponBase::ClearWeightOverride
+Signature:   void CNMRiH_WeaponBase::ClearWeightOverride()
+Description: Resets physical weight back to default.
+
+Function:    CNMRiH_WeaponBase::ClearWorldModelOverride
+Signature:   void CNMRiH_WeaponBase::ClearWorldModelOverride()
+Description: Resets world model back to default.
 
 Function:    CNMRiH_WeaponBase::GetBloodCount
 Signature:   int CNMRiH_WeaponBase::GetBloodCount()
@@ -5645,9 +6084,17 @@ Function:    CNMRiH_WeaponBase::GetThrower
 Signature:   handle CNMRiH_WeaponBase::GetThrower()
 Description: Returns handle to weapon thrower.
 
+Function:    CNMRiH_WeaponBase::GetViewModelOverride
+Signature:   string CNMRiH_WeaponBase::GetViewModelOverride()
+Description: Returns viewmodel override if it's set, empty string otherwise.
+
 Function:    CNMRiH_WeaponBase::GetWeaponID
 Signature:   int CNMRiH_WeaponBase::GetWeaponID()
 Description: Returns weapon ID.
+
+Function:    CNMRiH_WeaponBase::GetWorldModelOverride
+Signature:   string CNMRiH_WeaponBase::GetWorldModelOverride()
+Description: Returns world model override if it's set, empty string otherwise.
 
 Function:    CNMRiH_WeaponBase::HasFirstDrawActivity
 Signature:   bool CNMRiH_WeaponBase::HasFirstDrawActivity()
@@ -5680,13 +6127,37 @@ Function:    CNMRiH_WeaponBase::IsShoveStab
 Signature:   bool CNMRiH_WeaponBase::IsShoveStab()
 Description: Returns true if the shove does stab, i.e. bayonet.
 
+Function:    CNMRiH_WeaponBase::SetIconOverride
+Signature:   void CNMRiH_WeaponBase::SetIconOverride(string)
+Description: Overrides icon in the inventory wheel.
+
+Function:    CNMRiH_WeaponBase::SetLabelOverride
+Signature:   void CNMRiH_WeaponBase::SetLabelOverride(string)
+Description: Overrides label in the inventory wheel.
+
+Function:    CNMRiH_WeaponBase::SetShootSoundOverride
+Signature:   void CNMRiH_WeaponBase::SetShootSoundOverride(string, string)
+Description: Overrides shoot sound, with parameters of key name and sound name. For example: SetShootSoundOverride("single_shot", "Weapon_1911.Single"). Available keys: empty, single_shot, single_shot_npc, double_shot, double_shot_npc, burst, reload, reload_npc, melee_miss, melee_hit, melee_hit_world, special1, special2, special3, taunt, deploy
+
 Function:    CNMRiH_WeaponBase::SetViewModelOverride
 Signature:   void CNMRiH_WeaponBase::SetViewModelOverride(string)
 Description: Overrides viewmodel, with string parameter for model name. Use with caution, sequences on the new model should match the existing weapon viewmodel!
 
+Function:    CNMRiH_WeaponBase::SetWeightOverride
+Signature:   void CNMRiH_WeaponBase::SetWeightOverride(int)
+Description: Overrides physical weight.
+
+Function:    CNMRiH_WeaponBase::SetWorldModelOverride
+Signature:   void CNMRiH_WeaponBase::SetWorldModelOverride(string)
+Description: Overrides world model, with string parameter for model name.
+
 Function:    CNMRiH_WeaponBase::UsesTacticalReload
 Signature:   bool CNMRiH_WeaponBase::UsesTacticalReload()
 Description: Returns true if this weapon can be reloaded while having a full magazine.
+
+Function:    CNavMesh::GetAllAreas
+Signature:   void CNavMesh::GetAllAreas(handle)
+Description: Fills table with all areas in the nav mesh.
 
 Function:    CNavMesh::GetNavArea
 Signature:   handle CNavMesh::GetNavArea(Vector, float)
@@ -5704,6 +6175,10 @@ Function:    CNavMesh::GetNavAreasFromBuildPath
 Signature:   bool CNavMesh::GetNavAreasFromBuildPath(handle, handle, Vector, float, int, bool, handle)
 Description: Fills table with areas from a path. Returns whether a path was found. If 'endArea' is null, will compute a path as close as possible to 'goalPos'.
 
+Function:    CNavMesh::GetNavAreasInRadius
+Signature:   void CNavMesh::GetNavAreasInRadius(Vector, float, handle)
+Description: Fills table with areas within radius of given position.
+
 Function:    CNavMesh::GetNearestNavArea
 Signature:   handle CNavMesh::GetNearestNavArea(Vector, float, bool, bool)
 Description: Given a position in the world, return the nav area that is closest, and at the same height, or beneath it. Used to find initial area if we start off of the mesh.
@@ -5720,95 +6195,107 @@ Signature:   void CNavMesh::UnregisterAvoidanceObstacle(handle)
 
 Function:    CNetPropManager::GetPropArraySize
 Signature:   int CNetPropManager::GetPropArraySize(handle, string)
-Description: Returns the size of an netprop array, or -1.
+Description: Returns the size of an array.
 
 Function:    CNetPropManager::GetPropEntity
 Signature:   handle CNetPropManager::GetPropEntity(handle, string)
-Description: Reads an EHANDLE valued netprop (21 bit integer). Returns the script handle of the entity.
+Description: Reads an entity.
 
 Function:    CNetPropManager::GetPropEntityArray
 Signature:   handle CNetPropManager::GetPropEntityArray(handle, string, int)
-Description: Reads an EHANDLE valued netprop (21 bit integer) from an array. Returns the script handle of the entity.
+Description: Reads an entity from an array.
 
 Function:    CNetPropManager::GetPropFloat
 Signature:   float CNetPropManager::GetPropFloat(handle, string)
-Description: Reads a float valued netprop.
+Description: Reads a float.
 
 Function:    CNetPropManager::GetPropFloatArray
 Signature:   float CNetPropManager::GetPropFloatArray(handle, string, int)
-Description: Reads a float valued netprop from an array.
+Description: Reads a float from an array.
 
 Function:    CNetPropManager::GetPropInt
 Signature:   int CNetPropManager::GetPropInt(handle, string)
-Description: Reads an integer valued netprop.
+Description: Reads an integer.
 
 Function:    CNetPropManager::GetPropIntArray
 Signature:   int CNetPropManager::GetPropIntArray(handle, string, int)
-Description: Reads an integer valued netprop from an array.
+Description: Reads an integer from an array.
 
 Function:    CNetPropManager::GetPropString
 Signature:   string CNetPropManager::GetPropString(handle, string)
-Description: Reads a string valued netprop.
+Description: Reads a string.
 
 Function:    CNetPropManager::GetPropStringArray
 Signature:   string CNetPropManager::GetPropStringArray(handle, string, int)
-Description: Reads a string valued netprop from an array.
+Description: Reads a string from an array.
 
 Function:    CNetPropManager::GetPropType
 Signature:   string CNetPropManager::GetPropType(handle, string)
-Description: Returns the name of the netprop type as a string.
+Description: Returns the netprop type as a string.
 
 Function:    CNetPropManager::GetPropVector
 Signature:   Vector CNetPropManager::GetPropVector(handle, string)
-Description: Reads a 3D vector valued netprop.
+Description: Reads a 3D vector.
 
 Function:    CNetPropManager::GetPropVectorArray
 Signature:   Vector CNetPropManager::GetPropVectorArray(handle, string, int)
-Description: Reads a 3D vector valued netprop from an array.
+Description: Reads a 3D vector from an array.
 
 Function:    CNetPropManager::HasProp
 Signature:   bool CNetPropManager::HasProp(handle, string)
-Description: Checks if a netprop exists.
+Description: Checks if netprop/datafield exists.
 
 Function:    CNetPropManager::SetPropEntity
 Signature:   void CNetPropManager::SetPropEntity(handle, string, handle)
-Description: Sets an EHANDLE valued netprop (21 bit integer) to reference the specified entity.
+Description: Sets an entity.
 
 Function:    CNetPropManager::SetPropEntityArray
-Signature:   handle CNetPropManager::SetPropEntityArray(handle, string, handle, int)
-Description: Sets an EHANDLE valued netprop (21 bit integer) from an array to reference the specified entity.
+Signature:   void CNetPropManager::SetPropEntityArray(handle, string, handle, int)
+Description: Sets an entity in an array.
 
 Function:    CNetPropManager::SetPropFloat
 Signature:   void CNetPropManager::SetPropFloat(handle, string, float)
-Description: Sets a netprop to the specified float.
+Description: Sets to the specified float.
 
 Function:    CNetPropManager::SetPropFloatArray
 Signature:   void CNetPropManager::SetPropFloatArray(handle, string, float, int)
-Description: Sets a netprop from an array to the specified float.
+Description: Sets a float in an array.
 
 Function:    CNetPropManager::SetPropInt
 Signature:   void CNetPropManager::SetPropInt(handle, string, int)
-Description: Sets a netprop to the specified integer.
+Description: Sets to the specified integer.
 
 Function:    CNetPropManager::SetPropIntArray
 Signature:   void CNetPropManager::SetPropIntArray(handle, string, int, int)
-Description: Sets a netprop from an array to the specified integer.
+Description: Sets an integer in an array.
 
 Function:    CNetPropManager::SetPropString
 Signature:   void CNetPropManager::SetPropString(handle, string, string)
-Description: Sets a netprop to the specified string.
+Description: Sets to the specified string.
 
 Function:    CNetPropManager::SetPropStringArray
 Signature:   void CNetPropManager::SetPropStringArray(handle, string, string, int)
-Description: Sets a netprop from an array to the specified string.
+Description: Sets a string in an array.
 
 Function:    CNetPropManager::SetPropVector
 Signature:   void CNetPropManager::SetPropVector(handle, string, Vector)
-Description: Sets a netprop to the specified vector.
+Description: Sets to the specified vector.
 
 Function:    CNetPropManager::SetPropVectorArray
 Signature:   void CNetPropManager::SetPropVectorArray(handle, string, Vector, int)
-Description: Sets a netprop from an array to the specified vector.
+Description: Sets a 3D vector in an array.
+
+Function:    CObjective::GetDescription
+Signature:   string CObjective::GetDescription()
+
+Function:    CObjective::GetId
+Signature:   int CObjective::GetId()
+
+Function:    CObjective::GetName
+Signature:   string CObjective::GetName()
+
+Function:    CObjective::IsAntiObjective
+Signature:   bool CObjective::IsAntiObjective()
 
 Function:    CObjectiveManager::CompleteCurrentObjective
 Signature:   void CObjectiveManager::CompleteCurrentObjective(string)
@@ -5821,6 +6308,22 @@ Description: Returns name of current objective boundary.
 Function:    CObjectiveManager::GetCurrentObjectiveIndex
 Signature:   int CObjectiveManager::GetCurrentObjectiveIndex()
 Description: Returns current objective index.
+
+Function:    CObjectiveManager::GetObjectiveById
+Signature:   handle CObjectiveManager::GetObjectiveById(int)
+Description: Returns objective instance by ID.
+
+Function:    CObjectiveManager::GetObjectiveByIndex
+Signature:   handle CObjectiveManager::GetObjectiveByIndex(int)
+Description: Returns objective instance by index.
+
+Function:    CObjectiveManager::GetObjectiveByName
+Signature:   handle CObjectiveManager::GetObjectiveByName(string)
+Description: Returns objective instance by name.
+
+Function:    CObjectiveManager::GetObjectiveChain
+Signature:   void CObjectiveManager::GetObjectiveChain(handle)
+Description: Fills array with current objective chain.
 
 Function:    CObjectiveManager::GetObjectiveCount
 Signature:   int CObjectiveManager::GetObjectiveCount()
@@ -5896,6 +6399,62 @@ Function:    COverlord_Zombie_Helper::SpawnIgnoreVisibility
 Signature:   void COverlord_Zombie_Helper::SpawnIgnoreVisibility(int, string)
 Description: Same as Spawn, but ignores visiblity checks.
 
+Function:    CPointMessageMultiplayer::Disable
+Signature:   void CPointMessageMultiplayer::Disable()
+Description: Stops displaying the text.
+
+Function:    CPointMessageMultiplayer::Enable
+Signature:   void CPointMessageMultiplayer::Enable()
+Description: Starts displaying the text for players within the radius.
+
+Function:    CPointMessageMultiplayer::SetFont
+Signature:   void CPointMessageMultiplayer::SetFont(string)
+Description: Sets font (from ClientScheme.res).
+
+Function:    CPointMessageMultiplayer::SetFontDropShadow
+Signature:   void CPointMessageMultiplayer::SetFontDropShadow(bool)
+Description: When true, font will have a drop shadow.
+
+Function:    CPointMessageMultiplayer::SetFontProportional
+Signature:   void CPointMessageMultiplayer::SetFontProportional(bool)
+Description: When true, text will scale to user resolution.
+
+Function:    CPointMessageMultiplayer::SetHeightOffset
+Signature:   void CPointMessageMultiplayer::SetHeightOffset(float)
+Description: When SetShouldOffsetPosition is set to true, this allows you to set message offset relative to entity bounds. For example, 0.5 would print at the center of the hull, while 1.25 prints slightly over the top.
+
+Function:    CPointMessageMultiplayer::SetMessage
+Signature:   void CPointMessageMultiplayer::SetMessage(string)
+Description: Sets message text, supports localization strings.
+
+Function:    CPointMessageMultiplayer::SetRadius
+Signature:   void CPointMessageMultiplayer::SetRadius(float)
+Description: Sets distance a player must be within to see this message. -1 to show everywhere.
+
+Function:    CPointMessageMultiplayer::SetShouldOffsetPosition
+Signature:   void CPointMessageMultiplayer::SetShouldOffsetPosition(bool)
+Description: When true, text position will be offset relative to entity bounds. Works best when following parented entities. When false, use entity origin.
+
+Function:    CPointMessageMultiplayer::SetTextColor
+Signature:   void CPointMessageMultiplayer::SetTextColor(int, int, int)
+Description: Sets text color, with RGB parameters.
+
+Function:    CPointViewControlMultiplayer::AddPlayer
+Signature:   void CPointViewControlMultiplayer::AddPlayer(handle)
+Description: Adds the given player as a viewer for this entity.
+
+Function:    CPointViewControlMultiplayer::Disable
+Signature:   void CPointViewControlMultiplayer::Disable()
+Description: Disables the entity, and stops controlling the view for all players. The viewer list will be emptied.
+
+Function:    CPointViewControlMultiplayer::Enable
+Signature:   void CPointViewControlMultiplayer::Enable()
+Description: Enables the entity, and starts controlling the player's view. If the list of viewers is empty, all players will be added.
+
+Function:    CPointViewControlMultiplayer::RemovePlayer
+Signature:   void CPointViewControlMultiplayer::RemovePlayer(handle)
+Description: Removes the given player as a viewer for this entity.
+
 Function:    CRagdollProp::GetRagdollObject
 Signature:   handle CRagdollProp::GetRagdollObject(int)
 Description: Gets the ragdoll object of the specified index.
@@ -5907,6 +6466,30 @@ Description: Gets the number of ragdoll objects on this ragdoll.
 Function:    CRagdollProp::SetSourceClassName
 Signature:   void CRagdollProp::SetSourceClassName(string)
 Description: Sets the ragdoll's source classname.
+
+Function:    CRandomSpawnController::GetSpawnLimits
+Signature:   void CRandomSpawnController::GetSpawnLimits(handle)
+Description: Fills table with spawn limits.
+
+Function:    CRandomSpawnController::IsSpawnOfTypeAllowed
+Signature:   bool CRandomSpawnController::IsSpawnOfTypeAllowed(string)
+Description: Returns true if this classname can be spawned.
+
+Function:    CRandom_Spawner::GetSpawnedItem
+Signature:   handle CRandom_Spawner::GetSpawnedItem()
+Description: Returns a handle to most recent spawned item that was created by this spawner.
+
+Function:    CRandom_Spawner::SetDisallowInitialSpawn
+Signature:   void CRandom_Spawner::SetDisallowInitialSpawn(bool)
+Description: When true, don't create an item on spawn. Overrides map spawnflags.
+
+Function:    CRandom_Spawner::SpawnItem
+Signature:   handle CRandom_Spawner::SpawnItem(string)
+Description: Spawns an item by classname or a keyname, ignores random spawner controller. Returns handle to a spawned item.
+
+Function:    CRandom_Spawner::SpawnRandomItem
+Signature:   handle CRandom_Spawner::SpawnRandomItem()
+Description: Spawns a random item based on current item weights, respects random spawner controller. Returns handle to a spawned item.
 
 Function:    CRulesetManager::ApplyCvars
 Signature:   void CRulesetManager::ApplyCvars(string)
@@ -6097,6 +6680,10 @@ Function:    CScriptNavArea::GetDistanceSquaredToPoint
 Signature:   float CScriptNavArea::GetDistanceSquaredToPoint(Vector)
 Description: Returns shortest distance squared between point and this area.
 
+Function:    CScriptNavArea::GetHidingSpots
+Signature:   void CScriptNavArea::GetHidingSpots(handle)
+Description: Fills table with nested tables containing properties from available hiding spots.
+
 Function:    CScriptNavArea::GetID
 Signature:   int CScriptNavArea::GetID()
 Description: Returns this area's unique ID.
@@ -6141,6 +6728,10 @@ Function:    CScriptNavArea::IsBlocked
 Signature:   bool CScriptNavArea::IsBlocked(int, bool)
 Description: Returns true if area is blocked, with parameters of team ID and boolean for ignoring nav blockers.
 
+Function:    CScriptNavArea::IsCompletelyVisible
+Signature:   bool CScriptNavArea::IsCompletelyVisible(handle)
+Description: Returns true if given area is completely visible from somewhere in this area.
+
 Function:    CScriptNavArea::IsCompletelyVisibleToTeam
 Signature:   bool CScriptNavArea::IsCompletelyVisibleToTeam(int)
 Description: Returns true if given area is completely visible from somewhere in this area by someone on the team.
@@ -6172,6 +6763,10 @@ Description: Returns true if this area is approximately flat.
 Function:    CScriptNavArea::IsOverlapping
 Signature:   bool CScriptNavArea::IsOverlapping(handle)
 Description: Returns true if 'area' overlaps our 2D extents.
+
+Function:    CScriptNavArea::IsPotentiallyVisible
+Signature:   bool CScriptNavArea::IsPotentiallyVisible(handle)
+Description: Returns true if given area is potentially visible from somewhere in this area.
 
 Function:    CScriptNavArea::IsPotentiallyVisibleToTeam
 Signature:   bool CScriptNavArea::IsPotentiallyVisibleToTeam(int)
@@ -7073,9 +7668,17 @@ Function:    IsDedicatedServer
 Signature:   bool IsDedicatedServer()
 Description: Is this a dedicated server?
 
+Function:    IsLinux
+Signature:   bool IsLinux()
+Description: Returns true if the game is being run on a Linux machine.
+
 Function:    IsServer
 Signature:   bool IsServer()
 Description: Returns true if the script is being run on the server.
+
+Function:    IsWindows
+Signature:   bool IsWindows()
+Description: Returns true if the game is being run on a Windows machine.
 
 Function:    Lerp
 Signature:   float Lerp(float, float, float)
@@ -7534,10 +8137,6 @@ Hook:        CBaseCombatCharacter -> RelationshipType
 Signature:   int CBaseCombatCharacter -> RelationshipType(handle [entity], int [def])
 Description: Called when a character's relationship to another entity is requested. Returning a disposition will make the game use that disposition instead of the default relationship. (note: 'default' in this case includes overrides from ai_relationship/SetRelationship)
 
-Hook:        CBaseEntity -> FireBullets
-Signature:   void CBaseEntity -> FireBullets(handle [entity], float [speed], Vector [point], Vector [normal])
-Description: Called for every single VPhysics-related collision experienced by this entity.
-
 Hook:        CBaseEntity -> HandleInteraction
 Signature:   bool CBaseEntity -> HandleInteraction(int [interaction], handle [sourceEnt])
 Description: Called for internal game interactions. See the g_interaction set of constants for more information. Returning true or false will return that value without falling to any internal handling. Returning nothing will allow the interaction to fall to any internal handling.
@@ -7586,14 +8185,6 @@ Hook:        CEntities -> OnEntitySpawned
 Signature:   void CEntities -> OnEntitySpawned(handle [entity])
 Description: Called when an entity spawns. Requires EnableEntityListening() to be fired beforehand.
 
-Hook:        CFilterScript -> BloodAllowed
-Signature:   bool CFilterScript -> BloodAllowed(handle [caller], handle [info])
-Description: A completely optional hook used by filter_script to determine if a caller is allowed to emit blood after taking damage. Return true if blood should be allowed or false if it should not. If this hook is not defined, it will always return true.
-
-Hook:        CFilterScript -> DamageMod
-Signature:   bool CFilterScript -> DamageMod(handle [caller], handle [info])
-Description: A completely optional hook used by filter_script to modify damage being taken by an entity. You are free to use CTakeDamageInfo functions on the damage info handle and it will change how the caller is damaged. Returning true or false currently has no effect on vanilla code, but you should generally return true if the damage info has been modified by your code and false if it was not. If this hook is not defined, it will always return false.
-
 Hook:        CFilterScript -> PassesDamageFilter
 Signature:   bool CFilterScript -> PassesDamageFilter(handle [caller], handle [info])
 Description: A hook used by filter_script to determine what damage should pass it when it's being used as a damage filter. Return true if the info should pass or false if it should not. If this hook is not defined in a filter_script, damage filter requests will instead check PassesFilter with the attacker as the activator.
@@ -7602,6 +8193,22 @@ Hook:        CFilterScript -> PassesFilter
 Signature:   bool CFilterScript -> PassesFilter(handle [caller], handle [activator])
 Description: A hook used by filter_script to determine what entities should pass it. Return true if the entity should pass or false if it should not. This hook is required for regular filtering.
 
-Hook:        CFilterScript -> PassesFinalDamageFilter
-Signature:   bool CFilterScript -> PassesFinalDamageFilter(handle [caller], handle [info])
-Description: A completely optional hook used by filter_script which only runs when the entity will take damage. This is different from PassesDamageFilter, which is sometimes used in cases where damage is not actually about to be taken. This also runs after a regular PassesDamageFilter check. Return true if the info should pass or false if it should not. If this hook is not defined, it will always return true.
+Hook:        CNMRiH_ItemCustom -> OnItemApply
+Signature:   void CNMRiH_ItemCustom -> OnItemApply()
+Description: Called when this item is applied by a player (i.e. clicked in the inventory wheel).
+
+Hook:        CNMRiH_ItemCustom -> OnItemDrop
+Signature:   void CNMRiH_ItemCustom -> OnItemDrop()
+Description: Called when this item is dropped by a player.
+
+Hook:        CNMRiH_ItemCustom -> OnItemPickup
+Signature:   void CNMRiH_ItemCustom -> OnItemPickup()
+Description: Called when a player picks up this item (with +USE).
+
+Hook:        CNMRiH_ItemCustom -> PostItemPickupThink
+Signature:   void CNMRiH_ItemCustom -> PostItemPickupThink()
+Description: Called as a think function when the item is carried.
+
+Hook:        CNMRiH_ItemCustom -> PreItemPickupThink
+Signature:   void CNMRiH_ItemCustom -> PreItemPickupThink()
+Description: Called as a think function when the item isn't carried.
