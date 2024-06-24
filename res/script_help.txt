@@ -4728,13 +4728,17 @@ Function:    CConvars::IsFlagSet
 Signature:   bool CConvars::IsFlagSet(string, int)
 Description: Returns the convar's flags. May return null if no such convar.
 
+Function:    CConvars::RegisterAdminCommand
+Signature:   void CConvars::RegisterAdminCommand(string, handle, string, int)
+Description: Registers an admin command, only server admins are able to execute it. Otherwise identical to RegisterCommand. Usage: RegisterAdminCommand(<name>, <callback function>, <description>, <flags>)
+
 Function:    CConvars::RegisterCommand
 Signature:   void CConvars::RegisterCommand(string, handle, string, int)
-Description: register a console command.
+Description: Registers a console command. For callback, args will be mirrored as function params (e.g. Callback(name, arg1, arg2, ...)) Usage: RegisterCommand(<name>, <callback function>, <description>, <flags>)
 
 Function:    CConvars::RegisterConvar
 Signature:   void CConvars::RegisterConvar(string, string, string, int)
-Description: register a new console variable.
+Description: Registers a new console variable. Usage: RegisterConvar(<name>, <default value>, <description>, <flags>)
 
 Function:    CConvars::SetBool
 Signature:   void CConvars::SetBool(string, bool)
@@ -6441,7 +6445,7 @@ Description: Sets text color, with RGB parameters.
 
 Function:    CPointViewControlMultiplayer::AddPlayer
 Signature:   void CPointViewControlMultiplayer::AddPlayer(handle)
-Description: Adds the given player as a viewer for this entity.
+Description: Adds the given player as a viewer for this entity. Starts the camera if it's off.
 
 Function:    CPointViewControlMultiplayer::Disable
 Signature:   void CPointViewControlMultiplayer::Disable()
@@ -7278,7 +7282,7 @@ Function:    EmitSound_t::GetChannel
 Signature:   int EmitSound_t::GetChannel()
 
 Function:    EmitSound_t::GetEmitCloseCaption
-Signature:   float EmitSound_t::GetEmitCloseCaption()
+Signature:   bool EmitSound_t::GetEmitCloseCaption()
 Description: Gets whether or not the sound will emit closed captioning/subtitles.
 
 Function:    EmitSound_t::GetFlags
@@ -7316,11 +7320,11 @@ Signature:   float EmitSound_t::GetVolume()
 Description: (Note that this may not apply to soundscripts)
 
 Function:    EmitSound_t::GetWarnOnDirectWaveReference
-Signature:   float EmitSound_t::GetWarnOnDirectWaveReference()
+Signature:   bool EmitSound_t::GetWarnOnDirectWaveReference()
 Description: Gets whether or not the sound will send a message to the console if it references a direct sound file instead of a soundscript.
 
 Function:    EmitSound_t::GetWarnOnMissingCloseCaption
-Signature:   float EmitSound_t::GetWarnOnMissingCloseCaption()
+Signature:   bool EmitSound_t::GetWarnOnMissingCloseCaption()
 Description: Gets whether or not the sound will send a message to the console if there is no corresponding closed captioning token.
 
 Function:    EmitSound_t::HasOrigin
