@@ -132,7 +132,7 @@ div.smol {
 	font-size: 13px;
 }
 
-button.slider {
+button.sld {
 	background-color: rgba(0,0,0,0);
 	border: none;
 	color: #ffffff;
@@ -148,7 +148,7 @@ button.slider {
 	white-space: nowrap;
 }
 
-button.slider:hover {
+button.sld:hover {
 	color:#ff4fa7;
 	filter: brightness(100%) grayscale(0%) sepia(0%) saturate(100%) contrast(1);
 	transition: 0.5s;
@@ -169,11 +169,11 @@ button.slider:hover {
 <body>
 <div class="bg"></div>
 <div style="text-align:center">
-<button class="slider" id="btn_motd" onclick="onMOTD()">&gt; motd</button>
-<button class="slider" id="btn_about" onclick="onAbout()">&gt; about</button>
-<button class="slider" id="btn_games" onclick="onGames()">&gt; games</button>
-<button class="slider" id="btn_things" onclick="onThings()">&gt; things</button>
-<button class="slider" id="btn_contact" onclick="onContact()">&gt; contact</button>
+<button class="sld" id="sld_motd" onclick="onMOTD()">&gt; motd</button>
+<button class="sld" id="sld_about" onclick="onAbout()">&gt; about</button>
+<button class="sld" id="sld_games" onclick="onGames()">&gt; games</button>
+<button class="sld" id="sld_things" onclick="onThings()">&gt; things</button>
+<button class="sld" id="sld_contact" onclick="onContact()">&gt; contact</button>
 <br><br>
 <div class="sect" id="s_motd">
 <div style="text-align:center">
@@ -209,7 +209,7 @@ button.slider:hover {
 about me
 <hr class="sep">
 <a id="pfp" title=""><img id="pfpimg" src=res/avatar.png class=pfpstyle></a>
-i'm aku (some know me as 'felis'), a programmer, gamedev, musician, whatever-i-feel-like-doing person.<br><br>
+i'm aku (some know me as 'felis'), a programmer, gamedev, enthusiast, whatever-i-feel-like-doing person.<br><br>
 at the time of writing, i'm working full-time in the games industry, so this site is mainly for my hobbies.<br><br>
 this site evolves, and it's currently a dumping ground for various things i've made - most of it probably speaks for itself, with little gimmicks.<br><br>
 feel free to contact me via email for inquiries.<br><br>
@@ -234,10 +234,10 @@ thanks for stopping by! &#x263A;
 <div style="text-align:center">
 <div class="box"><div class="info">
 <div class="smol">project #1<br></div>
-Pirates, Vikings & Knights II
+Pirates, Vikings &amp; Knights II
 <hr class="sep">
 <div class="smol">image reference<br></div>
-<a href="https://store.steampowered.com/app/17570"><img src=res/pvk2.jpg class=boximg></a>
+<a href="https://store.steampowered.com/app/17570"><img src=res/pvk2.png class=boximg></a>
 <hr class="sep">
 <div class="smol">occupation<br></div>
 senior programmer, production manager
@@ -255,7 +255,7 @@ the game is available for free, you may download it <a href=https://store.steamp
 No More Room in Hell
 <hr class="sep">
 <div class="smol">image reference<br></div>
-<a href="https://store.steampowered.com/app/224260"><img src=res/nmrih1.jpg class=boximg></a>
+<a href="https://store.steampowered.com/app/224260"><img src=res/nmrih1.png class=boximg></a>
 <hr class="sep">
 <div class="smol">occupation<br></div>
 programmer, maintainer
@@ -279,7 +279,7 @@ vscript reference available <a href=res/script_help.txt>here</a>
 No More Room in Hell 2
 <hr class="sep">
 <div class="smol">image reference<br></div>
-<a href="https://store.steampowered.com/app/292000"><img src=res/nmrih2.jpg class=boximg></a>
+<a href="https://store.steampowered.com/app/292000"><img src=res/nmrih2.png class=boximg></a>
 <hr class="sep">
 <div class="smol">occupation<br></div>
 programmer
@@ -302,7 +302,7 @@ the game will be available on steam, and you may wishlist it <a href=https://sto
 FragFest
 <hr class="sep">
 <div class="smol">image reference<br></div>
-<a><img src=res/fragfest.jpg class=boximg></a>
+<a><img src=res/fragfest.png class=boximg></a>
 <hr class="sep">
 <div class="smol">when<br></div>
 2014
@@ -322,7 +322,7 @@ the mod was codenamed "the nab project", which was a reference to a group of fri
 OVERHEAT
 <hr class="sep">
 <div class="smol">image reference<br></div>
-<a><img src=res/overheat.jpg class=boximg></a>
+<a><img src=res/overheat.png class=boximg></a>
 <hr class="sep">
 <div class="smol">when<br></div>
 2019
@@ -341,8 +341,6 @@ soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat
 </div>
 <div class="sect" id="s_things">
 <br>
-<img src=res/wip.png class=logo>
-<br>
 <img src=res/noise.png class=logo>
 <br>
 <div style="text-align:center">
@@ -350,8 +348,14 @@ soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat
 <div class="smol">info<br></div>
 i produce music as a hobby, usually the more niche stuff heavily driven by my current taste at the time. i'm fairly solitary when it comes to that, so i don't release much of my work.
 <hr class="sep">
-<div class="smol">soundcloud<br></div>
+<a href=https://wiretrpr.com/mp3/>streamed music archive</a><br>
+<div class="smol">a directory containing MP3s of tracks and scraps recovered from disks<br>"junk" directory is a collection of scribbles and jokes<br>WARNING! tracks in "junk" directory have varying levels, please lower your volume</div>
+<hr class="sep">
+<a href=https://wiretrpr.com/tracker/>tracker music archive</a><br>
+<div class="smol">a directory spanning over a decade of modules with varying quality, mostly old stuff<br>this collection is for backup/inspiration, but it could make for an interesting dive<br>OpenMPT recommended for playback, NSF files require NSFPlay or equivalent</div>
+<hr class="sep">
 <a href=https://soundcloud.com/felis-catus-1>personal soundcloud for whatever</a><br>
+<div class="smol">the content may vary</div>
 </div></div>
 <br><br>
 </div>
@@ -372,46 +376,46 @@ felis [at] wiretrippers.net<br>
 </div>
 </div>
 <br>
-<div class="smol"><script>document.write(new Date().getFullYear());</script>, wiretrippers.net <div id=copymsg></div></div>
+<div class="smol"><div id=size></div><br><script>document.write(new Date().getFullYear());</script>, wiretrippers.net <div id=copymsg></div><br><br></div>
 <script>
-var messages = new Array();
-messages[0] = "prosecutedt to the full extent of the Jam";
-messages[1] = "brought to you by dweeb hq";
-messages[2] = "temporary forever";
-messages[3] = "thank you for visiting";
-messages[4] = "no copyright intended";
-messages[5] = "welcome to my homepage";
-messages[6] = "F5 F5 F5 F5 F5 F5 F5 F5 F5";
-messages[7] = "just 4 fun";
-messages[8] = "take what you need";
-messages[9] = "nothing to do with tripwires";
-messages[10] = "stay cool! - someone wakes the noise up -";
-messages[11] = "look inside; wires";
-messages[12] = "hold out! programmer!";
-messages[13] = "188 KB (192 512 bytes) in use";
-messages[14] = "why would we track you? you're already here!";
-messages[15] = "date modified: a long time ago";
-messages[16] = "sorry nothing";
-messages[17] = "&#x2665;";
-var rnd = Math.floor(Math.random() * messages.length);
-document.getElementById("copymsg").innerHTML = messages[rnd];
+var msg = new Array();
+msg[0] = "prosecutedt to the full extent of the Jam";
+msg[1] = "high grade multipurpose use";
+msg[2] = "temporary forever";
+msg[3] = "thank you for visiting";
+msg[4] = "no copyright intended";
+msg[5] = "welcome to my homepage";
+msg[6] = "F5 F5 F5 F5 F5 F5 F5 F5 F5";
+msg[7] = "just 4 fun";
+msg[8] = "take what you need";
+msg[9] = "nothing to do with tripwires";
+msg[10] = "stay cool! - someone wakes the noise up -";
+msg[11] = "look inside; wires";
+msg[12] = "hold out! programmer!";
+msg[13] = "why would we track you? you're already here!";
+msg[14] = "date modified: a long time ago";
+msg[15] = "sorry nothing";
+msg[16] = "&#x2665;";
+var rnd = Math.floor(Math.random() * msg.length);
+document.getElementById("size").innerHTML = "104 KB (107 403 bytes) in use";
+document.getElementById("copymsg").innerHTML = msg[rnd];
 </script>
 </div>
 <script>
-var sections = document.getElementsByClassName('sect');
-var buttons = document.getElementsByClassName('slider');
+var sects = document.getElementsByClassName('sect');
+var slds = document.getElementsByClassName('sld');
 var links = document.getElementsByTagName("a");
 
-var currentStyle = 0;
-var activeSection = 0;
+var curStyle = 0;
+var activeSect = 0;
 var slideState = -1;
 var slideTo = -1;
-var bSetHash = false;
+var bHash = false;
 
-for (var i = 0; i < sections.length; i++) {
-	sections[i].addEventListener('transitionend', () => {
+for (var i = 0; i < sects.length; i++) {
+	sects[i].addEventListener('transitionend', () => {
 		if (slideState == 1) {
-			activeSection = slideTo;
+			activeSect = slideTo;
 			slideState = -1;
 		}
 		else if (slideState == 0)
@@ -421,11 +425,11 @@ for (var i = 0; i < sections.length; i++) {
 			
 		document.body.style.cursor = 'default';
 
-		for (var i = 0; i < buttons.length; i++) {
-			buttons[i].style.cursor = 'pointer';
+		for (var i = 0; i < slds.length; i++) {
+			slds[i].style.cursor = 'pointer';
 		}
 
-		if (bSetHash) {
+		if (bHash) {
 			window.location.hash = slideTo.id.substring(2);
 		}
 	});
@@ -445,9 +449,9 @@ function slideIn(id) {
 	slideState = 0;
 }
 
-function doSlide(id, bHash = true)
+function doSlide(id, bInHash = true)
 {
-	if (activeSection == id) {
+	if (activeSect == id) {
 		return false;
 	}
 
@@ -463,71 +467,71 @@ function doSlide(id, bHash = true)
 	}
 
 	slideTo = id;
-	bSetHash = bHash;
+	bHash = bInHash;
 
 	document.body.style.cursor = 'wait';
 
-	for (var i = 0; i < buttons.length; i++) {
-		buttons[i].style.cursor = 'wait';
+	for (var i = 0; i < slds.length; i++) {
+		slds[i].style.cursor = 'wait';
 	}
 
-	for (var i = 0; i < sections.length; i++) {
-		if (id == sections[i]) {
-			id.parentNode.insertBefore(sections[i], sections[0]);
+	for (var i = 0; i < sects.length; i++) {
+		if (id == sects[i]) {
+			id.parentNode.insertBefore(sects[i], sects[0]);
 			continue;
 		}
 
-		slideIn(sections[i]);
+		slideIn(sects[i]);
 	}
 
 	return true;
 }
 
-function adjustButtons(id)
+function adjustSliders(id)
 {
-	for (var i = 0; i < buttons.length; i++) {
-		if (id == buttons[i]) {
-			if (currentStyle == 1) {
-				buttons[i].style.color = '#00ffff';
+	for (var i = 0; i < slds.length; i++) {
+		if (id == slds[i]) {
+			if (curStyle == 1) {
+				slds[i].style.color = '#00ffff';
 			}
 			else {
-				buttons[i].style.color = '#ff4fa7';
+				slds[i].style.color = '#ff4fa7';
 			}
 
 			continue;
 		}
 
-		buttons[i].style.color = '#ffffff';
+		slds[i].style.color = '#ffffff';
 	}
 }
 
 function onMOTD() {
 	if (doSlide(document.getElementById("s_motd"))) {
-		adjustButtons(document.getElementById("btn_motd"));
+		adjustSliders(document.getElementById("sld_motd"));
 	}
 }
 
 function onAbout() {
 	if (doSlide(document.getElementById("s_about"))) {
-		adjustButtons(document.getElementById("btn_about"));
+		adjustSliders(document.getElementById("sld_about"));
 	}
 }
 
 function onGames() {
 	if (doSlide(document.getElementById("s_games"))) {
-		adjustButtons(document.getElementById("btn_games"));
+		adjustSliders(document.getElementById("sld_games"));
 	}
 }
 
 function onThings() {
 	if (doSlide(document.getElementById("s_things"))) {
-		adjustButtons(document.getElementById("btn_things"));
+		adjustSliders(document.getElementById("sld_things"));
 	}
 }
 
 function onContact() {
 	if (doSlide(document.getElementById("s_contact"))) {
-		adjustButtons(document.getElementById("btn_contact"));
+		adjustSliders(document.getElementById("sld_contact"));
 	}
 }
 
@@ -553,17 +557,16 @@ window.onload = function() {
 	onHashChanged();
 
 	if (doSlide(document.getElementById("s_motd"), false))
-		adjustButtons(document.getElementById("btn_motd"));
+		adjustSliders(document.getElementById("sld_motd"));
 
 	var a = document.getElementById("pfp");
 	a.onclick = function() {
-		a.title = "are you saying that i am a fake cat?";
 		var img = document.getElementById("pfpimg");
 		img.src = "res/fel.png";
-		currentStyle = 1;
-		adjustButtons(document.getElementById("btn_about"));
+		curStyle = 1;
+		adjustSliders(document.getElementById("sld_about"));
 		for (var i = 0; i < links.length; i++) {
-			if (currentStyle == 1) {
+			if (curStyle == 1) {
 				links[i].style.color = '#00ffff';
 			}
 			else {
