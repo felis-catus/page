@@ -1440,6 +1440,34 @@ Constant:    NUM_AI_CLASSES
 Value:       9 (int)
 Description: Number of AI classes.
 
+Constant:    PATTACH_ABSORIGIN
+Value:       0 (int)
+Description: Create at absorigin, but don't follow
+
+Constant:    PATTACH_ABSORIGIN_FOLLOW
+Value:       1 (int)
+Description: Create at absorigin, and update to follow the entity
+
+Constant:    PATTACH_CUSTOMORIGIN
+Value:       2 (int)
+Description: Create at a custom origin, but don't follow
+
+Constant:    PATTACH_POINT
+Value:       3 (int)
+Description: Create on attachment point, but don't follow
+
+Constant:    PATTACH_POINT_FOLLOW
+Value:       4 (int)
+Description: Create on attachment point, and update to follow the entity
+
+Constant:    PATTACH_ROOTBONE_FOLLOW
+Value:       6 (int)
+Description: Create at the root bone of the entity, and update to follow
+
+Constant:    PATTACH_WORLDORIGIN
+Value:       5 (int)
+Description: Used for control points that don't attach to an entity
+
 Constant:    PITCH_HIGH
 Value:       120 (int)
 Description: The standard high pitch value.
@@ -3085,6 +3113,10 @@ Description: Return true if the NPC has the specified sleep flags. (see AI_SLEEP
 Function:    CAI_BaseNPC::IsCommandable
 Signature:   bool CAI_BaseNPC::IsCommandable()
 Description: Check if the NPC is commandable.
+
+Function:    CAI_BaseNPC::IsFrozen
+Signature:   bool CAI_BaseNPC::IsFrozen()
+Description: Returns true if NPC is frozen.
 
 Function:    CAI_BaseNPC::IsInPlayerSquad
 Signature:   bool CAI_BaseNPC::IsInPlayerSquad()
@@ -4868,14 +4900,6 @@ Function:    CEntities::CreateByClassname
 Signature:   handle CEntities::CreateByClassname(string)
 Description: Creates an entity by classname
 
-Function:    CEntities::DisableEntityListening
-Signature:   void CEntities::DisableEntityListening()
-Description: Disables the 'OnEntity' hooks.
-
-Function:    CEntities::EnableEntityListening
-Signature:   void CEntities::EnableEntityListening()
-Description: Enables the 'OnEntity' hooks. This function must be called before using them.
-
 Function:    CEntities::FindByClassNearestFacing
 Signature:   handle CEntities::FindByClassNearestFacing(Vector, Vector, float, string)
 Description: Find the nearest entity along the facing direction from the given origin within the angular threshold with the given classname.
@@ -5716,7 +5740,7 @@ Description: Attempts to give item to a target player, returns success.
 
 Function:    CNMRiH_ItemCustom::IsHighlighted
 Signature:   bool CNMRiH_ItemCustom::IsHighlighted()
-Description: Returns true when the item is highlighted in the inventory.
+Description: Returns true when the item is displayed as highlighted in the inventory.
 
 Function:    CNMRiH_ItemCustom::SetHighlight
 Signature:   void CNMRiH_ItemCustom::SetHighlight(bool)
@@ -6298,6 +6322,14 @@ Signature:   int CObjective::GetId()
 Function:    CObjective::GetName
 Signature:   string CObjective::GetName()
 
+Function:    CObjective::GetObjectiveBoundary
+Signature:   handle CObjective::GetObjectiveBoundary()
+Description: Returns entity handle to current objective boundary.
+
+Function:    CObjective::GetObjectiveBoundaryName
+Signature:   string CObjective::GetObjectiveBoundaryName()
+Description: Returns name of the current objective boundary.
+
 Function:    CObjective::IsAntiObjective
 Signature:   bool CObjective::IsAntiObjective()
 
@@ -6305,9 +6337,9 @@ Function:    CObjectiveManager::CompleteCurrentObjective
 Signature:   void CObjectiveManager::CompleteCurrentObjective(string)
 Description: Completes current objective, with targetname parameter of forced extraction zone.
 
-Function:    CObjectiveManager::GetCurrentObjectiveBoundary
-Signature:   string CObjectiveManager::GetCurrentObjectiveBoundary()
-Description: Returns name of current objective boundary.
+Function:    CObjectiveManager::GetCurrentObjective
+Signature:   handle CObjectiveManager::GetCurrentObjective()
+Description: Returns current objective instance.
 
 Function:    CObjectiveManager::GetCurrentObjectiveIndex
 Signature:   int CObjectiveManager::GetCurrentObjectiveIndex()
@@ -7254,6 +7286,10 @@ Function:    DispatchParticleEffect
 Signature:   function DispatchParticleEffect(particleName, origin, angles, entity)
 Description: Dispatches a one-off particle system
 
+Function:    DispatchParticleEffectByAttachment
+Signature:   void DispatchParticleEffectByAttachment(string, int, handle, string, bool)
+Description: Dispatches one-off particle system by attaching to an entity. Params: <particle name>, <attach type>, <target entity>, <attachment name>, <reset all particles on entity?>
+
 Function:    DispatchSpawn
 Signature:   void DispatchSpawn(handle)
 Description: Spawns an unspawned entity.
@@ -7410,6 +7446,10 @@ Description: decayTo is factor the value should decay to in decayTime
 
 Function:    FLerp
 Signature:   float FLerp(float, float, float, float, float)
+
+Function:    FMOD_PrecacheSound
+Signature:   bool FMOD_PrecacheSound(string)
+Description: Precaches a sound file or soundscript entry to FMOD sound system.
 
 Function:    FileToKeyValues
 Signature:   handle FileToKeyValues(string)
