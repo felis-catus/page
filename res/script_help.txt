@@ -180,9 +180,25 @@ Constant:    CHAN_WEAPON
 Value:       1 (int)
 Description: The sound channel for player and NPC weapons.
 
+Constant:    CLASS_BULLSEYE
+Value:       7 (int)
+Description: Used by npc_bullseye.
+
+Constant:    CLASS_EARTH_FAUNA
+Value:       8 (int)
+Description: Used by birds.
+
+Constant:    CLASS_NATIONAL_GUARD
+Value:       6 (int)
+Description: Reserved for the National Guard.
+
 Constant:    CLASS_NONE
 Value:       0 (int)
 Description: No class.
+
+Constant:    CLASS_NPC
+Value:       5 (int)
+Description: Reserved for generic NPCs.
 
 Constant:    CLASS_PLAYER
 Value:       1 (int)
@@ -191,6 +207,14 @@ Description: Used by players.
 Constant:    CLASS_PLAYER_ALLY
 Value:       2 (int)
 Description: Used by player allies.
+
+Constant:    CLASS_PLAYER_ALLY_VITAL
+Value:       3 (int)
+Description: Reserved for vital player allies.
+
+Constant:    CLASS_ZOMBIE
+Value:       4 (int)
+Description: Used by the living dead.
 
 Constant:    CLIENT_DLL
 Value:       0 (int)
@@ -1747,6 +1771,34 @@ Constant:    SND_STOP_LOOPING
 Value:       32 (int)
 Description: Stops all looping sounds on an entity.
 
+Constant:    SOLID_BBOX
+Value:       2 (int)
+Description: Solid type used by VPhysics
+
+Constant:    SOLID_BSP
+Value:       1 (int)
+Description: Solid type used by VPhysics
+
+Constant:    SOLID_CUSTOM
+Value:       5 (int)
+Description: Solid type used by VPhysics
+
+Constant:    SOLID_NONE
+Value:       0 (int)
+Description: Solid type used by VPhysics
+
+Constant:    SOLID_OBB
+Value:       3 (int)
+Description: Solid type used by VPhysics
+
+Constant:    SOLID_OBB_YAW
+Value:       4 (int)
+Description: Solid type used by VPhysics
+
+Constant:    SOLID_VPHYSICS
+Value:       6 (int)
+Description: Solid type used by VPhysics
+
 Constant:    SOUNDENT_CHANNEL_BULLET_IMPACT
 Value:       6 (int)
 Description: Sound channel used in QueryHearSound hooks, etc.
@@ -2624,6 +2676,12 @@ Description: Health station.
 Class:       CNMRiH_ItemCustom
 Base:        CBaseAnimating
 Description: A carryable item with custom properties.
+=====================================
+
+=====================================
+Class:       CNMRiH_Music_Manager
+Base:        CBaseEntity
+Description: Dynamic music manager.
 =====================================
 
 =====================================
@@ -4364,6 +4422,14 @@ Description: Executes KeyValue with a vector, same caveat from KeyValueFromStrin
 Function:    CBaseEntity::NextMovePeer
 Signature:   handle CBaseEntity::NextMovePeer()
 
+Function:    CBaseEntity::PhysicsDestroyObject
+Signature:   void CBaseEntity::PhysicsDestroyObject()
+Description: Destroys the entity's physics object
+
+Function:    CBaseEntity::PhysicsInitNormal
+Signature:   void CBaseEntity::PhysicsInitNormal(int, int, bool)
+Description: Initializes the entity's physics object with the specified solid type, solid flags, and whether to start asleep
+
 Function:    CBaseEntity::PrecacheSoundScript
 Signature:   void CBaseEntity::PrecacheSoundScript(string)
 Description: Precache a sound for later playing.
@@ -4407,6 +4473,10 @@ Description: Set the local angular velocity - takes float pitch,yaw,roll velocit
 Function:    CBaseEntity::SetCauser
 Signature:   void CBaseEntity::SetCauser(handle)
 Description: Set who gets credit for a kill from this entity.
+
+Function:    CBaseEntity::SetClassname
+Signature:   void CBaseEntity::SetClassname(string)
+Description: Replaces entity's classname. Very dangerous, use with care.
 
 Function:    CBaseEntity::SetCollisionGroup
 Signature:   void CBaseEntity::SetCollisionGroup(int)
@@ -5448,6 +5518,10 @@ Function:    CItem_InventoryBox::AddItem
 Signature:   bool CItem_InventoryBox::AddItem(string)
 Description: Adds an item to the inventory box, accepts item aliases and spawner keywords. Returns false if the box is full.
 
+Function:    CItem_InventoryBox::AddItemAtIndex
+Signature:   void CItem_InventoryBox::AddItemAtIndex(string, int, int)
+Description: Adds an item at specified category and index, accepts item aliases and spawner keywords.
+
 Function:    CItem_InventoryBox::AddRandomAmmo
 Signature:   void CItem_InventoryBox::AddRandomAmmo(int)
 Description: Adds a random ammo item to the inventory box, with a parameter of item count. Use -1 to fill all the empty slots.
@@ -5472,6 +5546,10 @@ Function:    CItem_InventoryBox::IsUncategorized
 Signature:   bool CItem_InventoryBox::IsUncategorized()
 Description: Returns true if this inventory box is uncategorized.
 
+Function:    CItem_InventoryBox::ItemAtPosition
+Signature:   int CItem_InventoryBox::ItemAtPosition(int, int)
+Description: Returns WeaponID for an item at specified category and index.
+
 Function:    CItem_InventoryBox::RandomizeContents
 Signature:   void CItem_InventoryBox::RandomizeContents()
 Description: Randomizes new contents, and replaces all existing items.
@@ -5479,6 +5557,10 @@ Description: Randomizes new contents, and replaces all existing items.
 Function:    CItem_InventoryBox::RemoveAllItems
 Signature:   void CItem_InventoryBox::RemoveAllItems()
 Description: Removes all items in the inventory box.
+
+Function:    CItem_InventoryBox::RemoveItem
+Signature:   void CItem_InventoryBox::RemoveItem(int, int)
+Description: Removes an item at specified category and index.
 
 Function:    CItem_InventoryBox::SetBackgroundTexture
 Signature:   void CItem_InventoryBox::SetBackgroundTexture(string)
@@ -5762,6 +5844,30 @@ Function:    CNMRiH_ItemCustom::SetWeight
 Signature:   void CNMRiH_ItemCustom::SetWeight(int)
 Description: Sets physical weight.
 
+Function:    CNMRiH_Music_Manager::EndEvac
+Signature:   void CNMRiH_Music_Manager::EndEvac()
+Description: Stops playing evac music.
+
+Function:    CNMRiH_Music_Manager::Mute
+Signature:   void CNMRiH_Music_Manager::Mute()
+Description: Mutes all music.
+
+Function:    CNMRiH_Music_Manager::StartCustomMusicState
+Signature:   void CNMRiH_Music_Manager::StartCustomMusicState(int)
+Description: Starts playing custom music, with parameter of state number (1-3).
+
+Function:    CNMRiH_Music_Manager::StopCustomMusicState
+Signature:   void CNMRiH_Music_Manager::StopCustomMusicState()
+Description: Stops playing custom music.
+
+Function:    CNMRiH_Music_Manager::TriggerEvac
+Signature:   void CNMRiH_Music_Manager::TriggerEvac()
+Description: Starts playing evac music.
+
+Function:    CNMRiH_Music_Manager::Unmute
+Signature:   void CNMRiH_Music_Manager::Unmute()
+Description: Unmutes all music.
+
 Function:    CNMRiH_Player::AddCarriedWeight
 Signature:   void CNMRiH_Player::AddCarriedWeight(int)
 Description: Adds carried inventory weight.
@@ -5846,6 +5952,10 @@ Function:    CNMRiH_Player::GetCarriedWeight
 Signature:   int CNMRiH_Player::GetCarriedWeight()
 Description: Returns total carried inventory weight.
 
+Function:    CNMRiH_Player::GetHeldEntity
+Signature:   handle CNMRiH_Player::GetHeldEntity()
+Description: Returns a prop player is holding.
+
 Function:    CNMRiH_Player::GetJumpStaminaCost
 Signature:   float CNMRiH_Player::GetJumpStaminaCost()
 Description: Returns the amount of stamina jumping costs.
@@ -5925,6 +6035,10 @@ Description: Returns true if player is extracted.
 Function:    CNMRiH_Player::IsGrabbed
 Signature:   bool CNMRiH_Player::IsGrabbed()
 Description: Returns true if player is being grabbed by a zombie.
+
+Function:    CNMRiH_Player::IsHoldingEntity
+Signature:   bool CNMRiH_Player::IsHoldingEntity()
+Description: Returns true if player is holding a prop.
 
 Function:    CNMRiH_Player::IsHost
 Signature:   bool CNMRiH_Player::IsHost()
@@ -6333,6 +6447,9 @@ Description: Returns name of the current objective boundary.
 Function:    CObjective::IsAntiObjective
 Signature:   bool CObjective::IsAntiObjective()
 
+Function:    CObjective::SetDescription
+Signature:   void CObjective::SetDescription(string)
+
 Function:    CObjectiveManager::CompleteCurrentObjective
 Signature:   void CObjectiveManager::CompleteCurrentObjective(string)
 Description: Completes current objective, with targetname parameter of forced extraction zone.
@@ -6372,6 +6489,10 @@ Description: Returns true if objectives are complete.
 Function:    CObjectiveManager::IsFailed
 Signature:   bool CObjectiveManager::IsFailed()
 Description: Returns true if objectives failed.
+
+Function:    CObjectiveManager::SendObjectiveNotify
+Signature:   void CObjectiveManager::SendObjectiveNotify(string)
+Description: Broadcasts objective notification to all clients, with string parameter of description.
 
 Function:    CObjectiveManager::StartNextObjective
 Signature:   void CObjectiveManager::StartNextObjective()
@@ -7790,6 +7911,10 @@ Function:    NXPrint
 Signature:   void NXPrint(int, int, int, int, bool, float, string)
 Description: Notification print, customised
 
+Function:    ParticleTracerEffect
+Signature:   void ParticleTracerEffect(string, Vector, Vector, int, int, bool)
+Description: Makes a tracer effect by using a particle. Params: <particle name>, <startpos>, <endpos>, <entindex>, <attachment idx>, <should whiz?>
+
 Function:    PrecacheEntityFromTable
 Signature:   void PrecacheEntityFromTable(string, handle)
 Description: Precache an entity from KeyValues in a table.
@@ -7922,6 +8047,14 @@ Description: given 2 points & ent to ignore, return fraction along line that hit
 Function:    TraceLineComplex
 Signature:   handle TraceLineComplex(Vector, Vector, handle, int, int)
 Description: Complex version of TraceLine which takes 2 points, an ent to ignore, a trace mask, and a collision group. Returns a handle which can access all trace info.
+
+Function:    TraceLineEx
+Signature:   bool TraceLineEx(handle)
+Description: Does a raycast along a line specified by two vectors, returning the first entity or geometry hit along the way. Results are written to the passed-in table. The input variables are kept in the table after the trace.
+
+Function:    TracerEffect
+Signature:   void TracerEffect(Vector, Vector, int, int, float, bool, string)
+Description: Makes a tracer effect using the old non-particle system effects. Params: <startpos>, <endpos>, <target entity>, <entindex>, <attachment idx>, <velocity>, <should whiz?>, <custom tracer name>
 
 Function:    UniqueString
 Signature:   function UniqueString(string)
