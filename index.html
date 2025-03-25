@@ -3,7 +3,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <link rel="shortcut icon" href="favicon.ico">
-<title>> WIRETRIPPER'S NET</title>
+<title>> fel</title>
 <style>
 @font-face {
 	font-family: 'vga';
@@ -210,7 +210,7 @@ button.sld:hover {
 about me
 <hr class="sep">
 <a id="pfp" title=""><img id="pfpimg" src=res/avatar.png class=pfpstyle></a>
-i'm aku (some know me as 'felis'), a programmer, gamedev, enthusiast, whatever-i-feel-like-doing person.<br><br>
+i'm <span id="name">aku</span>, a programmer, gamedev, whatever-i-feel-like-doing person.<br><br>
 this site evolves, and it's currently a dumping ground for various things i've made - most of it probably speaks for itself, with little gimmicks.<br><br>
 feel free to contact me via email for inquiries.<br><br>
 thanks for stopping by! &#x263A;
@@ -373,7 +373,7 @@ felis [at] wiretrippers.net<br>
 </div>
 </div>
 <br>
-<div class="smol"><div id=size></div><br><script>document.write(new Date().getFullYear());</script>, wiretrippers.net <div id=copymsg></div><br><br></div>
+<div class="smol"><div id=size></div><span id=copymsg></div></span>
 <script>
 var msg = new Array();
 msg[0] = "prosecutedt to the full extent of the Jam";
@@ -383,16 +383,13 @@ msg[3] = "thank you for visiting";
 msg[4] = "no copyright intended";
 msg[5] = "welcome to my homepage";
 msg[6] = "F5 F5 F5 F5 F5 F5 F5 F5 F5";
-msg[7] = "just 4 fun";
-msg[8] = "take what you need";
-msg[9] = "nothing to do with tripwires";
-msg[10] = "stay cool! - someone wakes the noise up -";
-msg[11] = "look inside; wires";
-msg[12] = "hold out! programmer!";
-msg[13] = "why would we track you? you're already here!";
-msg[14] = "date modified: a long time ago";
-msg[15] = "sorry nothing";
-msg[16] = "&#x2665;";
+msg[7] = "take what you need";
+msg[8] = "stay cool! - someone wakes the noise up -";
+msg[9] = "hold out! programmer!";
+msg[10] = "why would we track you? you're already here!";
+msg[11] = "date modified: a long time ago";
+msg[12] = "sorry nothing";
+msg[13] = "&#x2665;";
 var rnd = Math.floor(Math.random() * msg.length);
 document.getElementById("size").innerHTML = "104 KB (107 403 bytes) in use";
 document.getElementById("copymsg").innerHTML = msg[rnd];
@@ -558,6 +555,8 @@ window.onload = function() {
 
 	var a = document.getElementById("pfp");
 	a.onclick = function() {
+		var name = document.getElementById("name");
+		name.textContent = "fel";
 		var img = document.getElementById("pfpimg");
 		img.src = "res/fel.png";
 		curStyle = 1;
