@@ -2745,6 +2745,12 @@ Description: A camera entity that controls the player's view. While it's active,
 =====================================
 
 =====================================
+Class:       CPointWorldText
+Base:        CBaseEntity
+Description: An entity that displays a text message oriented in the world, at its origin.
+=====================================
+
+=====================================
 Class:       CRagdollProp
 Base:        CBaseAnimating
 Description: Ragdoll physics prop.
@@ -3550,6 +3556,10 @@ Description: Get the transform for the specified bone
 Function:    CBaseAnimating::GetCycle
 Signature:   float CBaseAnimating::GetCycle()
 
+Function:    CBaseAnimating::GetModelScale
+Signature:   float CBaseAnimating::GetModelScale()
+Description: Returns current model scale.
+
 Function:    CBaseAnimating::GetNumBodyGroups
 Signature:   int CBaseAnimating::GetNumBodyGroups()
 Description: Gets the number of bodygroups
@@ -3681,6 +3691,10 @@ Description: Sets max. distance for a player to see the glow, in units. Use -1 f
 Function:    CBaseAnimating::SetGlowable
 Signature:   void CBaseAnimating::SetGlowable(bool)
 Description: Sets the 'glowable' state. If you want to use glow properties and functions, you'll have to enable this first.
+
+Function:    CBaseAnimating::SetModelScale
+Signature:   void CBaseAnimating::SetModelScale(float, float)
+Description: Changes model scale. Params: <scale> <change duration in seconds>
 
 Function:    CBaseAnimating::SetPlaybackRate
 Signature:   void CBaseAnimating::SetPlaybackRate(float)
@@ -6044,6 +6058,10 @@ Function:    CNMRiH_Player::IsHost
 Signature:   bool CNMRiH_Player::IsHost()
 Description: Returns true if this player is a listen server host.
 
+Function:    CNMRiH_Player::IsInBarricadingMode
+Signature:   bool CNMRiH_Player::IsInBarricadingMode()
+Description: Returns true when player is in barricade build mode (i.e. has a board out and sees points).
+
 Function:    CNMRiH_Player::IsInLevelTransition
 Signature:   bool CNMRiH_Player::IsInLevelTransition()
 Description: Returns true if player is in level transition.
@@ -6055,6 +6073,10 @@ Description: Returns true if player is jumping.
 Function:    CNMRiH_Player::IsPartialBlindnessActive
 Signature:   bool CNMRiH_Player::IsPartialBlindnessActive()
 Description: Returns true if player is experiencing blindness from vaccine side effects.
+
+Function:    CNMRiH_Player::IsPlacingBoard
+Signature:   bool CNMRiH_Player::IsPlacingBoard()
+Description: Returns true when player is nailing a board while barricading.
 
 Function:    CNMRiH_Player::IsSprinting
 Signature:   bool CNMRiH_Player::IsSprinting()
@@ -6297,9 +6319,17 @@ Function:    CNMRiH_WeaponBase::UsesTacticalReload
 Signature:   bool CNMRiH_WeaponBase::UsesTacticalReload()
 Description: Returns true if this weapon can be reloaded while having a full magazine.
 
+Function:    CNavMesh::FindNavAreaAlongRay
+Signature:   handle CNavMesh::FindNavAreaAlongRay(Vector, Vector, handle)
+Description: Returns nav area from ray.
+
 Function:    CNavMesh::GetAllAreas
 Signature:   void CNavMesh::GetAllAreas(handle)
 Description: Fills table with all areas in the nav mesh.
+
+Function:    CNavMesh::GetAreasWithAttributes
+Signature:   void CNavMesh::GetAreasWithAttributes(int, handle)
+Description: Fills table with all areas that have specified NAV_MESH_* attributes.
 
 Function:    CNavMesh::GetNavArea
 Signature:   handle CNavMesh::GetNavArea(Vector, float)
@@ -6315,19 +6345,31 @@ Description: Returns total number of nav areas.
 
 Function:    CNavMesh::GetNavAreasFromBuildPath
 Signature:   bool CNavMesh::GetNavAreasFromBuildPath(handle, handle, Vector, float, int, bool, handle)
-Description: Fills table with areas from a path. Returns whether a path was found. If 'endArea' is null, will compute a path as close as possible to 'goalPos'.
+Description: Fills table with areas from a path. Returns whether a path was found. If 'goalArea' is null, will compute a path as close as possible to 'goalPos'.
 
 Function:    CNavMesh::GetNavAreasInRadius
 Signature:   void CNavMesh::GetNavAreasInRadius(Vector, float, handle)
 Description: Fills table with areas within radius of given position.
 
+Function:    CNavMesh::GetNavAreasOverlappingEntityExtent
+Signature:   void CNavMesh::GetNavAreasOverlappingEntityExtent(handle, handle)
+Description: Fills table with areas overlapping entity's extent.
+
 Function:    CNavMesh::GetNearestNavArea
 Signature:   handle CNavMesh::GetNearestNavArea(Vector, float, bool, bool)
 Description: Given a position in the world, return the nav area that is closest, and at the same height, or beneath it. Used to find initial area if we start off of the mesh.
 
+Function:    CNavMesh::GetObstructingEntities
+Signature:   void CNavMesh::GetObstructingEntities(handle)
+Description: Fills table with all obstructing entities.
+
 Function:    CNavMesh::NavAreaBuildPath
 Signature:   bool CNavMesh::NavAreaBuildPath(handle, handle, Vector, float, int, bool)
-Description: Returns true if a path exists. If 'endArea' is null, will compute a path as close as possible to 'goalPos'.
+Description: Returns true if a path exists. If 'goalArea' is null, will compute a path as close as possible to 'goalPos'.
+
+Function:    CNavMesh::NavAreaTravelDistance
+Signature:   float CNavMesh::NavAreaTravelDistance(handle, handle, float)
+Description: Computes distance between two areas. Returns -1 if can't reach 'goalArea' from 'startArea'.
 
 Function:    CNavMesh::RegisterAvoidanceObstacle
 Signature:   void CNavMesh::RegisterAvoidanceObstacle(handle)
@@ -6611,6 +6653,38 @@ Description: Enables the entity, and starts controlling the player's view. If th
 Function:    CPointViewControlMultiplayer::RemovePlayer
 Signature:   void CPointViewControlMultiplayer::RemovePlayer(handle)
 Description: Removes the given player as a viewer for this entity.
+
+Function:    CPointWorldText::SetColor
+Signature:   void CPointWorldText::SetColor(int, int, int, int)
+Description: Sets the message color, with RGBA parameters.
+
+Function:    CPointWorldText::SetFont
+Signature:   void CPointWorldText::SetFont(int)
+Description: Sets the font, with index parameter.
+
+Function:    CPointWorldText::SetOrientation
+Signature:   void CPointWorldText::SetOrientation(int)
+Description: Sets the orientation. 0: Stationary, 1: Face player, 2: Ignore pitch
+
+Function:    CPointWorldText::SetRainbow
+Signature:   void CPointWorldText::SetRainbow(bool)
+Description: Enables rainbow text effect.
+
+Function:    CPointWorldText::SetText
+Signature:   void CPointWorldText::SetText(string)
+Description: Sets the message text.
+
+Function:    CPointWorldText::SetTextSize
+Signature:   void CPointWorldText::SetTextSize(float)
+Description: Sets the message text size.
+
+Function:    CPointWorldText::SetTextSpacingX
+Signature:   void CPointWorldText::SetTextSpacingX(float)
+Description: Sets the spacing between letters along the X axis.
+
+Function:    CPointWorldText::SetTextSpacingY
+Signature:   void CPointWorldText::SetTextSpacingY(float)
+Description: Sets the spacing between letters along the Y axis.
 
 Function:    CRagdollProp::GetRagdollObject
 Signature:   handle CRagdollProp::GetRagdollObject(int)
