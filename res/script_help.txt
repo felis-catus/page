@@ -5584,6 +5584,10 @@ Function:    CLogicProgress::AddMilestone
 Signature:   void CLogicProgress::AddMilestone(float)
 Description: Adds a milestone, with parameter of progress ratio (0.0 - 1.0). Once hit, output OnMilestone will be fired. You can have multiple milestones.
 
+Function:    CLogicProgress::GetProgress
+Signature:   float CLogicProgress::GetProgress()
+Description: Returns current progress ratio (0.0 - 1.0).
+
 Function:    CLogicProgress::HideProgress
 Signature:   void CLogicProgress::HideProgress()
 Description: Hides progress on HUD while it's still ongoing.
@@ -6535,6 +6539,18 @@ Description: Returns true if objectives failed.
 Function:    CObjectiveManager::SendObjectiveNotify
 Signature:   void CObjectiveManager::SendObjectiveNotify(string)
 Description: Broadcasts objective notification to all clients, with string parameter of description.
+
+Function:    CObjectiveManager::SendObjectiveNotifyToPlayer
+Signature:   void CObjectiveManager::SendObjectiveNotifyToPlayer(handle, string)
+Description: Sends individual objective notification to a given player, with string parameter of description.
+
+Function:    CObjectiveManager::SendObjectiveUpdate
+Signature:   void CObjectiveManager::SendObjectiveUpdate(string)
+Description: Silently updates objective HUD for all clients, with string parameter of description.
+
+Function:    CObjectiveManager::SendObjectiveUpdateToPlayer
+Signature:   void CObjectiveManager::SendObjectiveUpdateToPlayer(handle, string)
+Description: Silently updates individual objective HUD for a given player, with string parameter of description.
 
 Function:    CObjectiveManager::StartNextObjective
 Signature:   void CObjectiveManager::StartNextObjective()
