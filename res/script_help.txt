@@ -5514,7 +5514,7 @@ Description: Resets infection time.
 
 Function:    CItem_AmmoBox::GetAmmoType
 Signature:   string CItem_AmmoBox::GetAmmoType()
-Description: Returns ammo type name, e.g. ammotype_9mm
+Description: Returns ammo type name, e.g. ammobox_9mm
 
 Function:    CItem_AmmoBox::GetMaxAmmo
 Signature:   int CItem_AmmoBox::GetMaxAmmo()
