@@ -212,7 +212,7 @@ button.sld:hover {
 about me
 <hr class="sep">
 <a id="pfp" title=""><img id="pfpimg" src=res/avatar.png class=pfpstyle></a>
-i'm <span id="name">aku</span>, a programmer, gamedev, whatever-i-feel-like-doing person.<br><br>
+i'm fel, a programmer, gamedev, whatever-i-feel-like-doing person.<br><br>
 this site evolves, and it's currently a dumping ground for various things i've made - most of it probably speaks for itself, with little gimmicks.<br><br>
 feel free to contact me via email for inquiries.<br><br>
 thanks for stopping by! &#x263A;
@@ -393,7 +393,7 @@ msg[11] = "date modified: a long time ago";
 msg[12] = "sorry nothing";
 msg[13] = "&#x2665;";
 var rnd = Math.floor(Math.random() * msg.length);
-document.getElementById("size").innerHTML = "87,5 KB (89 654 bytes) in use";
+document.getElementById("size").innerHTML = "87,5 KB (89 623 bytes) in use";
 document.getElementById("copymsg").innerHTML = msg[rnd];
 </script>
 </div>
@@ -557,8 +557,6 @@ window.onload = function() {
 
 	var a = document.getElementById("pfp");
 	a.onclick = function() {
-		var name = document.getElementById("name");
-		name.textContent = "fel";
 		var img = document.getElementById("pfpimg");
 		img.src = "res/fel.png";
 		curStyle = 1;
