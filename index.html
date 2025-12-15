@@ -102,10 +102,18 @@ img.pfpstyle {
 	margin-bottom:1px;
 }
 
+#pfpimg {
+	width:145px;
+	height:145px;
+	background-image:url("all.png");
+	background-repeat:no-repeat;
+	background-position:-626px -73px;
+}
+
 img.logo {
 	width:608px;
 	height:128px;
-	background-image:url("res/atlas/logos.png");
+	background-image:url("all.png");
 	background-repeat:no-repeat;
 	display:block;
 	margin-left:auto;
@@ -115,60 +123,33 @@ img.logo {
 }
 
 #logos-1 {
-	background-position:-1px -1px;
+	background-position:0 1px;
 }
 
 #logos-2 {
-	background-position:-1px -131px;
+	background-position:0 -306px;
 }
 
 #logos-3 {
-	background-position:-1px -261px;
+	background-position:0 -433px;
 }
 
 #logos-4 {
-	background-position:-1px -391px;
+	background-position:0 -561px;
 }
 
 #logos-5 {
-	background-position:-1px -521px;
+	background-position:0 -689px;
 }
 
 #logos-6 {
-	background-position:-611px -1px;
-}
-
-img.btn {
-	width:88px;
-	height:31px;
-	background-image:url("res/atlas/btns.png");
-	display:inline-block;
-}
-
-#btns-1 {
-	background-position:0 0;
-}
-
-#btns-2 {
-	background-position:0 -31px;
-}
-
-#btns-3 {
-	background-position:0 -62px;
-}
-
-#btns-4 {
-	background-position:-88px 0;
-}
-
-#btns-5 {
-	background-position:-88px -31px;
+	background-position:-872px 1px;
 }
 
 img.games {
 	width:308px;
 	height:177px;
-	background-image:url("res/atlas/games.png");
+	background-image:url("all.png");
 	border:solid;
 	border-width:2px;
 	display:block;
@@ -177,23 +158,50 @@ img.games {
 }
 
 #games-1 {
-	background-position:-1px -1px;
+	background-position:-800px -128px;
 }
 
 #games-2 {
-	background-position:-1px -180px;
+	background-position:-1108px -128px;
 }
 
 #games-3 {
-	background-position:-311px -1px;
+	background-position:-608px -305px;
 }
 
 #games-4 {
-	background-position:-311px -180px;
+	background-position:0 -128px;
 }
 
 #games-5 {
-	background-position:-1px -359px;
+	background-position:-308px -128px;
+}
+
+img.btn {
+	width:88px;
+	height:31px;
+	background-image:url("all.png");
+	display:inline-block;
+}
+
+#btns-1 {
+	background-position:-608px 0;
+}
+
+#btns-2 {
+	background-position:-696px 0;
+}
+
+#btns-3 {
+	background-position:-784px 0;
+}
+
+#btns-4 {
+	background-position:-608px -31px;
+}
+
+#btns-5 {
+	background-position:-696px -31px;
 }
 
 div.s {
@@ -269,13 +277,13 @@ button.sld:hover {
 <div class="sect" id="s_about">
 <div style="text-align:center">
 <br>
-<img id="logos-1" class=logo src=".png" width="1" height="1">
+<img id="logos-1" class=logo src=".png">
 <br>
 <div class="box"><div class="nfo">
 <div class="s">id analysis<br></div>
 about me
 <hr class="sep">
-<a id="pfp" title=""><img id="pfpimg" src=res/avatar.png class=pfpstyle></a>
+<a id="pfp" title=""><img id="pfpimg" class=pfpstyle src=".png" draggable="false"></a>
 i'm fel, a programmer, gamedev, whatever-i-feel-like-doing person.<br><br>
 this site evolves, and it's currently a dumping ground for various things i've made - most of it probably speaks for itself, with little gimmicks.<br><br>
 feel free to contact me via email for inquiries.<br><br>
@@ -285,11 +293,11 @@ thanks for stopping by! &#x263A;
 <div style="text-align:center">
 <div class="box"><div class="nfo">
 <div style="text-align:center">
-<a href="https://notepad-plus-plus.org/" target="_blank"><img id="btns-1" class=btn src=".png" width="1" height="1"></a>
-<img id="btns-2" class=btn src=".png" width="1" height="1" draggable="false">
-<img id="btns-3" class=btn src=".png" width="1" height="1" draggable="false">
-<a href="https://www.youtube.com/watch?v=EkPIqiy2a5M" target="_blank"><img id="btns-4" class=btn src=".png" width="1" height="1"></a>
-<a href="https://neonya.party/" target="_blank"><img id="btns-5" class=btn src=".png" width="1" height="1"></a>
+<a href="https://notepad-plus-plus.org/" target="_blank"><img id="btns-1" class=btn src=".png"></a>
+<img id="btns-2" class=btn src=".png" draggable="false">
+<img id="btns-3" class=btn src=".png" draggable="false">
+<a href="https://www.youtube.com/watch?v=EkPIqiy2a5M" target="_blank"><img id="btns-4" class=btn src=".png"></a>
+<a href="https://neonya.party/" target="_blank"><img id="btns-5" class=btn src=".png"></a>
 <br>
 <div class="s">this site uses IBM VGA 8x16 font by <a href=https://int10h.org/oldschool-pc-fonts/ target="_blank">VileR</a></div>
 </div>
@@ -299,7 +307,7 @@ thanks for stopping by! &#x263A;
 </div>
 <div class="sect" id="s_games">
 <br>
-<img id="logos-2" class=logo src=".png" width="1" height="1">
+<img id="logos-2" class=logo src=".png">
 <br>
 <div style="text-align:center">
 <div class="box"><div class="nfo">
@@ -307,7 +315,7 @@ thanks for stopping by! &#x263A;
 Pirates Vikings &amp; Knights II
 <hr class="sep">
 <div class="s">image reference<br></div>
-<a href="https://store.steampowered.com/app/17570" target="_blank"><img id="games-1" class=games src=".png" width="1" height="1"></a>
+<a href="https://store.steampowered.com/app/17570" target="_blank"><img id="games-1" class=games src=".png"></a>
 <hr class="sep">
 <div class="s">occupation<br></div>
 lead, senior programmer, production manager
@@ -325,7 +333,7 @@ the game is available for free, you may download it <a href=https://store.steamp
 No More Room in Hell
 <hr class="sep">
 <div class="s">image reference<br></div>
-<a href="https://store.steampowered.com/app/224260" target="_blank"><img id="games-2" class=games src=".png" width="1" height="1"></a>
+<a href="https://store.steampowered.com/app/224260" target="_blank"><img id="games-2" class=games src=".png"></a>
 <hr class="sep">
 <div class="s">occupation<br></div>
 programmer, maintainer
@@ -349,7 +357,7 @@ vscript reference available <a href=res/script_help.txt target="_blank">here</a>
 No More Room in Hell 2
 <hr class="sep">
 <div class="s">image reference<br></div>
-<a href="https://store.steampowered.com/app/292000" target="_blank"><img id="games-3" class=games src=".png" width="1" height="1"></a>
+<a href="https://store.steampowered.com/app/292000" target="_blank"><img id="games-3" class=games src=".png"></a>
 <hr class="sep">
 <div class="s">occupation<br></div>
 programmer (inactive)
@@ -363,7 +371,7 @@ the game is available on steam <a href=https://store.steampowered.com/app/292000
 </div>
 <br>
 <br>
-<img id="logos-3" class=logo src=".png" width="1" height="1">
+<img id="logos-3" class=logo src=".png">
 <br>
 <div style="text-align:center">
 <div style="text-align:center">
@@ -372,7 +380,7 @@ the game is available on steam <a href=https://store.steampowered.com/app/292000
 FragFest
 <hr class="sep">
 <div class="s">image reference<br></div>
-<a><img id="games-4" class=games src=".png" width="1" height="1" draggable="false"></a>
+<a><img id="games-4" class=games src=".png" draggable="false"></a>
 <hr class="sep">
 <div class="s">when<br></div>
 2014
@@ -392,7 +400,7 @@ the mod was codenamed "the nab project", which was a reference to a group of fri
 OVERHEAT
 <hr class="sep">
 <div class="s">image reference<br></div>
-<a><img id="games-5" class=games src=".png" width="1" height="1" draggable="false"></a>
+<a><img id="games-5" class=games src=".png" draggable="false"></a>
 <hr class="sep">
 <div class="s">when<br></div>
 2019
@@ -411,7 +419,7 @@ soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat
 </div>
 <div class="sect" id="s_things">
 <br>
-<img id="logos-4" class=logo src=".png" width="1" height="1">
+<img id="logos-4" class=logo src=".png">
 <br>
 <div style="text-align:center">
 <div class="box"><div class="nfo">
@@ -426,12 +434,12 @@ i produce music as a hobby, usually the more niche stuff heavily driven by my cu
 </div></div>
 <br><br>
 </div>
-<img id="logos-6" class=logo src=".png" width="1" height="1">
+<img id="logos-6" class=logo src=".png">
 <br>
 </div>
 <div class="sect" id="s_contact">
 <br>
-<img id="logos-5" class=logo src=".png" width="1" height="1">
+<img id="logos-5" class=logo src=".png">
 <br>
 <div style="text-align:center">
 <div class="box"><div class="nfo">
@@ -461,7 +469,7 @@ msg[11] = "date modified: a long time ago";
 msg[12] = "sorry nothing";
 msg[13] = "&#x2665;";
 var rnd = Math.floor(Math.random() * msg.length);
-document.getElementById("size").innerHTML = "89,9 KB (92 112 bytes) in use";
+document.getElementById("size").innerHTML = "87,3 KB (89 402 bytes) in use";
 document.getElementById("copymsg").innerHTML = msg[rnd];
 </script>
 </div>
