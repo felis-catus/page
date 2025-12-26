@@ -6,24 +6,18 @@
 <title>> fel</title>
 <style>
 @font-face {
-	font-family: 'vga';
-	src: url(fnt/Web437_IBM_VGA_8x16.woff) format('woff');
-	font-weight: normal;
-	font-style: normal;
+	font-family:'vga';
+	src:url(fnt/vga.woff) format('woff');
 }
 
 body { 
 	background-color:#25282a;
-	background-position: center;
-	background-attachment: fixed;
-	background-size: cover;
-	color: #ffffff;
 	margin:22px;
 	color:#ebebeb;
-	font-family: "vga", "System", monospace;
+	font-family:"vga", "System", monospace;
 	font-size:22px;
-	font-weight: initial;
-	line-height: 1.0;
+	font-weight:initial;
+	line-height:1.0;
 }
 
 .bg {
@@ -32,21 +26,20 @@ body {
 	position:fixed;
 	top:0;
 	left:0;
-	background-image: url("res/bg.png");
-	background-position: center center;
-	background-color: rgba(49,49,49,.90);
-	background-blend-mode: multiply;
-	background-repeat: repeat;
-	background-size: 200px;
+	background-image:url("res/bg.png");
+	background-color:#000000;
+	background-position:center;
+	background-repeat:repeat;
+	background-size:200px;
 	z-index:-1;
 }
 
 .sect {
 	text-align:left;
 	width:800px;
-	background-color: #25282a;
-	border: 2px transparent;
-	transition: height 0.3s cubic-bezier(0,0,0.02,1);
+	background-color:#25282a;
+	border:2px transparent;
+	transition:height 0.3s cubic-bezier(0,0,0.02,1);
 	height:0;
 	overflow:hidden;
 	margin-left:auto;
@@ -55,8 +48,8 @@ body {
 
 a {
 	color:#ff4fa7;
-	text-decoration: none;
-	cursor: pointer;
+	text-decoration:none;
+	cursor:pointer;
 }
 
 a:hover {
@@ -69,21 +62,20 @@ a:hover {
 }
 
 .motd {
-	white-space: pre;
+	white-space:pre;
 }
 
 .box {
 	width:600px;
 	background-color:#404548;
-	color:#ffffff;
 	text-align:left;
 	margin:16px;
-	box-shadow: 8px 12px #000000;
+	box-shadow:8px 12px #000000;
 	padding:8px 4px 8px 4px;
 	display:inline-block;
 }
 
-.info {
+.nfo {
 	border-top:solid 2px #ffffff;
 	border-left:solid 2px #ffffff;
 	border-right:solid 2px #ffffff;
@@ -100,71 +92,151 @@ a:hover {
 	margin-left:-8px;
 }
 
-.logo {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 75%;
-}
-
-img.boximg {
-	border: solid;
-	border-width: 2px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%;
-}
-
 img.pfpstyle {
-	border: solid;
-	border-width: 2px;
-	display: block;
-	width: 25%;
+	border:solid;
+	border-width:2px;
+	display:block;
+	width:25%;
 	float:left;
-	margin-right: 12px;
-	margin-bottom: 1px;
+	margin-right:12px;
+	margin-bottom:1px;
+}
+
+#pfpimg {
+	width:145px;
+	height:145px;
+	background-image:url("all.png");
+	background-repeat:no-repeat;
+	background-position:-626px -73px;
+}
+
+img.logo {
+	width:608px;
+	height:128px;
+	background-image:url("all.png");
+	background-repeat:no-repeat;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:75%;
+	pointer-events:none;
+}
+
+#logos-1 {
+	background-position:0 1px;
+}
+
+#logos-2 {
+	background-position:0 -306px;
+}
+
+#logos-3 {
+	background-position:0 -433px;
+}
+
+#logos-4 {
+	background-position:0 -561px;
+}
+
+#logos-5 {
+	background-position:0 -689px;
+}
+
+#logos-6 {
+	background-position:-872px 1px;
+}
+
+img.games {
+	width:308px;
+	height:177px;
+	background-image:url("all.png");
+	border:solid;
+	border-width:2px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#games-1 {
+	background-position:-800px -128px;
+}
+
+#games-2 {
+	background-position:-1108px -128px;
+}
+
+#games-3 {
+	background-position:-608px -305px;
+}
+
+#games-4 {
+	background-position:0 -128px;
+}
+
+#games-5 {
+	background-position:-308px -128px;
 }
 
 img.btn {
 	width:88px;
 	height:31px;
+	background-image:url("all.png");
+	display:inline-block;
 }
 
-div.smol {
-	font-size: 13px;
+#btns-1 {
+	background-position:-608px 0;
+}
+
+#btns-2 {
+	background-position:-696px 0;
+}
+
+#btns-3 {
+	background-position:-784px 0;
+}
+
+#btns-4 {
+	background-position:-608px -31px;
+}
+
+#btns-5 {
+	background-position:-696px -31px;
+}
+
+div.s {
+	font-size:13px;
 }
 
 button.sld {
-	background-color: rgba(0,0,0,0);
-	border: none;
-	color: #ffffff;
+	background-color:rgba(0,0,0,0);
+	border:none;
 	text-align:left;
-	text-decoration: none;
-	display: inline-block;
-	font-family: "vga", "System", monospace;
+	text-decoration:none;
+	display:inline-block;
+	font-family:"vga", "System", monospace;
 	font-size:22px;
-	font-weight: initial;
+	font-weight:initial;
 	width:120px;
 	margin:0px;
-	cursor: pointer;
-	white-space: nowrap;
+	cursor:pointer;
+	white-space:nowrap;
 }
 
 button.sld:hover {
 	color:#ff4fa7;
-	filter: brightness(100%) grayscale(0%) sepia(0%) saturate(100%) contrast(1);
-	transition: 0.5s;
+	filter:brightness(100%) grayscale(0%) sepia(0%) saturate(100%) contrast(1);
+	transition:0.5s;
 }
 
 ::-moz-selection {
-	color: #ffffff;
-	background: #dc2689;
+	color:#ffffff;
+	background:#dc2689;
 }
 
 ::selection {
-	color: #ffffff;
-	background: #dc2689;
+	color:#ffffff;
+	background:#dc2689;
 }
 
 </style>
@@ -205,13 +277,13 @@ button.sld:hover {
 <div class="sect" id="s_about">
 <div style="text-align:center">
 <br>
-<img src=res/bio.png class=logo>
+<img id="logos-1" class=logo src=".png">
 <br>
-<div class="box"><div class="info">
-<div class="smol">id analysis<br></div>
+<div class="box"><div class="nfo">
+<div class="s">id analysis<br></div>
 about me
 <hr class="sep">
-<a id="pfp" title=""><img id="pfpimg" src=res/avatar.png class=pfpstyle></a>
+<a id="pfp" title=""><img id="pfpimg" class=pfpstyle src=".png" draggable="false"></a>
 i'm fel, a programmer, gamedev, whatever-i-feel-like-doing person.<br><br>
 this site evolves, and it's currently a dumping ground for various things i've made - most of it probably speaks for itself, with little gimmicks.<br><br>
 feel free to contact me via email for inquiries.<br><br>
@@ -219,11 +291,15 @@ thanks for stopping by! &#x263A;
 </div></div>
 </div>
 <div style="text-align:center">
-<div class="box"><div class="info">
+<div class="box"><div class="nfo">
 <div style="text-align:center">
-<a href="https://notepad-plus-plus.org/" target="_blank"><img src=res/npp.png class=btn></a> <img src=res/nocookie.png class=btn> <img src=res/pc.png class=btn> <a href="https://www.youtube.com/watch?v=EkPIqiy2a5M" target="_blank"><img src=res/hhc.png class=btn></a> <a href="https://neonya.party/" target="_blank"><img src=res/blank.png class=btn></a>
+<a href="https://notepad-plus-plus.org/" target="_blank"><img id="btns-1" class=btn src=".png"></a>
+<img id="btns-2" class=btn src=".png" draggable="false">
+<img id="btns-3" class=btn src=".png" draggable="false">
+<a href="https://www.youtube.com/watch?v=EkPIqiy2a5M" target="_blank"><img id="btns-4" class=btn src=".png"></a>
+<a href="https://neonya.party/" target="_blank"><img id="btns-5" class=btn src=".png"></a>
 <br>
-<div class="smol">this site uses IBM VGA 8x16 font by <a href=https://int10h.org/oldschool-pc-fonts/ target="_blank">VileR</a></div>
+<div class="s">this site uses IBM VGA 8x16 font by <a href=https://int10h.org/oldschool-pc-fonts/ target="_blank">VileR</a></div>
 </div>
 </div></div>
 </div>
@@ -231,110 +307,110 @@ thanks for stopping by! &#x263A;
 </div>
 <div class="sect" id="s_games">
 <br>
-<img src=res/vg.png class=logo>
+<img id="logos-2" class=logo src=".png">
 <br>
 <div style="text-align:center">
-<div class="box"><div class="info">
-<div class="smol">project #1<br></div>
+<div class="box"><div class="nfo">
+<div class="s">project #1<br></div>
 Pirates Vikings &amp; Knights II
 <hr class="sep">
-<div class="smol">image reference<br></div>
-<a href="https://store.steampowered.com/app/17570" target="_blank"><img src=res/pvk2.png class=boximg></a>
+<div class="s">image reference<br></div>
+<a href="https://store.steampowered.com/app/17570" target="_blank"><img id="games-1" class=games src=".png"></a>
 <hr class="sep">
-<div class="smol">occupation<br></div>
+<div class="s">occupation<br></div>
 lead, senior programmer, production manager
 <hr class="sep">
-<div class="smol">thoughts<br></div>
+<div class="s">thoughts<br></div>
 a melee-centric fps running on source engine, this was my first proper gamedev project, and during its development, i contributed to over a dozen major updates, including new characters, game modes, weapons, and more. it's *finally* out of beta!
 <hr class="sep">
-<div class="smol">availability<br></div>
+<div class="s">availability<br></div>
 the game is available for free, you may download it <a href=https://store.steampowered.com/app/17570 target="_blank">here</a> (steam client required!)
 </div></div>
 </div>
 <div style="text-align:center">
-<div class="box"><div class="info">
-<div class="smol">project #2<br></div>
+<div class="box"><div class="nfo">
+<div class="s">project #2<br></div>
 No More Room in Hell
 <hr class="sep">
-<div class="smol">image reference<br></div>
-<a href="https://store.steampowered.com/app/224260" target="_blank"><img src=res/nmrih1.png class=boximg></a>
+<div class="s">image reference<br></div>
+<a href="https://store.steampowered.com/app/224260" target="_blank"><img id="games-2" class=games src=".png"></a>
 <hr class="sep">
-<div class="smol">occupation<br></div>
+<div class="s">occupation<br></div>
 programmer, maintainer
 <hr class="sep">
-<div class="smol">thoughts<br></div>
+<div class="s">thoughts<br></div>
 i was a big fan of this game before joining the development team, and had the pleasure of working with an amazing group of people to put out definitive updates (1.10+), fix hundreds of bugs, and include essential 'quality of life' features.
 <hr class="sep">
-<div class="smol">availability<br></div>
+<div class="s">availability<br></div>
 the game is available for free, you may download it <a href=https://store.steampowered.com/app/224260 target="_blank">here</a> (steam client required!)
 <hr class="sep">
-<div class="smol">addendum<br></div>
+<div class="s">addendum<br></div>
 found an issue? game's broken? let us know at <a href= https://github.com/nmrih/source-game/issues target="_blank">github issue tracker</a> (please do!)
 <hr class="sep">
-<div class="smol">docs<br></div>
+<div class="s">docs<br></div>
 vscript reference available <a href=res/script_help.txt target="_blank">here</a>
 </div></div>
 </div>
 <div style="text-align:center">
-<div class="box"><div class="info">
-<div class="smol">project #3<br></div>
+<div class="box"><div class="nfo">
+<div class="s">project #3<br></div>
 No More Room in Hell 2
 <hr class="sep">
-<div class="smol">image reference<br></div>
-<a href="https://store.steampowered.com/app/292000" target="_blank"><img src=res/nmrih2.png class=boximg></a>
+<div class="s">image reference<br></div>
+<a href="https://store.steampowered.com/app/292000" target="_blank"><img id="games-3" class=games src=".png"></a>
 <hr class="sep">
-<div class="smol">occupation<br></div>
+<div class="s">occupation<br></div>
 programmer (inactive)
 <hr class="sep">
-<div class="smol">thoughts<br></div>
+<div class="s">thoughts<br></div>
 i also contributed code to the sequel during its various eras of development. my involvement has since ended.
 <hr class="sep">
-<div class="smol">availability<br></div>
+<div class="s">availability<br></div>
 the game is available on steam <a href=https://store.steampowered.com/app/292000 target="_blank">here</a>.
 </div></div>
 </div>
 <br>
 <br>
-<img src=res/vg_bad.png class=logo>
+<img id="logos-3" class=logo src=".png">
 <br>
 <div style="text-align:center">
 <div style="text-align:center">
-<div class="box"><div class="info">
-<div class="smol">archive #1<br></div>
+<div class="box"><div class="nfo">
+<div class="s">archive #1<br></div>
 FragFest
 <hr class="sep">
-<div class="smol">image reference<br></div>
-<a><img src=res/fragfest.png class=boximg></a>
+<div class="s">image reference<br></div>
+<a><img id="games-4" class=games src=".png" draggable="false"></a>
 <hr class="sep">
-<div class="smol">when<br></div>
+<div class="s">when<br></div>
 2014
 <hr class="sep">
-<div class="smol">thoughts<br></div>
+<div class="s">thoughts<br></div>
 unlimited movement, overpowered railguns, hud speedometers, this was my first project in an era where i started exploring gamedev as a real possibility, a "half-life 2 deathmatch" mod that served as a playground for learning source engine programming.<br><br>
 this mod essentially prepared me for pvk2 (the first game on the page), and was my first dive into c++ programming as a whole, the gameplay itself is bonkers and surprisingly fun - think a "babby's first mod" trying to pass as a proper quake ripoff lmao!<br><br>
 the mod was codenamed "the nab project", which was a reference to a group of friends at the time.<br>
 <hr class="sep">
-<div class="smol">availability<br></div>
+<div class="s">availability<br></div>
 <b>[PENDING ARCHIVAL]</b>
 </div></div>
 </div>
 <div style="text-align:center">
-<div class="box"><div class="info">
-<div class="smol">archive #2<br></div>
+<div class="box"><div class="nfo">
+<div class="s">archive #2<br></div>
 OVERHEAT
 <hr class="sep">
-<div class="smol">image reference<br></div>
-<a><img src=res/overheat.png class=boximg></a>
+<div class="s">image reference<br></div>
+<a><img id="games-5" class=games src=".png" draggable="false"></a>
 <hr class="sep">
-<div class="smol">when<br></div>
+<div class="s">when<br></div>
 2019
 <hr class="sep">
-<div class="smol">thoughts<br></div>
+<div class="s">thoughts<br></div>
 overheat was an ambitious solo game project that started out as a joke to test my 2d game engine<br>(called YASE, which stands for "Yet Another Sh*t Engine", on good days, S meant <a href=https://www.libsdl.org/ target="_blank">"SDL"</a>)<br><br>
 it was to be a kusoge-inspired shmup w/ bold colorful visuals. quite a bit of 'promo' material and a full soundtrack was made, but the game itself was never realized beyond a very crude tech demo that isn't worth checking out.<br><br>
 this is one of the projects i *may* return to in a different capacity, at least the stylistic choice with rave-infused music and visual language - but hey, who knows?<br>
 <hr class="sep">
-<div class="smol">availability<br></div>
+<div class="s">availability<br></div>
 soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat-soundtrack target="_blank">here</a>.
 </div></div>
 </div>
@@ -343,39 +419,39 @@ soundtrack available <a href=https://thewiretrippers.bandcamp.com/album/overheat
 </div>
 <div class="sect" id="s_things">
 <br>
-<img src=res/noise.png class=logo>
+<img id="logos-4" class=logo src=".png">
 <br>
 <div style="text-align:center">
-<div class="box"><div class="info">
-<div class="smol">info<br></div>
+<div class="box"><div class="nfo">
+<div class="s">info<br></div>
 i produce music as a hobby, usually the more niche stuff heavily driven by my current taste at the time. i'm fairly solitary when it comes to that, so i don't release much of my work.
 <hr class="sep">
 <a href=https://fel.wtf/tracker/>tracker music archive</a><br>
-<div class="smol">a directory spanning over a decade of modules with varying quality, mostly old stuff<br>this collection is for backup/inspiration, but it could make for an interesting dive<br>OpenMPT recommended for playback, NSF files require NSFPlay or equivalent</div>
+<div class="s">a directory spanning over a decade of modules with varying quality, mostly old stuff<br>this collection is for backup/inspiration, but it could make for an interesting dive<br>OpenMPT recommended for playback, NSF files require NSFPlay or equivalent</div>
 <hr class="sep">
 <a href=https://soundcloud.com/felis-catus-1 target="_blank">personal soundcloud for whatever</a><br>
-<div class="smol">the content may vary</div>
+<div class="s">the content may vary</div>
 </div></div>
 <br><br>
 </div>
-<img src=res/wip.png class=logo>
+<img id="logos-6" class=logo src=".png">
 <br>
 </div>
 <div class="sect" id="s_contact">
 <br>
-<img src=res/hi.png class=logo>
+<img id="logos-5" class=logo src=".png">
 <br>
 <div style="text-align:center">
-<div class="box"><div class="info">
-<div class="smol">email<br></div>
+<div class="box"><div class="nfo">
+<div class="s">email<br></div>
 felis [at] wiretrippers.net<br>
-<div class="smol">this is the best way to reach me, feel free to send an inquiry or just to say hi.</div>
+<div class="s">this is the best way to reach me, feel free to send an inquiry or just to say hi.</div>
 </div></div>
 <br><br>
 </div>
 </div>
 <br>
-<div class="smol"><div id=size></div><span id=copymsg></span></div>
+<div class="s"><div id=size></div><span id=copymsg></span></div>
 <script>
 var msg = new Array();
 msg[0] = "prosecutedt to the full extent of the Jam";
@@ -393,7 +469,7 @@ msg[11] = "date modified: a long time ago";
 msg[12] = "sorry nothing";
 msg[13] = "&#x2665;";
 var rnd = Math.floor(Math.random() * msg.length);
-document.getElementById("size").innerHTML = "87,5 KB (89 623 bytes) in use";
+document.getElementById("size").innerHTML = "87,3 KB (89 402 bytes) in use";
 document.getElementById("copymsg").innerHTML = msg[rnd];
 </script>
 </div>
@@ -402,7 +478,6 @@ var sects = document.getElementsByClassName('sect');
 var slds = document.getElementsByClassName('sld');
 var links = document.getElementsByTagName("a");
 
-var curStyle = 0;
 var activeSect = 0;
 var slideState = -1;
 var slideTo = -1;
@@ -487,13 +562,7 @@ function adjustSliders(id)
 {
 	for (var i = 0; i < slds.length; i++) {
 		if (id == slds[i]) {
-			if (curStyle == 1) {
-				slds[i].style.color = '#00ffff';
-			}
-			else {
-				slds[i].style.color = '#ff4fa7';
-			}
-
+			slds[i].style.color = '#ff4fa7';
 			continue;
 		}
 
@@ -554,24 +623,6 @@ window.onload = function() {
 
 	if (doSlide(document.getElementById("s_motd"), false))
 		adjustSliders(document.getElementById("sld_motd"));
-
-	var a = document.getElementById("pfp");
-	a.onclick = function() {
-		var img = document.getElementById("pfpimg");
-		img.src = "res/fel.png";
-		curStyle = 1;
-		adjustSliders(document.getElementById("sld_about"));
-		for (var i = 0; i < links.length; i++) {
-			if (curStyle == 1) {
-				links[i].style.color = '#00ffff';
-			}
-			else {
-				links[i].style.color = '#ff4fa7';
-			}
-		}
-		
-		return false;
-	}
 }
 </script>
 </body>
