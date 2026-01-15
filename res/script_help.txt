@@ -12,7 +12,7 @@ Description: Hit groups from traces
 
 =====================================
 Enum:        IN
-Elements:    26
+Elements:    35
 Description: Button mask bindings
 =====================================
 
@@ -219,6 +219,18 @@ Description: Used by the living dead.
 Constant:    CLIENT_DLL
 Value:       0 (int)
 
+Constant:    COLLISION_GROUP_BARRICADE_OPEN
+Value:       29 (int)
+Description: For barricade points that have not been used.
+
+Constant:    COLLISION_GROUP_BARRICADE_TRACE
+Value:       31 (int)
+Description: Trace used for finding barricade points.
+
+Constant:    COLLISION_GROUP_BARRICADE_USED
+Value:       30 (int)
+Description: For barricade points that have been used.
+
 Constant:    COLLISION_GROUP_BREAKABLE_GLASS
 Value:       6 (int)
 Description: Collision group used in GetCollisionGroup(), etc.
@@ -239,6 +251,18 @@ Constant:    COLLISION_GROUP_DOOR_BLOCKER
 Value:       23 (int)
 Description: Collision group used in GetCollisionGroup(), etc.
 
+Constant:    COLLISION_GROUP_FALLING_ITEM
+Value:       34 (int)
+Description: For items that are falling (dropped weapons & ammo).
+
+Constant:    COLLISION_GROUP_HEALTH_STATION
+Value:       35 (int)
+Description: Used for collision between health station + drop point.
+
+Constant:    COLLISION_GROUP_HEALTH_STATION_ACTIVE
+Value:       36 (int)
+Description: Used for collision between health station + drop point.
+
 Constant:    COLLISION_GROUP_INTERACTIVE
 Value:       4 (int)
 Description: Collision group used in GetCollisionGroup(), etc.
@@ -251,6 +275,18 @@ Constant:    COLLISION_GROUP_IN_VEHICLE
 Value:       19 (int)
 Description: Collision group used in GetCollisionGroup(), etc.
 
+Constant:    COLLISION_GROUP_ITEM
+Value:       38 (int)
+Description: Collides with anything that isn't an NPC or a player.
+
+Constant:    COLLISION_GROUP_MELEE_SWING
+Value:       40 (int)
+Description: Collision used for melee swing.
+
+Constant:    COLLISION_GROUP_NOCOLLIDE
+Value:       33 (int)
+Description: Generic 'No collision'.
+
 Constant:    COLLISION_GROUP_NONE
 Value:       0 (int)
 Description: Collision group used in GetCollisionGroup(), etc.
@@ -258,6 +294,42 @@ Description: Collision group used in GetCollisionGroup(), etc.
 Constant:    COLLISION_GROUP_NPC
 Value:       9 (int)
 Description: Collision group used in GetCollisionGroup(), etc.
+
+Constant:    COLLISION_GROUP_NPC10
+Value:       18 (int)
+Description: NPC greasing group.
+
+Constant:    COLLISION_GROUP_NPC2
+Value:       10 (int)
+Description: NPC greasing group.
+
+Constant:    COLLISION_GROUP_NPC3
+Value:       11 (int)
+Description: NPC greasing group.
+
+Constant:    COLLISION_GROUP_NPC4
+Value:       12 (int)
+Description: NPC greasing group.
+
+Constant:    COLLISION_GROUP_NPC5
+Value:       13 (int)
+Description: NPC greasing group.
+
+Constant:    COLLISION_GROUP_NPC6
+Value:       14 (int)
+Description: NPC greasing group.
+
+Constant:    COLLISION_GROUP_NPC7
+Value:       15 (int)
+Description: NPC greasing group.
+
+Constant:    COLLISION_GROUP_NPC8
+Value:       16 (int)
+Description: NPC greasing group.
+
+Constant:    COLLISION_GROUP_NPC9
+Value:       17 (int)
+Description: NPC greasing group.
 
 Constant:    COLLISION_GROUP_NPC_ACTOR
 Value:       27 (int)
@@ -287,6 +359,14 @@ Constant:    COLLISION_GROUP_PUSHAWAY
 Value:       26 (int)
 Description: Collision group used in GetCollisionGroup(), etc.
 
+Constant:    COLLISION_GROUP_SAFEZONE_SUPPLY
+Value:       37 (int)
+Description: Used for safe zone supplies.
+
+Constant:    COLLISION_GROUP_STUCK_WEAPON
+Value:       39 (int)
+Description: Used for non-colliding stuck weapons in zombies.
+
 Constant:    COLLISION_GROUP_VEHICLE
 Value:       7 (int)
 Description: Collision group used in GetCollisionGroup(), etc.
@@ -298,6 +378,10 @@ Description: Collision group used in GetCollisionGroup(), etc.
 Constant:    COLLISION_GROUP_WEAPON
 Value:       20 (int)
 Description: Collision group used in GetCollisionGroup(), etc.
+
+Constant:    COLLISION_GROUP_WEAPON_TRIGGER
+Value:       32 (int)
+Description: Used for trigger_weapon entities.
 
 Constant:    CONTENTS_AREAPORTAL
 Value:       32768 (int)
@@ -458,6 +542,10 @@ Constant:    DMG_BLAST_SURFACE
 Value:       134217728 (int)
 Description: Damage type used in damage information.
 
+Constant:    DMG_BLEEDOUT
+Value:       262144 (int)
+Description: Indicates bleeding damage.
+
 Constant:    DMG_BUCKSHOT
 Value:       536870912 (int)
 Description: Damage type used in damage information.
@@ -506,6 +594,14 @@ Constant:    DMG_GENERIC
 Value:       0 (int)
 Description: Damage type used in damage information.
 
+Constant:    DMG_HEADSHOT
+Value:       524288 (int)
+Description: Indicates a headshot.
+
+Constant:    DMG_INFECT
+Value:       65536 (int)
+Description: When set, this damage source can infect a player.
+
 Constant:    DMG_NERVEGAS
 Value:       65536 (int)
 Description: Damage type used in damage information.
@@ -513,6 +609,10 @@ Description: Damage type used in damage information.
 Constant:    DMG_NEVERGIB
 Value:       4096 (int)
 Description: Damage type used in damage information.
+
+Constant:    DMG_NOINFECTTURN
+Value:       1048576 (int)
+Description: When set, infected players won't turn into zombies on death.
 
 Constant:    DMG_PARALYZE
 Value:       32768 (int)
@@ -558,9 +658,17 @@ Constant:    DMG_SONIC
 Value:       512 (int)
 Description: Damage type used in damage information.
 
+Constant:    DMG_STAGGER
+Value:       16777216 (int)
+Description: When set, this damage source will shove zombies.
+
 Constant:    DMG_VEHICLE
 Value:       16 (int)
 Description: Damage type used in damage information.
+
+Constant:    DMG_WPNSPECIAL
+Value:       1073741824 (int)
+Description: When set, this damage source will trigger "trigger_weapon" entities.
 
 Constant:    D_ER
 Value:       0 (int)
@@ -1093,6 +1201,10 @@ Constant:    IN.ALT2
 Value:       32768 (int)
 Description: Button for +alt2
 
+Constant:    IN.AMMOINV
+Value:       1073741824 (int)
+Description: Button for +ammoinv
+
 Constant:    IN.ATTACK
 Value:       1 (int)
 Description: Button for +attack
@@ -1117,6 +1229,14 @@ Constant:    IN.CANCEL
 Value:       64 (int)
 Description: Special button flag for attack cancel
 
+Constant:    IN.COMPASS
+Value:       268435456 (int)
+Description: Button for +compass
+
+Constant:    IN.DROPWEAPON
+Value:       32768 (int)
+Description: Button for +dropweapon
+
 Constant:    IN.DUCK
 Value:       4 (int)
 Description: Button for +duck
@@ -1133,6 +1253,10 @@ Constant:    IN.GRENADE2
 Value:       16777216 (int)
 Description: Button for +grenade2
 
+Constant:    IN.INVENTORY
+Value:       536870912 (int)
+Description: Button for +inventory
+
 Constant:    IN.JUMP
 Value:       2 (int)
 Description: Button for +jump
@@ -1140,6 +1264,10 @@ Description: Button for +jump
 Constant:    IN.LEFT
 Value:       128 (int)
 Description: Button for +left
+
+Constant:    IN.MAGLITE
+Value:       67108864 (int)
+Description: Button for +maglite
 
 Constant:    IN.MOVELEFT
 Value:       512 (int)
@@ -1165,13 +1293,29 @@ Constant:    IN.SCORE
 Value:       65536 (int)
 Description: Button for +score
 
+Constant:    IN.SELECTFIRE
+Value:       16777216 (int)
+Description: Button for +selectfire
+
+Constant:    IN.SHOVE
+Value:       134217728 (int)
+Description: Button for +shove
+
 Constant:    IN.SPEED
 Value:       131072 (int)
 Description: Button for +speed
 
+Constant:    IN.UNLOAD
+Value:       4194304 (int)
+Description: Button for +unload
+
 Constant:    IN.USE
 Value:       32 (int)
 Description: Button for +use
+
+Constant:    IN.VOICECMD
+Value:       -2147483648 (int)
+Description: Button for +voicecmd
 
 Constant:    IN.WALK
 Value:       262144 (int)
@@ -1520,7 +1664,7 @@ Value:       4 (int)
 Description: Collide with the world. (for use in rope flags)
 
 Constant:    ROPE_GRAVITY
-Value:       Vector( 0.000000, 0.000000, 0.000000 ) (Vector)
+Value:       Vector( 0.000000, 0.000000, -1500.000000 ) (Vector)
 Description: Default rope gravity vector.
 
 Constant:    ROPE_INITIAL_HANG
@@ -2590,6 +2734,12 @@ Description: The filter_script entity which allows VScript functions to hook ont
 =====================================
 
 =====================================
+Class:       CFuncTrackTrain
+Base:        CBaseEntity
+Description: func_train
+=====================================
+
+=====================================
 Class:       CFuncZombieSpawn
 Base:        CBaseEntity
 Description: Zombie spawn volume.
@@ -2730,6 +2880,12 @@ Description: The wave controller.
 Class:       COverlord_Zombie_Helper
 Base:        CBaseEntity
 Description: The zombie helper.
+=====================================
+
+=====================================
+Class:       CPlayerVoiceListener
+Base:        
+Description: Player voice listeners
 =====================================
 
 =====================================
@@ -3517,6 +3673,10 @@ Function:    CBaseAnimating::Dissolve
 Signature:   bool CBaseAnimating::Dissolve(string, float, bool, int, Vector, int)
 Description: Use 'sprites/blueglow1.vmt' for the default material, Time() for the default start time, false for npcOnly if you don't want it to check if the entity is a NPC first, 0 for the default dissolve type, Vector(0,0,0) for the default dissolver origin, and 0 for the default magnitude.
 
+Function:    CBaseAnimating::DrawFilterAllPlayers
+Signature:   void CBaseAnimating::DrawFilterAllPlayers(bool)
+Description: Sets client draw filter for all players, when set to true, this model won't be rendered.
+
 Function:    CBaseAnimating::EnableGlow
 Signature:   void CBaseAnimating::EnableGlow()
 Description: Enables outline glow, requires entity to be 'glowable'.
@@ -3698,6 +3858,10 @@ Description: Changes model scale. Params: <scale> <change duration in seconds>
 
 Function:    CBaseAnimating::SetPlaybackRate
 Signature:   void CBaseAnimating::SetPlaybackRate(float)
+
+Function:    CBaseAnimating::SetPlayerDrawFilter
+Signature:   void CBaseAnimating::SetPlayerDrawFilter(handle, bool)
+Description: When set to true, this model won't be rendered on given client.
 
 Function:    CBaseAnimating::SetPoseParameter
 Signature:   void CBaseAnimating::SetPoseParameter(string, float)
@@ -4417,6 +4581,10 @@ Function:    CBaseEntity::IsWorld
 Signature:   bool CBaseEntity::IsWorld()
 Description: Returns true if this entity is the world.
 
+Function:    CBaseEntity::IsZombie
+Signature:   bool CBaseEntity::IsZombie()
+Description: Returns true if this entity is a zombie.
+
 Function:    CBaseEntity::KeyValueFromFloat
 Signature:   bool CBaseEntity::KeyValueFromFloat(string, float)
 Description: Executes KeyValue with a float, same caveat from KeyValueFromString applies.
@@ -5128,6 +5296,10 @@ Function:    CEnvTimer::StopTimer
 Signature:   void CEnvTimer::StopTimer()
 Description: Stops the timer, this effectively pauses it.
 
+Function:    CFuncTrackTrain::GetFuturePosition
+Signature:   Vector CFuncTrackTrain::GetFuturePosition(float, float)
+Description: Get a position on the track x seconds in the future
+
 Function:    CFuncZombieSpawn::CanDespawn
 Signature:   bool CFuncZombieSpawn::CanDespawn()
 Description: Returns true if this volume can despawn zombies.
@@ -5556,6 +5728,10 @@ Function:    CItem_InventoryBox::IsDroppedByChopper
 Signature:   bool CItem_InventoryBox::IsDroppedByChopper()
 Description: Returns true if this inventory box is dropped by a chopper, and isn't manually spawned.
 
+Function:    CItem_InventoryBox::IsTakeButtonHidden
+Signature:   bool CItem_InventoryBox::IsTakeButtonHidden()
+Description: Returns true if TAKE button for this inventory box is hidden.
+
 Function:    CItem_InventoryBox::IsUncategorized
 Signature:   bool CItem_InventoryBox::IsUncategorized()
 Description: Returns true if this inventory box is uncategorized.
@@ -5579,6 +5755,10 @@ Description: Removes an item at specified category and index.
 Function:    CItem_InventoryBox::SetBackgroundTexture
 Signature:   void CItem_InventoryBox::SetBackgroundTexture(string)
 Description: Changes supply crate background in the client UI, with a parameter of material name.
+
+Function:    CItem_InventoryBox::SetTakeButtonHidden
+Signature:   void CItem_InventoryBox::SetTakeButtonHidden(bool)
+Description: Hides TAKE button for this inventory box.
 
 Function:    CLogicProgress::AddMilestone
 Signature:   void CLogicProgress::AddMilestone(float)
@@ -5676,6 +5856,10 @@ Function:    CNMRiH_BarricadePoint::IsInUse
 Signature:   bool CNMRiH_BarricadePoint::IsInUse()
 Description: Returns true if this barricade point has been used, i.e. has a prop.
 
+Function:    CNMRiH_BarricadePoint::SetModelOverride
+Signature:   void CNMRiH_BarricadePoint::SetModelOverride(string)
+Description: Sets a custom prop model for this barricade point.
+
 Function:    CNMRiH_BaseZombie::BecomeCrawler
 Signature:   void CNMRiH_BaseZombie::BecomeCrawler()
 Description: Turns this zombie into a crawler.
@@ -5704,6 +5888,10 @@ Function:    CNMRiH_BaseZombie::IsKid
 Signature:   bool CNMRiH_BaseZombie::IsKid()
 Description: Returns true if this zombie is a kid.
 
+Function:    CNMRiH_BaseZombie::IsRecognizedByGameRules
+Signature:   bool CNMRiH_BaseZombie::IsRecognizedByGameRules()
+Description: Returns true if game rules recognize this zombie as such, false if map sets "Ignore Zombie Rules?" as "Yes".
+
 Function:    CNMRiH_BaseZombie::IsRunner
 Signature:   bool CNMRiH_BaseZombie::IsRunner()
 Description: Returns true if this zombie is a runner.
@@ -5715,6 +5903,10 @@ Description: Returns true if this zombie is a shambler.
 Function:    CNMRiH_BaseZombie::IsTurned
 Signature:   bool CNMRiH_BaseZombie::IsTurned()
 Description: Returns true if this zombie is a turned player.
+
+Function:    CNMRiH_BaseZombie::SetIgnoreZombieRules
+Signature:   void CNMRiH_BaseZombie::SetIgnoreZombieRules(bool)
+Description: When true, game rules will not recognize this NPC as a 'zombie'. Useful for custom NPCs that wish to utilize zombie behavior.
 
 Function:    CNMRiH_BaseZombie::SetModelOverride
 Signature:   void CNMRiH_BaseZombie::SetModelOverride(string)
@@ -5946,6 +6138,10 @@ Function:    CNMRiH_Player::DestroyEverything
 Signature:   void CNMRiH_Player::DestroyEverything()
 Description: Destroys all items that player owns.
 
+Function:    CNMRiH_Player::DidGunshotSuicide
+Signature:   bool CNMRiH_Player::DidGunshotSuicide()
+Description: Returns true on dead players who suicided by firearm.
+
 Function:    CNMRiH_Player::DoCommitSuicide
 Signature:   void CNMRiH_Player::DoCommitSuicide()
 Description: Does commit suicide.
@@ -6014,9 +6210,17 @@ Function:    CNMRiH_Player::GetThrowVector
 Signature:   Vector CNMRiH_Player::GetThrowVector(float)
 Description: Returns weapon throw vector, with parameter of throw force.
 
+Function:    CNMRiH_Player::HasDuckAbility
+Signature:   bool CNMRiH_Player::HasDuckAbility()
+Description: Returns true if player has an ability to duck.
+
 Function:    CNMRiH_Player::HasFlashlight
 Signature:   bool CNMRiH_Player::HasFlashlight()
 Description: Returns true if player owns flashlight.
+
+Function:    CNMRiH_Player::HasJumpAbility
+Signature:   bool CNMRiH_Player::HasJumpAbility()
+Description: Returns true if player has an ability to jump.
 
 Function:    CNMRiH_Player::HasLeftoverWeight
 Signature:   bool CNMRiH_Player::HasLeftoverWeight(int)
@@ -6130,9 +6334,17 @@ Function:    CNMRiH_Player::RespawnTokenCount
 Signature:   int CNMRiH_Player::RespawnTokenCount()
 Description: Returns active respawn token count.
 
+Function:    CNMRiH_Player::SetDuckAbility
+Signature:   void CNMRiH_Player::SetDuckAbility(bool)
+Description: Overrides whether player can duck or not, predicted on client.
+
 Function:    CNMRiH_Player::SetExtracted
 Signature:   void CNMRiH_Player::SetExtracted(bool)
 Description: Sets this player as extracted.
+
+Function:    CNMRiH_Player::SetForcedRespawn
+Signature:   void CNMRiH_Player::SetForcedRespawn(bool)
+Description: Flags next respawn as forced, skipping valid spawn point check. Reverts on respawn.
 
 Function:    CNMRiH_Player::SetHandModelOverride
 Signature:   void CNMRiH_Player::SetHandModelOverride(string)
@@ -6145,6 +6357,10 @@ Description: Sets timeout for idle auto-kick.
 Function:    CNMRiH_Player::SetIgnoreFallDamage
 Signature:   void CNMRiH_Player::SetIgnoreFallDamage(bool)
 Description: Makes the player ignore all fall damage.
+
+Function:    CNMRiH_Player::SetJumpAbility
+Signature:   void CNMRiH_Player::SetJumpAbility(bool)
+Description: Overrides whether player can jump or not, predicted on client.
 
 Function:    CNMRiH_Player::SetNextRespawnTime
 Signature:   void CNMRiH_Player::SetNextRespawnTime(float)
@@ -6381,6 +6597,10 @@ Signature:   void CNavMesh::RegisterAvoidanceObstacle(handle)
 Function:    CNavMesh::UnregisterAvoidanceObstacle
 Signature:   void CNavMesh::UnregisterAvoidanceObstacle(handle)
 
+Function:    CNetPropManager::Dump
+Signature:   void CNetPropManager::Dump(handle, string)
+Description: Dump all readable netprop and datafield values of this entity. Pass in file name to write into.
+
 Function:    CNetPropManager::GetPropArraySize
 Signature:   int CNetPropManager::GetPropArraySize(handle, string)
 Description: Returns the size of an array.
@@ -6613,6 +6833,14 @@ Description: Instantly spawns zombies across all active spawn brushes. Optionall
 Function:    COverlord_Zombie_Helper::SpawnIgnoreVisibility
 Signature:   void COverlord_Zombie_Helper::SpawnIgnoreVisibility(int, string)
 Description: Same as Spawn, but ignores visiblity checks.
+
+Function:    CPlayerVoiceListener::GetPlayerSpeechDuration
+Signature:   float CPlayerVoiceListener::GetPlayerSpeechDuration(int)
+Description: Returns the number of seconds the player has been continuously speaking.
+
+Function:    CPlayerVoiceListener::IsPlayerSpeaking
+Signature:   bool CPlayerVoiceListener::IsPlayerSpeaking(int)
+Description: Returns whether the player specified is speaking.
 
 Function:    CPointMessageMultiplayer::Disable
 Signature:   void CPointMessageMultiplayer::Disable()
@@ -6907,6 +7135,14 @@ Signature:   Vector CScriptNavArea::FindRandomSpot()
 
 Function:    CScriptNavArea::GetAdjacentArea
 Signature:   handle CScriptNavArea::GetAdjacentArea(int, int)
+Description: Returns the n'th adjacent area in the given direction.
+
+Function:    CScriptNavArea::GetAdjacentAreas
+Signature:   void CScriptNavArea::GetAdjacentAreas(int, handle)
+Description: Fills table with connected adjacent areas in the given direction.
+
+Function:    CScriptNavArea::GetAdjacentCount
+Signature:   int CScriptNavArea::GetAdjacentCount(int)
 Description: Returns number of connected areas in given direction.
 
 Function:    CScriptNavArea::GetAttributes
@@ -8005,6 +8241,10 @@ Function:    ParticleTracerEffect
 Signature:   void ParticleTracerEffect(string, Vector, Vector, int, int, bool)
 Description: Makes a tracer effect by using a particle. Params: <particle name>, <startpos>, <endpos>, <entindex>, <attachment idx>, <should whiz?>
 
+Function:    Plat_FloatTime
+Signature:   float Plat_FloatTime()
+Description: Returns time in seconds since the module was loaded. (Use only for profiling, this is *not* the game time!)
+
 Function:    PrecacheEntityFromTable
 Signature:   void PrecacheEntityFromTable(string, handle)
 Description: Precache an entity from KeyValues in a table.
@@ -8125,6 +8365,14 @@ Description: Stop the specified event listener.
 Function:    Time
 Signature:   float Time()
 Description: Get the current server time
+
+Function:    TraceEntity
+Signature:   bool TraceEntity(handle)
+Description: Sweeps a particular entity through the world. Results are written to the passed-in table. The input variables are kept in the table after the trace.
+
+Function:    TraceHull
+Signature:   bool TraceHull(handle)
+Description: Does a box (AABB) sweep along a path defined by two vectors, returning the first entity or geometry hit along the way. Results are written to the passed-in table.
 
 Function:    TraceHullComplex
 Signature:   handle TraceHullComplex(Vector, Vector, Vector, Vector, handle, int, int)
@@ -8428,6 +8676,10 @@ Hook:        CBaseEntity -> OnKilledOther
 Signature:   void CBaseEntity -> OnKilledOther(handle [victim], handle [info])
 Description: Called when the entity kills another entity.
 
+Hook:        CBaseEntity -> OnTakeDamage
+Signature:   bool CBaseEntity -> OnTakeDamage(handle [info])
+Description: Called when the entity takes damage. This hook is designed as a mutable replacement for filter_script's PassesFinalDamageFilter, incoming damage info can be modified before it's applied. Returning false will discard received damage.
+
 Hook:        CBaseEntity -> UpdateOnRemove
 Signature:   void CBaseEntity -> UpdateOnRemove()
 Description: Called when the entity is being removed.
@@ -8442,15 +8694,15 @@ Description: Called when running a player command on the server.
 
 Hook:        CEntities -> OnEntityCreated
 Signature:   void CEntities -> OnEntityCreated(handle [entity])
-Description: Called when an entity is created. Requires EnableEntityListening() to be fired beforehand.
+Description: Called when an entity is created.
 
 Hook:        CEntities -> OnEntityDeleted
 Signature:   void CEntities -> OnEntityDeleted(handle [entity])
-Description: Called when an entity is deleted. Requires EnableEntityListening() to be fired beforehand.
+Description: Called when an entity is deleted.
 
 Hook:        CEntities -> OnEntitySpawned
 Signature:   void CEntities -> OnEntitySpawned(handle [entity])
-Description: Called when an entity spawns. Requires EnableEntityListening() to be fired beforehand.
+Description: Called when an entity spawns.
 
 Hook:        CFilterScript -> PassesDamageFilter
 Signature:   bool CFilterScript -> PassesDamageFilter(handle [caller], handle [info])
@@ -8479,3 +8731,15 @@ Description: Called as a think function when the item is carried.
 Hook:        CNMRiH_ItemCustom -> PreItemPickupThink
 Signature:   void CNMRiH_ItemCustom -> PreItemPickupThink()
 Description: Called as a think function when the item isn't carried.
+
+Hook:        CNMRiH_Player -> OnWeaponDrop
+Signature:   void CNMRiH_Player -> OnWeaponDrop(handle [weapon])
+Description: Called when player drops their weapon.
+
+Hook:        CNMRiH_Player -> OnWeaponEquip
+Signature:   void CNMRiH_Player -> OnWeaponEquip(handle [weapon])
+Description: Called when player picks up a weapon.
+
+Hook:        CNMRiH_Player -> OnWeaponSwitch
+Signature:   void CNMRiH_Player -> OnWeaponSwitch(handle [weapon])
+Description: Called when player switches their active weapon.
