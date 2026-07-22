@@ -92,24 +92,6 @@ a:hover {
 	margin-left:-8px;
 }
 
-img.pfpstyle {
-	border:solid;
-	border-width:2px;
-	display:block;
-	width:25%;
-	float:left;
-	margin-right:12px;
-	margin-bottom:1px;
-}
-
-#pfpimg {
-	width:145px;
-	height:145px;
-	background-image:url("at0.png");
-	background-repeat:no-repeat;
-	background-position:-626px -73px;
-}
-
 img.logo {
 	width:608px;
 	height:128px;
@@ -156,7 +138,11 @@ img.btn {
 #btns-2 { background-position:-696px 0; }
 #btns-3 { background-position:-784px 0; }
 #btns-4 { background-position:-608px -31px; }
-#btns-5 { background-position:-696px -31px; }
+
+img.fel {
+	width:88px;
+	height:31px;
+}
 
 div.s {
 	font-size:13px;
@@ -250,7 +236,7 @@ thanks for stopping by! &#x263A;
 <img id="btns-2" class=btn src="a.png" draggable="false">
 <img id="btns-3" class=btn src="a.png" draggable="false">
 <img id="btns-4" class=btn src="a.png" draggable="false">
-<a href="https://fel.wtf/" target="_blank"><img src="fel.png" class=btn></a>
+<a href="https://fel.wtf/" target="_blank"><img src="fel.png" class=fel></a>
 <br>
 <div class="s">this site uses IBM VGA 8x16 font by <a href=https://int10h.org/oldschool-pc-fonts/ target="_blank">VileR</a></div>
 </div>
@@ -415,7 +401,7 @@ msg[11] = "date modified: a long time ago";
 msg[12] = "sorry nothing";
 msg[13] = "&#x2665;";
 var rnd = Math.floor(Math.random() * msg.length);
-document.getElementById("size").innerHTML = "81,3 KiB (83 282 bytes) in use";
+document.getElementById("size").innerHTML = "81,0 KiB (83 024 bytes) in use";
 document.getElementById("copymsg").innerHTML = msg[rnd];
 </script>
 </div>
